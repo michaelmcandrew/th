@@ -1,0 +1,484 @@
+<?php
+
+//Ugh - see http://drupal.org/node/921398 
+//@TODO: Remove this ugly hack when the issue above is fixed.
+include_once 'modules/node/node.pages.inc';
+
+/**
+ * @file
+ * Implements Microblogging Protocol for Drupal (Server)
+ * This lets users post microblog updates, as well as subscribe
+ * to update streams across other servers which implement
+ * the same protocol
+ */
+
+/**
+ * Implementation of hook_node_info().
+ *
+ * todo: Should microblog updates be nodes?
+ */
+function microblog_node_info() {
+  return array(
+    'microblog' => array(
+    'name' => t('Microblog Entry'),
+    'base' => 'microblog',
+    'description' => t('A <em>microblog entry</em> is a single post to a microblog.'),
+    'has_title' => TRUE,
+    'title_label' => t('What are you doing?'),
+    )
+  );
+}
+
+/**
+ * Implementation of hook_perm().
+ */
+function microblog_permission() {
+  return array(
+    'post microblog entries' => array(
+      'title' => t('Post microblog entries'),
+      'description' => t('Post a microblog entry.'),  
+    ), 
+    'delete microblog entries' => array(
+      'title' => t('Delete microblog entries'),
+      'description' => t('Delete any microblog posts (yours or another user\'s).'),  
+    ), 
+    'subscribe to local microblogs' => array(
+      'title' => t('Subscribe to local microblogs'),
+      'description' => t('Subscribe to microblogs hosted on the local site.'),  
+    ),  
+    'subscribe to remote microblogs' => array(
+      'title' => t('Subscribe to remote microblogs'),
+      'description' => t('Subscribe to microblogs hosted remotely.'),  
+    ), 
+    'edit own microblog' => array(
+      'title' => t('Edit own microblog'),
+      'description' => t('Allows the user to edit and delete their own microblog posts.'),  
+    ), 
+  );
+}
+
+/**
+ * Implementation of hook_access().
+ */
+function microblog_node_access($node, $op, $account) {
+  $type = is_string($node) ? $node : $node->type;
+  if ($type == 'microblog') {
+    switch ($op) {
+      case 'create':
+        // Anonymous users cannot post even if they have the permission. 
+        return user_access('post microblog entries', $account) && $account->uid ? NODE_ACCESS_ALLOW : NODE_ACCESS_DENY;
+      case 'delete':
+        // do I want admins to be able to delete status updates?
+        return user_access('delete microblog entries', $account) || ((user_access('edit own microblog', $account) && ($node->uid == $account->uid))) ? NODE_ACCESS_ALLOW : NODE_ACCESS_DENY;
+    }
+  }
+}
+
+/**
+ * Implementation of hook_user_view().
+ */
+function microblog_user_view($account, $view_mode, $langcode) {
+  if (user_access('post microblog entries', $account)) {
+    $account->content['summary']['microblog'] =  array(
+      '#type' => 'user_profile_item',
+      '#title' => t('Microblog'),
+      '#markup' => l(t('View recent microblog entries'), "microblog/$account->uid", 
+        array('attributes' => array('title' => t("Read !username's latest microblog entries.", 
+        array('!username' => format_username($account->name)))))),
+      '#attributes' => array('class' => 'microblog'),
+    );
+  }
+}
+
+/**
+ * Implementation of hook_help().
+ */
+function microblog_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#microblog':
+      $output = '<p>'. t('The Open Microblog module allows registered users to maintain an online microblog.') .'</p>';
+      $output .= '<p>'. t('There is an (optional) <em>Microblogs</em> menu item added to the Navigation menu, which displays all microblogs available on your site, and a <em>My Microblog</em> item displaying the current user\'s microblog updates. The <em>Microblog entry</em> menu item under <em>Create content</em> allows new microblog entries to be created.') .'</p>';
+      $output .= '<p>'. t('Each microblog entry is displayed with an automatic link to other microblog entries created by the same user. By default, microblog entries have comments enabled. The microblog module also creates a <em>Recent microblog updates</em> block that may be enabled at the <a href="@blocks">blocks administration page</a>.', array('@blocks' => url('admin/structure/block'))) .'</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implementation of hook_form().
+ */
+function microblog_form($node, &$form_state) {
+  $type = node_type_get_type($node);
+  
+  $form['title'] = array(
+    '#type' => 'textfield',
+    '#title' => check_plain($type->title_label),
+    '#required' => TRUE,
+    '#maxlength' => 255,
+  );
+
+  return $form;
+}
+
+/**
+ * Implementation of hook_form_alter()
+ */
+function microblog_form_node_form_alter(&$form, &$form_state, $form_id) {
+  global $user;  // need global user to get username
+  drupal_add_js(drupal_get_path('module', 'microblog') . '/microblog.js');
+  if ($form_id == 'microblog_node_form') {
+    $form['#attributes'] = array('class' => 'microblog-node-form');
+    unset($form['menu']);
+    unset($form['revision_information']);
+    unset($form['author']);
+    $form['author']['name']['#type'] = 'value';
+    $form['author']['name']['#value'] = $user->name;
+    unset($form['comment_settings']);
+    unset($form['options']);
+    unset($form['attachments']);
+    unset($form['actions']['preview']);
+    unset($form['path']);
+    $form['actions']['submit']['#submit'] = array('microblog_submit');  
+    if (arg(0) == 'node' && arg(1) == 'add') {
+      $form['needs_redirect'] = array('#type' => 'value', '#value' => TRUE);
+    }
+    else {
+      $form['actions']['submit']['#ajax'] = array(
+        'callback' => 'microblog_js',
+        'wrapper' => 'microblog-list',
+        'event' => 'click',
+        'method' => 'prepend',
+        'effect' => 'fade',
+        'progress' => array('type' => '1bar', 'message' => t('Please wait...')),
+      );
+    }
+  }
+}   
+
+/**
+ * Submit handler for microblog node form
+ */
+function microblog_submit($form, &$form_state) {
+  $node = node_form_submit_build_node($form, $form_state);
+  $insert = empty($node->nid);
+  node_save($node);
+  $type = node_type_get_type($node);
+  $node_link = l(t('view'), 'node/'. $node->nid);
+  $watchdog_args = array('@type' => $node->type, '%title' => $node->title);
+  $t_args = array('@type' => $type->name, '%title' => $node->title);
+
+  if ($insert) {
+    watchdog('content', '@type: added %title.', $watchdog_args, WATCHDOG_NOTICE, $node_link);
+    drupal_set_message(t('@type %title has been created.', $t_args));
+  }
+  else {
+    watchdog('content', '@type: updated %title.', $watchdog_args, WATCHDOG_NOTICE, $node_link);
+    drupal_set_message(t('@type %title has been updated.', $t_args));
+  }
+  if ($node->nid) {
+    unset($form_state['rebuild']);
+    $form_state['nid'] = $node->nid;
+  }
+  else {
+    // In the unlikely case something went wrong on save, the node will be
+    // rebuilt and node form redisplayed the same way as in preview.
+    drupal_set_message(t('The post could not be saved.'), 'error');
+  }
+  if ($form_state['values']['needs_redirect']) {
+    $form_state['redirect'] = 'microblog';
+  }
+  $form_state['microblog_node'] = $node;
+}
+
+/**
+ * AHAH callback handler to output microblog form submit results
+ */
+function microblog_js($form, $form_state) {
+  
+  $node = $form_state['microblog_node'];
+  $errors = form_get_errors();
+
+  if (!$errors) {
+    // TODO: seems like there should be a better way to clear the form value
+    $output = '<script>$("#edit-title").val("")</script>';
+    $output .= theme('microblog_item', array('node' => $node));
+    drupal_get_messages(); 
+  }
+  else {
+    foreach ($errors as $e) {
+      $items[] = $e;
+    }
+    $output = '<div class="messages error">' . theme('item_list', $items) . '</div>';
+  }
+  return $output;
+}
+  
+/**
+ * Implementation of hook_view().
+ */
+function microblog_view($node, $view_mode) {
+  if ($view_mode == 'page') {
+    // Breadcrumb navigation
+    drupal_set_breadcrumb(array(l(t('Home'), NULL), l(t('Microblogs'), 'microblog'), l(t("@name's microblog", array('@name' => $node->name)), 'microblog/'. $node->uid)));
+  }
+  return $node;
+}
+
+/**
+ * Implementation of hook_node_view().
+ */
+function microblog_node_view($node, $view_mode) {
+  if ($node->type == 'microblog') {
+    if (arg(0) != 'microblog' || arg(1) != $node->uid) {
+      $links['blog_usernames_blog'] = array(
+        'title' => t("!username's Microblog", array('!username' => format_username($node->name))),
+        'href' => "microblog/$node->uid",
+        'attributes' => array('title' => t("Read !username's latest microblog entries.", array('!username' => format_username($node->name)))),
+      );
+      $node->content['links']['microblog'] = array(
+        '#theme' => 'links__node__microblog',
+        '#links' => $links,
+        '#attributes' => array('class' => array('links', 'inline')),
+      );
+    }
+  }
+}
+
+/**
+ * Implementation of hook_menu().
+ */
+function microblog_menu() {
+  $items['microblog'] = array(
+    'title' => 'Public Timeline',
+    'page callback' => 'microblog_page_last',
+    'access arguments' => array('access content'),
+    'type' => MENU_SUGGESTED_ITEM,
+    'file' => 'microblog.pages.inc',
+  );
+  $items['microblog/%user'] = array(
+    'title' => 'My Microblog',
+    'page callback' => 'microblog_page_user',
+    'page arguments' => array(1),
+    'access callback' => 'microblog_page_user_access',
+    'access arguments' => array(1),
+    'file' => 'microblog.pages.inc',
+  );
+  $items['microblog/%user/replies'] = array(
+    'title' => 'Replies',
+    'page callback' => 'microblog_page_replies',
+    'page arguments' => array(1),
+    'access callback' => 'microblog_page_user_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'file' => 'microblog.pages.inc'
+  );
+  $items['microblog/%user/feed'] = array(
+    'title' => 'Microblogs',
+    'page callback' => 'microblog_feed_user',
+    'page arguments' => array(1),
+    'access callback' => 'microblog_page_user_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'file' => 'microblog.pages.inc',
+  );
+  $items['microblog/%user/follow'] = array(
+    'title' => 'Follow user',
+    'page callback' => 'microblog_follow_user',
+    'page arguments' => array(1),
+    'access arguments' => array('subscribe to local microblogs'),
+    'type' => MENU_CALLBACK,
+    'file' => 'microblog.pages.inc',
+  );
+  $items['microblog/%user/leave'] = array(
+    'title' => 'Stop Following User',
+    'page callback' => 'microblog_leave_user',
+    'page arguments' => array(1),
+    'access arguments' => array('subscribe to local microblogs'),
+    'type' => MENU_CALLBACK,
+    'file' => 'microblog.pages.inc',
+  );
+  $items['microblog/%user/following'] = array(
+    'title' => 'Following',
+    'page callback' => 'microblog_page_following',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'microblog.pages.inc',
+  );
+  $items['microblog/%user/followers'] = array(
+    'title' => 'Followers',
+    'page callback' => 'microblog_page_followers',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'microblog.pages.inc',
+  );
+  $items['microblog/feed'] = array(
+    'title' => 'Public Timeline Feed',
+    'page callback' => 'microblog_feed_last',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+    'file' => 'microblog.pages.inc',
+  );
+  return $items;
+}
+
+/**
+ * Access callback for user microblog pages.
+ */
+function microblog_page_user_access($account) {
+  // The visitor must be able to access the site's content.
+  // For a microblog to 'exist' the user must either be able to
+  // create new microblog entries, or it must have existing posts.
+  return $account->uid && user_access('access content') && (user_access('post microblog entries', $account) || 
+    _microblog_post_exists($account));
+}
+
+/**
+ * Implementation of hook_block_info()
+ */
+function microblog_block_info() {
+  $blocks['recent'] = array(
+    'info' => t('Recent microblog posts'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  return $blocks;
+}
+
+/**
+ * Implementation of hook_block_configure()
+ */
+function microblog_block_configure($delta = '') {
+  $form = array();
+  if ($delta == 'recent') {
+    $form['items'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Number of messages in block',
+      '#default_value' => variable_get('microblog_block_num_messages', 5)
+    );
+  }
+  return $form; 
+}
+
+/**
+ * Implementation of hook_block_save()
+ */
+function microblog_block_save($delta = '', $edit = array()) {
+  if ($delta == 'recent') {
+    variable_set('microblog_block_num_messages', $edit['items']);
+  }
+}
+
+/**
+ * Implementation of hook_block_view()
+ */
+function microblog_block_view($delta = '') {
+  switch ($delta) {
+    case 'recent':
+      if (user_access('access content')) {
+        $query = "SELECT n.nid, n.title, n.created, n.uid, u.picture, u.name
+          FROM {node} n JOIN {users} u ON n.uid = u.uid
+          WHERE n.type = 'microblog' AND n.status = 1 ORDER BY n.created DESC";
+        $result = db_query_range($query, 0, variable_get('microblog_block_num_messages', 5));
+        $block['content'] = theme('microblog_list', array('results' => $result));
+        $block['content'] .= theme('more_link', array('url' => 'microblog', 'title' => t('Read the latest microblog entries.')));
+        $block['subject'] = t('Recent microblog entries');
+      }  
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implementation of hook_theme
+ *
+ * Theme function to display list of microblog entries
+ *
+ */ 
+function microblog_theme($existing, $type, $theme, $path) {
+  return array(
+    'microblog_display' => array('variables' => array('results' => NULL), ),
+    'microblog_item' => array('variables' => array('node'), ),
+    'microblog_list' => array('variables' => array('results' => NULL), ),
+    'microblog_people_list' => array('variables' => array('results' => NULL), ),
+    'microblog_links' => array('variables' => array('items' => NULL)),
+  );
+}
+ 
+function theme_microblog_display($variables) {  
+  $content = 'This is the theme_microblog_display function';
+  return $content;
+}
+
+function theme_microblog_item($variables) {
+  drupal_add_css(drupal_get_path('module', 'microblog') . '/css/microblog.css');
+  $content = '';
+  $node = $variables['node'];
+  $account = user_load($node->uid);
+  $content .= '<div class="microblog-item">';
+  $content .= '<div class="microblog-avatar">';
+  $content .= theme('user_picture', array('account' => $account));
+  $content .= '</div>';
+  $content .= '<div class="microblog-username">';
+  $content .= l($account->name, 'microblog/' . $account->uid);
+  $content .= '</div>';
+  $content .= '<div class="microblog-post">'; 
+  $content .= $node->title;
+  $content .= check_markup($node->title, $format = 'Full HTML', $check = TRUE);
+  $content .= '</div>';
+  $content .= '<div class="microblog-date">';
+  $content .= l(format_interval((time() - $node->created), 1, NULL), 'node/'. $node->nid) . ' ago via web';
+  $content .= '</div>';
+  $content .= '<br class="clear" />';
+  $content .= '</div>';  
+  return $content;
+}
+ 
+function theme_microblog_list($variables) {
+  $content = '';
+  $content .= '<div id="microblog-list">';
+  foreach ($variables['results'] as $node) {
+    $content .= theme('microblog_item', array('node' => $node));
+  } 
+  $pager = array();
+  $pager['quantity'] = 5;//variable_get('default_nodes_main', 10);
+  $content .= theme('pager', $pager);
+  $content .= '</div>';
+
+  return $content;
+}
+
+function theme_microblog_people_list($variables) {
+  $result = $variables['results'];
+  $content = '';
+  
+  foreach ($result as $account) {
+    if ($account->picture) {
+      $img = theme('user_picture', array('account' => $account));
+    }
+    else {
+      $img = '<img src="/themes/bluemarine/logo.png" width="40" height="40" hspace="2" vspace="2" alt="'. $account->name .'" title="'. $account->name .'" />';   
+    }
+    $content = l($img, 'microblog/' . $account->uid, array('html' => TRUE));
+  } 
+  $content.= theme('pager');
+  return $content;
+}
+
+function theme_microblog_links($variables) {
+  $content = '';
+  $content .= '<div id="microblog-links">';
+  $content .= theme('item_list', array('items' => $variables['items']));
+  $content .= '</div>';
+  
+  return $content;
+}
+
+function _microblog_post_exists($account) {
+  $count = db_query("SELECT COUNT(nid) FROM {node} WHERE type = 'microblog' AND uid = :user", array('user' => $account->uid))->fetchField();
+  if ($count > 0) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
+}
