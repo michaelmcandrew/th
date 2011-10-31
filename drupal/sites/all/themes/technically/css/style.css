@@ -1,4 +1,8 @@
 /*............ Basics ............*/
+.hiddenElement {
+	display: none;
+	visibility: hidden;
+}
 a, a:link, a:visited, a:hover {
 	color: orange;
 	text-decoration: none;
@@ -147,6 +151,12 @@ body {
 .no-sidebars #content {
   width: 960px;
   float: none;
+}
+
+/*............ Sign-up form ............*/
+#editrow-gender label {
+	display: inline;
+	
 }
 
 /*............ Admin Tabs ............*/
