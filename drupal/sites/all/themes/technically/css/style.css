@@ -1,0 +1,243 @@
+/*............ Basics ............*/
+.hiddenElement {
+	display: none;
+	visibility: hidden;
+}
+a, a:link, a:visited, a:hover {
+	color: orange;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+img { 
+	border: 0 none;
+}
+ul, li, ol {
+	list-style: none outside none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+h1, h2, h3, h4, h4, h5, h6 {
+	margin: 0;
+}
+body {
+	margin: 0;
+    font-size: 62.5%;
+    line-height: 1.5;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/*............ Layout ............*/
+#page-wrapper {
+	min-width: 960px;
+	padding-top: 30px;
+}
+#header div.section, 
+#content-home div.section, 
+#messages div.section, 
+#main, 
+#footer-wrapper div.section, 
+#footer { 
+	width: 960px;
+	margin: 0 auto;
+}
+#logo, 
+#navigation,
+.region-header {
+	width: 320px;
+	float: left;	
+}
+#main-wrapper {
+	min-height: 300px;
+}
+#main {
+    margin-bottom: 40px;
+    margin-top: 20px;
+	font-size: 1.4em;
+}
+#content, 
+#sidebar-first, 
+#sidebar-second,  
+#sidebar-first-home, 
+#sidebar-second-home,
+#sidebar-third-home,
+#footer-columns .region {
+    display: inline;
+    float: left;
+    position: relative;
+}
+#content-home {
+	margin-bottom: 30px;
+	padding: 20px 0;
+	border-top: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+}
+#content-home .region-content {
+	width: 500px;
+	float: left;
+}
+#sidebar-first, 
+#sidebar-second {
+	width: 240px;
+}
+#sidebar-first-home, 
+#sidebar-second-home,
+#sidebar-third-home {
+	width: 320px;
+} 
+#sidebar-second-home {
+	width: 319px;
+	border-left: 1px dashed #000;
+}
+#sidebar-third-home .block {
+	background-color: #e5e5e5;
+}
+#footer-columns .region {
+	width: 240px;
+}
+.sidebar .section {
+    margin-bottom: 10px;
+}
+.block {
+	padding: 10px;
+}
+.sidebar .block, 
+#footer-columns .block {
+    margin: 0 0 20px;
+}
+
+/*............ Navigation ............*/
+#header ul.inline {
+	margin: 0;
+}
+#header ul.inline li {
+	float: left;
+	clear: left;
+	font-size: 1.4em;
+	margin: 0;
+	padding: 0;
+}
+
+/*............ Login area ............*/
+#block-user-login,
+#block-user-login .content,
+#block-system-user-menu,
+#block-system-user-menu .content {
+	margin: 0;
+	padding: 0;
+}
+#block-user-login .form-item,
+#block-user-login .item-list ul li {
+	width: 120px;
+	margin: 0 10px 10px 0;
+	float: left;
+}
+#block-user-login .item-list {
+	clear: left;
+}
+#block-user-login #edit-actions {
+	width: 40px;
+	float: right;
+}
+.region-content .block { 
+	padding: 0;
+}
+.one-sidebar #content {
+  width: 720px;
+}
+.two-sidebars #content {
+  width: 480px;
+}
+.no-sidebars #content {
+  width: 960px;
+  float: none;
+}
+
+/*............ Sign-up form ............*/
+#editrow-gender label {
+	display: inline;
+	
+}
+
+/*............ Admin Tabs ............*/
+.tabs {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.tabs ul.primary {
+  padding: 0 3px;
+  margin: 0;
+  overflow: hidden;
+  border: none;
+  background: transparent url(../images/tabs-border.png) repeat-x left bottom;
+}
+.tabs ul.primary li {
+  display: block;
+  float: left; /* LTR */
+  vertical-align: bottom;
+  margin: 0 5px 0 0; /* LTR */
+}
+.tabs ul.primary li.active a {
+  border-bottom: 1px solid #ffffff;
+}
+.tabs ul.primary li a {
+  color: #000;
+  background-color: #ededed;
+  height: 1.8em;
+  line-height: 1.9;
+  display: block;
+  font-size: 0.929em;
+  float: left; /* not LTR */
+  padding: 0 10px 3px;
+  margin: 0;
+  text-shadow: 0 1px 0 #fff;
+  -khtml-border-radius-topleft: 6px;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -khtml-border-radius-topright: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.tabs ul.primary li.active a {
+  background-color: #ffffff;
+}
+.tabs ul.secondary {
+  border-bottom: none;
+  padding: 0.5em 0;
+}
+.tabs ul.secondary li {
+  display: block;
+  float: left; /* LTR */
+}
+.tabs ul.secondary li:last-child {
+  border-right: none; /* LTR */
+}
+.tabs ul.secondary li:first-child {
+  padding-left: 0; /* LTR */
+}
+.tabs ul.secondary li a {
+  padding: 0.25em 0.5em;
+}
+.tabs ul.secondary li a.active {
+  background: #f2f2f2;
+  border-bottom: none;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+ul.action-links {
+  list-style: none;
+  margin: 5px;
+  padding: 0.5em 1em;
+}
+ul.action-links li {
+  display: inline-block;
+  margin-left: 10px;
+}
+ul.action-links li a {
+  padding-left: 15px;
+  background: url(../images/add.png) no-repeat left center;
+  margin: 0 10px 0 0;
+}
