@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Open Microblog Module
+ */
+ 
+/**
+ * Implementation of hook_schema().
+ */
+function microblog_schema() {
+  $schema['microblog_subscription'] = array(
+    'description' => 'Who is subscribed to whom.',
+    'fields' => array(
+      'subscriber' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'User who subscribes to the subscribed.',
+      ),
+      'subscribed' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'User to whom subscriber subscribes.',
+      ),
+      'token' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'description' => 'authorization token.',
+      ),
+      'secret' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'description' => 'token secret.',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'description' => 'Date this user was created.',
+      ),
+      'modified' => array(
+        'type' => 'int',
+        'description' => 'Modified date.',
+      ),
+    ),
+    'primary key' => array('subscriber', 'subscribed'),
+    'indexes' => array(
+      'subscribed' => array('subscribed'),
+    ),
+  );
+
+  return $schema;
+}
+
+function microblog_install() {
+  db_update('system')->condition('name', 'microblog')->fields(array('weight' => 1))->execute();
+}
+
+/**
+ * 
+ * Sets weight of the microblog module for form_alter
+ */
+function microblog_update_7102() {
+  db_update('system')->condition('name', 'microblog')->fields(array('weight' => 1))->execute();
+}
