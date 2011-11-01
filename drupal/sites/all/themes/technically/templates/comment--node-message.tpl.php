@@ -56,26 +56,29 @@
  * @see template_process()
  * @see theme_comment()
  */
+
 ?>
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php print $picture ?>
-
-  <div class="submitted">
-    <?php print $submitted; ?>
+  <div class="author">
+    <?php print $picture; ?>
+    <?php print $author; ?>
   </div>
 
   <div class="content"<?php print $content_attributes; ?>>
-    <?php
+	<?php
       // We hide the comments and links now so that we can render them later.
       hide($content['links']);
       print render($content);
+		pr
     ?>
+
     <?php if ($signature): ?>
     <div class="user-signature clearfix">
       <?php print $signature ?>
     </div>
     <?php endif; ?>
   </div>
+
 
   <?php print render($content['links']) ?>
 </div>
