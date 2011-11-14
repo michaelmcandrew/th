@@ -1,0 +1,114 @@
+<?php
+
+//TODO Ensure that the menu is rebuilt!
+
+function th_checkin_civicrm_config( &$config ) {
+	
+    $template =& CRM_Core_Smarty::singleton( );
+    $root = dirname( __FILE__ );
+    $template_root = $root . DIRECTORY_SEPARATOR . 'templates';
+    
+    if ( is_array( $template->template_dir ) ) {
+        array_unshift( $template->template_dir, $civicrm_custom_import_template_root );
+    } else {
+        $template->template_dir = array( $civicrm_custom_import_template_root, $template->template_dir );
+    }
+    
+    //Register php directory
+   	$include_path = $template_root . PATH_SEPARATOR . get_include_path( );
+    set_include_path( $include_path );
+    $include_path = $root . PATH_SEPARATOR . get_include_path( );
+    set_include_path( $include_path );
+}
+
+function th_checkin_civicrm_xmlMenu( &$files ) {
+	$files[]=dirname( __FILE__ ).DIRECTORY_SEPARATOR.'CheckInMenu.xml';
+}
+
+
+
+/**
+ * @file
+ * Module file for block_example.
+ */
+
+/**
+ * @defgroup block_example Example: Block
+ * @ingroup examples
+ * @{
+ * Demonstrates code creation of blocks.
+ *
+ * This is an example outlining how a module can define blocks that can be
+ * displayed on various pages of a site, or how to alter blocks provided by
+ * other modules.
+ */
+
+/**
+ * Implements hook_menu().
+ *
+ * Provides a default page to explain what this module does.
+ */
+function th_checkin_menu() {
+  $items['examples/block_example'] = array(
+    'page callback' => 'th_checkin_page',
+    'access callback' => TRUE,
+    'title' => 'Block Example',
+  );
+  return $items;
+}
+
+/**
+ * Simple page function to explain what the block example is about.
+ */
+function th_checkin_page() {
+  $page = array(
+    '#type' => 'markup',
+    '#markup' => t('The Block Example provides two sample blocks which demonstrate the various block APIs. To experiment with the blocks, enable and configure them on <a href="@url">the block admin page</a>.', array('@url' => url('admin/structure/block'))),
+  );
+  return $page;
+}
+/**
+ * Implements hook_block_info().
+ *
+ * This hook declares what blocks are provided by the module.
+ */
+function th_checkin_block_info() {
+  // This hook returns an array, each component of which is an array of block
+  // information. The array keys are the 'delta' values used in other block
+  // hooks.
+
+  // The required block information is a block description, which is shown
+  // to the site administrator in the list of possible blocks. You can also
+  // provide initial settings for block weight, status, etc.
+
+  // Many options are defined in hook_block_info():
+  $blocks['example_configurable_text'] = array(
+    // info: The name of the block.
+    'info' => t('Tech Hub CiviCRM check in block'),
+    // Block caching options (per role, per user, etc.)
+  );
+
+  // This sample shows how to provide default settings. In this case we'll
+  // enable the block in the first sidebar and make it visible only on
+  // 'node/*' pages. See the hook_block_info() documentation for these.
+
+  return $blocks;
+}
+
+
+function th_checkin_block_view($delta = '') {
+	$block['subject'] = 'Check in';
+	$block['content'] = '
+		<form action="/civicrm/checkin/scan">
+		<input id="cid" type="text" name="cid" style="border:1px solid #999999;">
+		</form>
+		
+		<script type="text/javascript">
+			cj(document).ready(function() {
+			cj("#cid").focus();
+			});
+		</script>
+	';
+	return $block;
+}
+

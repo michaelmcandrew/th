@@ -1,0 +1,14 @@
+<menu>
+  <item>
+     <path>civicrm/checkin</path>
+     <title>Checkin</title>
+     <page_callback>Checkin_Form</page_callback>
+     <page_arguments></page_arguments>
+  </item>
+  <item>
+     <path>civicrm/checkin/scan</path>
+     <title>Checkin</title>
+     <page_callback>Checkin_Scan::scan</page_callback>
+     <page_arguments></page_arguments>
+  </item>
+</menu>
