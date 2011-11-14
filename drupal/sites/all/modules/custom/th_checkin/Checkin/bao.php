@@ -12,7 +12,6 @@ class Checkin_bao{
 	var $messages=array();
 	
 	function start_visit($location) {
-		$this->messages[] = "checking in...";
 	
 		//create activity: type=visit, status=in progress
 		$params = array( 
@@ -26,10 +25,13 @@ class Checkin_bao{
 	      );
 
 	    $result=civicrm_api("Activity","create",$params);
+		if($result['is_error']==0){
+			$this->messages[] = "checked in.";
+		}
+	
 	}
 
 	function end_visit() {
-		$this->messages[] = "checking out...";
 		//get all open visits for this contact
 		$params = array( 
 			'contact_id' => $this->contact_id,
@@ -59,6 +61,9 @@ class Checkin_bao{
 		
 		
 			$result=civicrm_api("Activity","update",$visit_params);
+			if($result['is_error']==0){
+				$this->messages[] = "checked out.";
+			}
 		}
 	}
 
