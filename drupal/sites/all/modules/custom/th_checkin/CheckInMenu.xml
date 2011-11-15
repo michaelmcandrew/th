@@ -1,14 +1,26 @@
 <menu>
   <item>
      <path>civicrm/checkin</path>
-     <title>Checkin</title>
+     <title>Check in form</title>
      <page_callback>Checkin_Form</page_callback>
      <page_arguments></page_arguments>
   </item>
   <item>
      <path>civicrm/checkin/scan</path>
-     <title>Checkin</title>
+     <title>Checkin scanning (not a page)</title>
      <page_callback>Checkin_Scan::scan</page_callback>
+     <page_arguments></page_arguments>
+  </item>
+  <item>
+     <path>civicrm/checkin/checkedin</path>
+     <title>Checked in people</title>
+     <page_callback>Checkin_Form_Checkedin</page_callback>
+     <page_arguments></page_arguments>
+  </item>
+  <item>
+     <path>civicrm/checkin/checkout</path>
+     <title>Check out (not a page)</title>
+     <page_callback>Checkin_Scan::check_out</page_callback>
      <page_arguments></page_arguments>
   </item>
 </menu>

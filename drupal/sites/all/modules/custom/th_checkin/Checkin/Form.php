@@ -1,5 +1,5 @@
 <?php
-
+//OBSOLETE?
 require_once 'CRM/Core/form.php';
 require_once 'Checkin/bao.php';
 require_once 'Checkin/scan.php';

@@ -5,17 +5,30 @@ define('TH_VISIT_ACTIVITY_TYPE_ID',34);
 define('TH_ACTIVITY_STATUS_IN_PROGRESS',7);
 define('TH_ACTIVITY_STATUS_COMPLETE',2);
 
-class Checkin_bao{
+class Checkin_BAO_Checkin{
 	
-	var $contact_id=NULL;
+	var $contact=array();
+	var $location='London';
 	
 	var $messages=array();
 	
+	function set_contact($contact_id) {
+		$params = array( 
+	      'contact_id' => $contact_id,
+	      'version' => 3
+	      );
+
+	    $result=civicrm_api("Contact","getsingle",$params);
+		if($result['is_error']==0){
+			$this->contact=$result;
+		}
+	}
+
+
 	function start_visit($location) {
-	
 		//create activity: type=visit, status=in progress
 		$params = array( 
-	      'source_contact_id' => $this->contact_id,
+	      'source_contact_id' => $this->contact['contact_id'],
 	      //checkin activity
 	      'activity_type_id' => TH_VISIT_ACTIVITY_TYPE_ID,
 	      'subject' => $location, // TODO: probably actually want to record this as a custom data field contact reference for Tech Hub organisations
@@ -26,28 +39,23 @@ class Checkin_bao{
 
 	    $result=civicrm_api("Activity","create",$params);
 		if($result['is_error']==0){
-			$this->messages[] = "checked in.";
+			$this->messages[] = "Checked in ".$this->contact['display_name'].' (<a href="/civicrm/checkin/checkedin">view all checked in people</a>)';
 		}
 	
 	}
 
 	function end_visit() {
 		//get all open visits for this contact
+
 		$params = array( 
-			'contact_id' => $this->contact_id,
+			'source_contact_id' => $this->contact['contact_id'],
 			'activity_type_id' => TH_VISIT_ACTIVITY_TYPE_ID,
 			'status_id' => TH_ACTIVITY_STATUS_IN_PROGRESS,
 			'version' => 3
 		);
 
-	    $result = civicrm_api( 'activity','get',$params );
+		$result=checkin_activity_get_in_progress_visits_civicrm_api( $params );
 
-		// Bug in API.  Peter - please report and record issue number here
-		foreach ($result['values'] as $key => $activity){  
-			if($activity['activity_type_id']!=TH_VISIT_ACTIVITY_TYPE_ID OR $activity['status_id']!=TH_ACTIVITY_STATUS_IN_PROGRESS){
-				unset($result['values'][$key]);
-			}
-		}
        
       
 		foreach ($result['values'] as $visit_params){
@@ -62,7 +70,7 @@ class Checkin_bao{
 		
 			$result=civicrm_api("Activity","update",$visit_params);
 			if($result['is_error']==0){
-				$this->messages[] = "checked out.";
+				$this->messages[] = "Checked out ".$this->contact['display_name'].' (<a href="/civicrm/checkin/checkedin">view all checked in people</a>)';
 			}
 		}
 	}
@@ -72,7 +80,23 @@ class Checkin_bao{
 		//find all in visits where status!='complete' and close them
 	}
 
-	function get_all_visitors($location) {
+	function get_all_visitors() {
+		$params = array( 
+			'activity_type_id' => TH_VISIT_ACTIVITY_TYPE_ID,
+			'status_id' => TH_ACTIVITY_STATUS_IN_PROGRESS,
+			'version' => 3
+		);
+
+		$result=checkin_activity_get_in_progress_visits_civicrm_api( $params );
+		
+		foreach($result['values'] as $activity){
+			$params = array( 
+		      'contact_id' => $activity['source_contact_id'],
+		      'version' => 3
+		      );
+		    $visitors[]=civicrm_api("Contact","getsingle",$params);
+		}
+		return $visitors;
 		//returns all people in the current $location
 	}
 
@@ -84,7 +108,7 @@ class Checkin_bao{
 		//if this contact is in the building, return true, else return false
 		//if this contact has an activity type=visit and status = in progress return true, else return false
 		$params = array( 
-	      'contact_id' => $this->contact_id,
+	      'source_contact_id' => $this->contact['contact_id'],
 	      //visit activity
 	      'activity_type_id' => TH_VISIT_ACTIVITY_TYPE_ID,
 	      //status 'in progress'
@@ -92,14 +116,8 @@ class Checkin_bao{
 	      'version' => 3,
 	      );
 
-	  $result = civicrm_api( 'activity','get',$params );
 
-		// Bug in API.  Peter - please report and record issue number here
-		foreach ($result['values'] as $key => $activity){  
-			if($activity['activity_type_id']!=TH_VISIT_ACTIVITY_TYPE_ID OR $activity['status_id']!=TH_ACTIVITY_STATUS_IN_PROGRESS){
-				unset($result['values'][$key]);
-			}
-		}
+		$result=checkin_activity_get_in_progress_visits_civicrm_api( $params );
 
 		$number_of_in_progress_visits=count($result['values']);
 		if ($number_of_in_progress_visits > 0) {
@@ -108,4 +126,15 @@ class Checkin_bao{
 			return False;
 		}
 	}
+}
+
+function checkin_activity_get_in_progress_visits_civicrm_api( $params ){
+	// Bug in API.  TODO: report and record issue number here
+	$result = civicrm_api( 'activity','get',$params );	
+	foreach ($result['values'] as $key => $activity){  
+		if($activity['activity_type_id']!=TH_VISIT_ACTIVITY_TYPE_ID OR $activity['status_id']!=TH_ACTIVITY_STATUS_IN_PROGRESS){
+			unset($result['values'][$key]);
+		}
+	}
+	return $result;
 }
