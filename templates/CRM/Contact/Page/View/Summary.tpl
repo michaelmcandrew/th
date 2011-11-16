@@ -67,7 +67,8 @@
                         <li class="crm-contact-activity">
                             {include file="CRM/Contact/Form/ActionsButton.tpl"}
                         </li>
-                        <li>
+						<li>
+						
 			{assign var='urlParams' value="reset=1&action=update&cid=$contactId"}
 		        {if $searchKey}
 		            {assign var='urlParams' value="reset=1&action=update&cid=$contactId&key=$searchKey"}
@@ -81,7 +82,14 @@
                         </a>
                         </li>
                         {/if}
-                        
+                        <li>
+						<a class="button" title="Scan" href="/civicrm/checkin/scan?cid={$contactId}">
+						<span>
+						Check in
+						</span>
+						</a>
+						</li>
+						
                         {if !empty($groupOrganizationUrl)}
                         <li class="crm-contact-associated-groups">
                         <a href="{$groupOrganizationUrl}" class="associated-groups button" title="{ts}Associated Multi-Org Group{/ts}">
