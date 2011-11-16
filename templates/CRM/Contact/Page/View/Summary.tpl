@@ -85,7 +85,7 @@
                         <li>
 						<a class="button" title="Scan" href="/civicrm/checkin/scan?cid={$contactId}">
 						<span>
-						Check in
+						Scan
 						</span>
 						</a>
 						</li>
