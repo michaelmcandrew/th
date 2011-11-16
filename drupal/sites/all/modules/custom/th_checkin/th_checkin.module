@@ -34,9 +34,6 @@ function th_checkin_civicrm_summaryActions( &$actions, $contactID ){
     }
 }
 
-function th_checkin_civicrm_postProcess( $formName, &$form ){
-	debug_print_backtrace();exit;
-}
 
 
 

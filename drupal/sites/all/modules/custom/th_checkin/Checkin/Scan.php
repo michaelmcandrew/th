@@ -24,7 +24,6 @@ class Checkin_Scan{
 			CRM_Core_Session::setStatus(implode($checkin->messages));
 			CRM_Utils_System::redirect('/civicrm/contact/view?reset=1&cid='.$contact_id);
 		}else{
-			echo implode($checkin->messages);
 		}
 	}
 
@@ -49,7 +48,6 @@ class Checkin_Scan{
 			CRM_Core_Session::setStatus(implode($checkin->messages));
 			CRM_Utils_System::redirect('/civicrm/checkin/checkedin');
 		}else{
-			echo implode($checkin->messages);
 		}
 	}
 	
