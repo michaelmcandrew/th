@@ -21,8 +21,14 @@ class Checkin_Scan{
 			$checkin->start_visit($location);
 		}
 		if($redirect_to_contact){
-			CRM_Core_Session::setStatus(implode($checkin->messages));
-			CRM_Utils_System::redirect('/civicrm/contact/view?reset=1&cid='.$contact_id);
+			if(count($checkin->messages)){
+				CRM_Core_Session::setStatus(implode($checkin->messages));				
+			}
+			if(is_numeric($contact_id)){
+				CRM_Utils_System::redirect('/civicrm/contact/view?reset=1&cid='.$contact_id);
+			} else {
+				CRM_Utils_System::redirect('/civicrm?reset=1');				
+			}
 		}else{
 		}
 	}

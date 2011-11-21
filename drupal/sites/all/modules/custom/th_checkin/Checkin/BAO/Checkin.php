@@ -7,7 +7,7 @@ define('TH_ACTIVITY_STATUS_COMPLETE',2);
 
 class Checkin_BAO_Checkin{
 	
-	var $contact=array();
+	var $contact= NULL;
 	var $location='London';
 	
 	var $messages=array();
@@ -26,6 +26,9 @@ class Checkin_BAO_Checkin{
 
 
 	function start_visit($location) {
+		if(!is_array($this->contact)){
+			return;
+		}
 		//create activity: type=visit, status=in progress
 		$params = array( 
 	      'source_contact_id' => $this->contact['contact_id'],
@@ -45,8 +48,11 @@ class Checkin_BAO_Checkin{
 	}
 
 	function end_visit() {
+		if(!is_array($this->contact)){
+			return;
+		}
+		
 		//get all open visits for this contact
-
 		$params = array( 
 			'source_contact_id' => $this->contact['contact_id'],
 			'activity_type_id' => TH_VISIT_ACTIVITY_TYPE_ID,
@@ -105,6 +111,9 @@ class Checkin_BAO_Checkin{
 	}
 
 	function is_in_building(){
+		if(!is_array($this->contact)){
+			return;
+		}
 		//if this contact is in the building, return true, else return false
 		//if this contact has an activity type=visit and status = in progress return true, else return false
 		$params = array( 
