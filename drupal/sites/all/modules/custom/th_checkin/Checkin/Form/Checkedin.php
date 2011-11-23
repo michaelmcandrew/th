@@ -21,7 +21,7 @@ class Checkin_Form_Checkedin extends CRM_Core_Form{
 
 		$this->add('text', 'first_name', 'First name', array( 'size'=> 40 ));
 		$this->add('text', 'last_name', 'Last name', array( 'size'=> 40 ));
-        $this->add('text', 'email', 'Email', array( 'size'=> 60 ), true);
+        $this->add('text', 'email', 'Email', array( 'size'=> 60 ));
         $this->add('text', 'organization_name', 'Organisation', array( 'size'=> 60 ));
         $this->add('text', 'visiting_contact_id', 'Visiting');
         
