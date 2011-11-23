@@ -57,6 +57,7 @@ class Checkin_BAO_Checkin{
 			'source_contact_id' => $this->contact['contact_id'],
 			'activity_type_id' => TH_VISIT_ACTIVITY_TYPE_ID,
 			'status_id' => TH_ACTIVITY_STATUS_IN_PROGRESS,
+			'option.limit' => '10000',
 			'version' => 3
 		);
 
