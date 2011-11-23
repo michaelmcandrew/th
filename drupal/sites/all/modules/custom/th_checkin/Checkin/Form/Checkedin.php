@@ -65,10 +65,13 @@ class Checkin_Form_Checkedin extends CRM_Core_Form{
 
 		$checkin = new Checkin_BAO_Checkin;
 		$checkin->set_contact($contact['id']);
+		print_r($checkin);	
 		if(!$checkin->is_in_building()){
 			$checkin->start_visit('London');
 			
 		}
+		$this->assign('visitors', $checkin->get_all_visitors());
+		
 
 	}		
 }
