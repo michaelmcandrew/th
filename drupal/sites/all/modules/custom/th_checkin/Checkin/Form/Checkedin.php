@@ -69,7 +69,7 @@ class Checkin_Form_Checkedin extends CRM_Core_Form{
 			$checkin->start_visit('London');
 			
 		}
-		$this->assign('visitors', $checkin->get_all_visitors());
+		CRM_Utils_System::redirect('/civicrm/checkin/checkedin');
 		
 
 	}		
