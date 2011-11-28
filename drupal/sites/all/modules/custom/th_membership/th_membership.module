@@ -1,0 +1,42 @@
+<?php
+
+function th_membership_menu() {
+  $items['membership/pay'] = array(
+    'title' => 'Pay TechHub membership',
+    'page callback' => 'th_membership_pay_redirect',
+    'access arguments' => array('access content'), 
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function th_membership_pay_redirect() {
+	global $user;
+	civicrm_initialize();
+	$contact=civicrm_api("UFMatch","getsingle", array ('version' =>'3', 'uf_id' => $user->uid));
+	$results=civicrm_api("Activity","get", array ('version' =>'3', 'option.limit' => '10000', 'contact_id' => $contact['contact_id']));
+//	print_r($results);
+	foreach($results['values'] as $result){
+		if($result['activity_type_id']==33);
+			$membership_type_applied_for=$result['subject'];
+			break;
+	}
+	
+	$activity_subject_to_contribution_page=array(
+		'Resident membership application (London)' => '1',
+		'Annual membership application (London)' => '2',
+	);
+	drupal_goto( "http://th.local/civicrm/contribute/transact?reset=1&id={$activity_subject_to_contribution_page[$membership_type_applied_for]}");
+}
+
+function th_membership_civicrm_buildForm($formName, &$form) {
+	if($formName!='CRM_Contribute_Form_Contribution_Main'){
+		return;
+	}
+//	print_r($form);
+//	$form->
+	$defaults['price_1'] = 3;
+	$form->setDefaults( $defaults );
+//	exit;
+	
+}
