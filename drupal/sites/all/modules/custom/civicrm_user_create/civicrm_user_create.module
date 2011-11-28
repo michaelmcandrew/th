@@ -1,0 +1,65 @@
+<?php
+
+//TODO Ensure that the menu is rebuilt!
+
+//require_once('CRM/Utils/Token.php');
+
+function civicrm_user_create_civicrm_config( &$config ) {
+	
+    $template =& CRM_Core_Smarty::singleton( );
+    $root = dirname( __FILE__ );
+    $template_root = $root . DIRECTORY_SEPARATOR . 'templates';
+    
+    if ( is_array( $template->template_dir ) ) {
+        array_unshift( $template->template_dir, $template_root );
+    } else {
+        $template->template_dir = array( $template_root, $template->template_dir );
+    }
+    
+    //Register php directory
+   	$include_path = $template_root . PATH_SEPARATOR . get_include_path( );
+    set_include_path( $include_path );
+    $include_path = $root . PATH_SEPARATOR . get_include_path( );
+    set_include_path( $include_path );
+}
+
+function civicrm_user_create_civicrm_xmlMenu( &$files ) {
+	$files[]=dirname( __FILE__ ).DIRECTORY_SEPARATOR.'UserCreate.xml';
+}
+
+function civicrm_user_create_civicrm_summaryActions( &$actions, $contactID ){
+	//need to implement this hook once 4.1 is out so that this appears automatically
+}
+
+function civicrm_user_create_mail($key, &$message, $params) {
+	$message['subject'] = $params['subject'];
+	$message['body'][] = $params['body'];
+}
+
+
+
+
+function civicrm_user_create_password($length = 10) {
+
+	// This variable contains the list of allowable characters for the
+	// password. Note that the number 0 and the letter 'O' have been
+	// removed to avoid confusion between the two. The same is true
+	// of 'I', 1, and 'l'.
+	$allowable_characters = 'abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+
+	// Zero-based count of characters in the allowable list:
+	$len = strlen($allowable_characters) - 1;
+
+	// Declare the password as a blank string.
+	$pass = '';
+
+	// Loop the number of times specified by $length.
+	for ($i = 0; $i < $length; $i++) {
+
+		// Each iteration, pick a random character from the
+		// allowable string and append it to the password:
+		$pass .= $allowable_characters[mt_rand(0, $len)];
+	}
+
+	return $pass;
+}

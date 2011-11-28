@@ -1,0 +1,8 @@
+<menu>
+  <item>
+     <path>civicrm/contact/user/create</path>
+     <title>Create user</title>
+     <page_callback>UserCreate_Form_UserCreate</page_callback>
+     <page_arguments></page_arguments>
+  </item>
+</menu>

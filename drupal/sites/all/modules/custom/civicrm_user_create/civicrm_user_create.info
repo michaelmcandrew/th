@@ -1,0 +1,5 @@
+; $Id$
+name = Create Drupal user
+description = Adds summary action to the contact summary screen which allows you to create a Drupal user account for the contact
+package = CiviCRM - TechHub extras
+core = 6.x
