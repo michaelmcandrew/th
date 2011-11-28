@@ -118,27 +118,6 @@ function technically_preprocess_node(&$variables) {
   }
 }
 /**
- * Override or insert variables into the user login block.
- */
-function technically_theme() {
-  return array(
-    'user_login_block' => array(
-      'arguments' => array('form' => NULL),
-    ),
-  );
-}
-function technically_user_login_block($form) {
-  $items = array();
-  if (variable_get('user_register', 1)) {
-    $items[] = l(t('Create new account'), 'user/register', array('attributes' => array('title' => t('Create a new user account.'))));
-  }
-  $items[] = l(t('Forgot how to login?'), 'user/password', array('attributes' => array('title' => t('Click to receive a new password via e-mail.'))));
-
-  $form['links'] = array('#value' => theme('item_list', $items));
-
-  return drupal_render($form);
-}
-/**
  * Override or insert variables into the block template.
  */
 function technically_preprocess_block(&$variables) {
