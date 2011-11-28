@@ -476,14 +476,15 @@ function webform_civicrm_process_submission($node, &$submission, $op) {
         // Send email to assignees. TODO: Move to CiviCRM API?
         $assignee = webform_civicrm_api('contact', 'get', array('id' => $params['assignee_contact_id']));
         $assignee = array_pop($assignee['values']);
-        if (!empty($assignee['email'])) {
-          $mail = array($assignee['email'] => $assignee);
-          //include attachments while sendig a copy of activity.
-          require_once 'CRM/Core/BAO/File.php';
-          $attachments = &CRM_Core_BAO_File::getEntityFile('civicrm_activity', $id['act'][1]);
-          require_once 'CRM/Case/BAO/Case.php';
-          $result = CRM_Case_BAO_Case::sendActivityCopy(NULL, $id['act'][1], $mail, $attachments, NULL);
-        }
+		//MM: Commenting out since this broke stuff and we don't need to use it. - need to follow up before we do next upgrade
+        // if (!empty($assignee['email'])) {
+        //   $mail = array($assignee['email'] => $assignee);
+        //   //include attachments while sendig a copy of activity.
+        //   require_once 'CRM/Core/BAO/File.php';
+        //   $attachments = &CRM_Core_BAO_File::getEntityFile('civicrm_activity', $id['act'][1]);
+        //   require_once 'CRM/Case/BAO/Case.php';
+        //   $result = CRM_Case_BAO_Case::sendActivityCopy(NULL, $id['act'][1], $mail, $attachments, NULL);
+        //}
       }
     }
   }
