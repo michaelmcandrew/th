@@ -66,47 +66,30 @@
  * @see template_process()
  */
 ?>
-
 <div id="page-wrapper">
 	<div id="page">
 		<div id="header">
 			<div class="section clearfix">
-				<?php if ($logo): ?>
-					<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-						<img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-					</a>
-				<?php endif; ?>
-
-				<?php if ($site_name || $site_slogan): ?>
-					<div id="name-and-slogan">
-						<?php if ($site_name): ?>
-							<?php if ($title): ?>
-								<div id="site-name"><strong><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a></strong></div>
-							<?php else: /* Use h1 when the content title is empty */ ?>
-							<h1 id="site-name">
-								<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-							</h1>
-							<?php endif; ?>
-						<?php endif; ?>
-
-						<?php if ($site_slogan): ?>
-							<div id="site-slogan"><?php print $site_slogan; ?></div>
-						<?php endif; ?>
-					</div>
-				<?php endif; ?>
+				<div id="header-left">
+					<?php if ($logo): ?>
+						<a href="<?php print $front_page; ?>" title="<?php print t('TechHub'); ?>" rel="home" id="logo">
+							<img src="<?php print $logo; ?>" alt="<?php print t('TechHub'); ?>" />
+						</a>
+					<?php endif; ?>
+				
+					<?php if ($main_menu || $secondary_menu): ?>
+						<div id="navigation">
+							<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
+							<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
+						</div> <!-- end of nav -->
+					<?php endif; ?>
+				</div>
 
 				<?php print render($page['header']); ?>
 			</div>
 		</div><!-- end of header -->
 
-		<?php if ($main_menu || $secondary_menu): ?>
-			<div id="navigation">
-				<div class="section">
-					<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
-					<?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
-				</div>
-			</div> <!-- end of nav -->
-		<?php endif; ?>
+		
 
 		<?php print $messages; ?>
 
@@ -121,7 +104,12 @@
 				<?php endif; ?>
 		
 				<div id="content" class="column">
-					<div class="section">
+					<div class="section">		
+						<?php
+						if (isset($node_content) && $node_content['field_icon']) {
+						    print render($node_content['field_icon']);
+						}
+						?>
 						<?php print render($title_prefix); ?>
 						<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
 						<?php print render($title_suffix); ?>

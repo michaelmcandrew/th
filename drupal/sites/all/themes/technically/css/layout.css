@@ -11,19 +11,25 @@ body,
     min-width: 940px;
 }
 #header div.section,
-#navigation div.section,
 #main,
 #featured div.section,
 #footer {
     width: 940px;
     margin: 0 auto;
 }
-#header div.section {
-    position: relative;
+#header {
+	padding-top: 30px; 0 24px;
+}
+#header-left {
+	width: 616px;
+	float: left;
+	padding: 10px 0 24px;
+	border-right: 4px solid #000;
 }
 .region-header {
+	width: 320px;
+	padding-top: 10px;
     float: right; /* LTR */
-    margin: 0 5px 10px;
 }
 #main-wrapper {
     min-height: 300px;
@@ -63,10 +69,6 @@ body,
 }
 #content-left {
 	margin-right: 20px;
-}
-#content .section,
-.sidebar .section {
-    padding: 0 15px;
 }
 #breadcrumb {
     margin: 0 15px;
