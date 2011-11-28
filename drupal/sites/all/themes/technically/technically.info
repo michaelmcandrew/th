@@ -1,19 +1,26 @@
-name = technically
-description = a custom theme for TechHub
+name = Technically
+description = Custom theme for TechHub.
 core = 7.x
 
-;----------// Stylesheets
+stylesheets[all][] = css/layout.css
 stylesheets[all][] = css/style.css
+stylesheets[print][] = css/print.css
 
-;----------// Custom regions
 regions[header] = Header
-regions[help] = Help
+
 regions[content] = Content
+
+regions[content_left] = Left content
+regions[content_right] = Right content
+
 regions[sidebar_first] = Left column
-regions[sidebar_second] = Middle column (homepage)
-regions[sidebar_third] = Right column (homepage)
-regions[footer_firstcolumn] = Footer first column
-regions[footer_secondcolumn] = Footer second column
-regions[footer_thirdcolumn] = Footer third column
-regions[footer_fourthcolumn] = Footer fourth column
+regions[sidebar_second] = Right column
+
+regions[featured_first] = Featured first
+regions[featured_second] = Featured second
+regions[featured_third] = Featured third
+regions[featured_fourth] = Featured fourth
+
 regions[footer] = Footer
+
+regions[help] = Help
