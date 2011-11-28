@@ -97,7 +97,7 @@ class CRM_Import_DataSource_CSV extends CRM_Import_DataSource
      * @param string $fieldSeparator Character that seperates the various columns in the file
      * @return string  name of the created table
      */
-    function _CsvToTable(&$db,
+    private static function _CsvToTable(&$db,
                                         $file,
                                         $headers = false,
                                         $table = null,

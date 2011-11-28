@@ -1,8 +1,0 @@
-<menu>
-  <item>
-     <path>civicrm/createuser</path>
-     <title>Check in form</title>
-     <page_callback>Createuser::run</page_callback>
-     <page_arguments></page_arguments>
-  </item>
-</menu>

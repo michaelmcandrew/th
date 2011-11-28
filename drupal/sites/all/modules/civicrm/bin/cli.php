@@ -75,6 +75,7 @@ class civicrm_CLI {
                 $file = $a[count($a) - 1]; 
                 die ("\nUsage: \$cd /your/civicrm/root; \$php5 bin/". $file." -u user -p password -s yoursite.org (or default)\n");
             }
+            $_SERVER["SCRIPT_NAME"] = "/index.php"; // workaround drupal f** magic bootstrap
         }
         $this->site=$site;
         $this->setEnv();
@@ -113,11 +114,15 @@ class civicrm_CLI {
         require_once ("CRM/Core/Error.php");
         $this->key= defined( 'CIVICRM_SITE_KEY' ) ? CIVICRM_SITE_KEY : null;
         $_REQUEST['key']= $this->key;
-        $_SERVER['SCRIPT_FILENAME' ] = $civicrm_root . "/bin/cli.php";
-        if ( defined( 'CIVICRM_CONFDIR' ) ) {
-            $_SERVER['SCRIPT_FILENAME' ] = CIVICRM_CONFDIR . "/sites/all/modules/civicrm/bin/cli.php";
-        } else {
-            die("\nUsage: Please define CIVICRM_CONFDIR in settings_location.php at the top level civicrm directory");
+        $_SERVER['SCRIPT_FILENAME'] = $civicrm_root . "/bin/cli.php";
+
+		if ( !file_exists( $_SERVER['SCRIPT_FILENAME'] ) &&
+             defined( 'CIVICRM_CONFDIR' ) ) {
+            $_SERVER['SCRIPT_FILENAME'] = CIVICRM_CONFDIR . "/all/modules/civicrm/bin/cli.php";
+        }
+		
+		if ( !file_exists( $_SERVER['SCRIPT_FILENAME'] ) ) {
+            die("\nCould not locate the CLI cron job wrapper. If you are running a Drupal multi-site installation and your sites folder is in a non-standard location, please define CIVICRM_CONFDIR in settings_location.php at the top level civicrm directory. Refer to the online documentation for more details: http://wiki.civicrm.org/confluence/display/CRMDOC/CiviCRM+for+Drupal+-+Configure+Multi-site+Installations.");
         }
         
         CRM_Core_Error::setCallback( array( 'civicrm_CLI', 'fatal' ) );
