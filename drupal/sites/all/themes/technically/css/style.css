@@ -521,13 +521,13 @@ ul.tabs {
 	padding-top: 42px;
 	background: url(../images/icon-star.gif) no-repeat center 0;	
 }
-#block-block-1 .content li {
+#block-block-6 .content li {
 	list-style: disc inside url(../images/bullet-star.gif);
 }
-#block-block-1 a {
+#block-block-6 a {
 	color: #fff;
 }
-#block-block-1 a.btn {
+#block-block-6 a.btn {
 	color: #000;
 	width: 150px;
 }
