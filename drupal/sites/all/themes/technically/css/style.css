@@ -21,11 +21,22 @@ a:focus {
   text-decoration: underline;
 }
 h1 {
-  font-size: 1.8em;
-  color: #000;
+  	font-size: 1.8em;
 }
 h2 {
-  font-size: 1.6em;
+  	font-size: 1.6em;
+	text-transform: uppercase;
+	margin: 0;
+  	border-bottom: 4px solid #000;
+  	padding-bottom: 10px;
+	text-align: center;
+}
+h2.invisible {
+	font-size: none;
+	display: none;
+	visibility: hidden;
+	border-bottom: 0 none;
+	padding: 0;
 }
 p {
   margin: 0 0 1.2em;
@@ -290,7 +301,18 @@ li {
   	border-top: 4px solid #000;
 	padding-top: 20px;
 }
-
+.sidebar .block,
+.node-blog,
+.node-event,
+.faq-content,
+.content-block,
+.node-message  {
+ 	-moz-border-radius: 10px; /* Firefox */
+	-webkit-border-radius: 10px; /* Safari, Chrome */
+	border-radius: 10px; /* CSS3 */
+	padding: 12px 24px;
+  	margin: 0 0 20px;
+}
 
 /* ------------------- Help ------------------- */
 
@@ -308,13 +330,24 @@ li {
 	height: 60px;
 	text-align: center;
 }
-h1#page-title {
-  	font-size: 2em;
-  	line-height: 1;
-	padding: 6px 0 16px;
-	border-bottom: 4px solid #000;
+h1,
+span.blog-title,
+span.event-title {
+	font-size: 2em;
+	display: block;
+  	line-height: 1;	
 	text-transform: uppercase;
 	text-align: center;
+}
+h1#pagetitle,
+h1.title,
+span.blog-title,
+span.event-title {
+	padding: 6px 0 16px;
+	border-bottom: 4px solid #000;
+}
+.sub-title {
+	font-size: 1.6em;
 }
 #content h2 {
   margin-bottom: 2px;
@@ -322,16 +355,42 @@ h1#page-title {
 }
 .node .content,
 .faq-content, 
+.view-blog .content,
 form {
   font-size: 1.4em;
 }
+.node-blog,
+.node-event,
+.faq-content,
+.content-block,
+.node-message {
+	background-color: #fff;	
+}
+.faq-content {
+	text-align: center;
+	padding-bottom: 24px;
+}
+.faq-question {
+	padding: 8px 0;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	background: url(../images/faq-plus.gif) no-repeat right center;
+	border-bottom: 2px solid #000;
+}
+.faq-qa-visible {
+	background: url(../images/faq-minus.gif) no-repeat right center;
+}
+.faq-question a {
+	color: #2a2a2a;
+}
+.faq-answer {
+	padding: 12px 0;
+	border-bottom: 2px solid #000;
+}
 .field-name-field-intro {
 	text-align: center;
-	padding: 16px;
+	padding: 16px 16px 32px 16px;
 	font-size: 1.2em;
-}
-.node-teaser .content {
-  font-size: 1em;
 }
 .node-teaser h2 {
   margin-top: 0;
@@ -341,7 +400,6 @@ form {
   color: #181818;
 }
 .node-teaser {
-  border-bottom: 1px solid #d3d7d9;
   margin-bottom: 30px;
   padding-bottom: 15px;
 }
@@ -350,11 +408,6 @@ form {
   background: rgba(0, 0, 0, 0.024);
   border: 1px solid #d3d7d9;
   padding: 0 15px 15px;
-}
-.node-full {
-  background: none;
-  border: none;
-  padding: 0;
 }
 .node-teaser .content {
   clear: none;
@@ -495,27 +548,16 @@ ul.links {
   padding-top: 10px;
 }
 .sidebar .block {
-	-moz-border-radius: 10px; /* Firefox */
-	-webkit-border-radius: 10px; /* Safari, Chrome */
-  	border-radius: 10px; /* CSS3 */
   	border: 5px solid grey;
-  	padding: 10px 24px;
-  	margin: 0 0 20px;
 }
 .sidebar .block .content,
+.content-block .content,
 ul.tabs {
 	font-size: 1.2em;
 }
 #block-block-6 {
 	color: #fff;
 	background-color: #554b42;
-}
-.sidebar h2 {
-	margin: 0;
-  	border-bottom: 4px solid #000;
-  	padding-bottom: 10px;
-	text-transform: uppercase;
-	text-align: center;
 }
 #block-block-6 h2 {
 	padding-top: 42px;
