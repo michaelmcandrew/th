@@ -82,10 +82,27 @@
                         </a>
                         </li>
                         {/if}
+
                         <li>
 						<a class="button" title="Scan" href="/civicrm/checkin/scan?cid={$contactId}">
 						<span>
 						Scan
+						</span>
+						</a>
+						</li>
+
+                        <li>
+						<a class="button" title="Approve" href="/civicrm/contact/user/create?cid={$contactId}">
+						<span>
+						Approve
+						</span>
+						</a>
+						</li>
+
+                        <li>
+						<a class="button" title="Approve" href="/civicrm/contact/reject?cid={$contactId}">
+						<span>
+						Reject
 						</span>
 						</a>
 						</li>

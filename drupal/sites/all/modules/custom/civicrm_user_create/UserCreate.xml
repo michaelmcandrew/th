@@ -5,4 +5,10 @@
      <page_callback>UserCreate_Form_UserCreate</page_callback>
      <page_arguments></page_arguments>
   </item>
+  <item>
+     <path>civicrm/contact/reject</path>
+     <title>Reject user</title>
+     <page_callback>UserCreate_Form_Reject</page_callback>
+     <page_arguments></page_arguments>
+  </item>
 </menu>
