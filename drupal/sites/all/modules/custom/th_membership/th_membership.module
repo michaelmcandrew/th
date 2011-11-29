@@ -11,6 +11,9 @@ function th_membership_menu() {
 }
 
 function th_membership_pay_redirect() {
+	
+	//first check if they are already a member (and if so, send them to the renewal page)
+	
 	global $user;
 	civicrm_initialize();
 	$contact=civicrm_api("UFMatch","getsingle", array ('version' =>'3', 'uf_id' => $user->uid));
@@ -26,17 +29,33 @@ function th_membership_pay_redirect() {
 		'Resident membership application (London)' => '1',
 		'Annual membership application (London)' => '2',
 	);
-	drupal_goto( "http://th.local/civicrm/contribute/transact?reset=1&id={$activity_subject_to_contribution_page[$membership_type_applied_for]}");
+	
+	foreach($activity_subject_to_contribution_page as $string => $contribution_page){
+		if(strstr($string, $membership_type_applied_for)){
+			break;
+		}
+	}
+	drupal_goto( "http://th.local/civicrm/contribute/transact?reset=1&id={$contribution_page}");
 }
 
 function th_membership_civicrm_buildForm($formName, &$form) {
+	global $user;
 	if($formName!='CRM_Contribute_Form_Contribution_Main'){
 		return;
 	}
 //	print_r($form);
 //	$form->
-	$defaults['price_1'] = 3;
-	$form->setDefaults( $defaults );
+	if ($form->elementExists('price_1')) {
+		civicrm_initialize();
+		$contact=civicrm_api("UFMatch","getsingle", array ('version' =>'3', 'uf_id' => $user->uid));
+		require_once'CRM/Core/DAO.php';
+		$desks_query=CRM_Core_DAO::executeQuery("SELECT number_of_desks_155 AS desks FROM civicrm_value_resident_membership_2 WHERE entity_id=".$contact['contact_id']);
+		$desks_query->fetch();
+		$e =& $form->getElement('price_1');
+		$e->setValue($desks_query->desks);
+		$e->setAttribute('disabled', 'disabled');
+//		$e->freeze();
+    }
 //	exit;
 	
 }

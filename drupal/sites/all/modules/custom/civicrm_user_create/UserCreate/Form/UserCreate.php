@@ -2,6 +2,7 @@
 require_once('CRM/Core/Form.php');
 require_once('CRM/Utils/Request.php');
 require_once('CRM/Utils/Token.php');
+require_once('UserCreate/BAO/UserCreate.php');
 
 
 class UserCreate_Form_UserCreate extends CRM_Core_Form{
@@ -66,10 +67,12 @@ class UserCreate_Form_UserCreate extends CRM_Core_Form{
         require_once 'CRM/Core/BAO/MessageTemplates.php';
         $this->templates = CRM_Core_BAO_MessageTemplates::getMessageTemplates( false );
         // $this->add('select', 'template', ts('Use Template'), array( '' => ts( '- select -' ) ) + $this->templates, false);
+		
+		$this->add('textarea', 'extra_text', ts('Extra text to include in email'),'rows=10, cols=100');        
 		$this->addButtons(array(
 			array (
 				'type' => 'submit',
-				'name' => ts('Send email'),
+				'name' => ts('Approve application'),
 				'isDefault' => true),
 			)
 		);
@@ -78,13 +81,10 @@ class UserCreate_Form_UserCreate extends CRM_Core_Form{
 
 	}
 
-	public function keys(){
-	}
 	
 	
 	public function postProcess(){
 		global $base_url;
-		//create user
 		$account->is_new=true;
 		$this->set_user_password();
 		$edit=array(
@@ -100,9 +100,10 @@ class UserCreate_Form_UserCreate extends CRM_Core_Form{
 		
 		//do token replacement on the email message
 		$body=$template->msg_html;
-		CRM_Utils_Token::token_replace('user', 'username', $this->username, $template->msg_html, $escapeSmarty = false);
-		CRM_Utils_Token::token_replace('user', 'password', $this->password, $template->msg_html, $escapeSmarty = false);
-		CRM_Utils_Token::token_replace('domain', 'base_url', $base_url, $template->msg_html, $escapeSmarty = false);
+		CRM_Utils_Token::token_replace('user', 'username', $this->username, $template->msg_html);
+		CRM_Utils_Token::token_replace('user', 'password', $this->password, $template->msg_html);
+		CRM_Utils_Token::token_replace('domain', 'base_url', $base_url, $template->msg_html);
+		CRM_Utils_Token::token_replace('message', 'extra_text', $this->getSubmitValue('extra_text'), $template->msg_html);
 		$mail_params=array(
 			'toEmail'=>$this->email,
 			'subject'=>$template->msg_subject,
@@ -110,9 +111,10 @@ class UserCreate_Form_UserCreate extends CRM_Core_Form{
 			'from'=>'TechHub <info@techub.com>',
 			
      	);
+		UserCreate_BAO_UserCreate::process_application($this->contact_id, 'approved');
 		user_save($account, $edit);
 		CRM_Utils_Mail::send($mail_params);
-		CRM_Core_Session::setStatus('Created user account (see user ID field below) and sent email to '.$this->email);
+		CRM_Core_Session::setStatus('Created user account (see user ID field below) and sent welcome email to '.$this->email);
 		CRM_Utils_System::redirect('/civicrm/contact/view?cid='.$this->contact_id);
 		
 	}
