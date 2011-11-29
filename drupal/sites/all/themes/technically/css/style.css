@@ -44,9 +44,6 @@ p {
 del {
   text-decoration: line-through;
 }
-tr.odd {
-  background-color: #dddddd;
-}
 img {
   outline: 0;
 }
@@ -72,26 +69,13 @@ a.feed-icon {
 table {
   border: 0;
   border-spacing: 0;
-  font-size: 0.857em;
-  margin: 10px 0;
   width: 100%;
+}
+tbody {
+	border-top: 0 none;
 }
 table table {
   font-size: 1em;
-}
-#footer-wrapper table {
-  font-size: 1em;
-}
-table tr th {
-  background: #757575;
-  background: rgba(0, 0, 0, 0.51);
-  border-bottom-style: none;
-}
-table tr th,
-table tr th a,
-table tr th a:hover {
-  color: #FFF;
-  font-weight: bold;
 }
 table tbody tr th {
   vertical-align: top;
@@ -102,29 +86,24 @@ tr th {
   border: 1px solid #fff;
   text-align: left; /* LTR */
 }
-#footer-wrapper tr td,
-#footer-wrapper tr th {
-  border-color: #555;
-  border-color: rgba(255, 255, 255, 0.18);
+.view-members tr {
+	background-color: #fff;
+	border-top: 2px solid grey;
+	border-bottom: 0 none;
+	padding: 0;
 }
-tr.odd {
-  background: #e4e4e4;
-  background: rgba(0, 0, 0, 0.105);
+.view-members thead tr {
+	border-top: 0 none;
 }
-tr,
-tr.even {
-  background: #efefef;
-  background: rgba(0, 0, 0, 0.063);
+.view-members .user-picture a {
+	display: block;
 }
-table ul.links {
-  margin: 0;
-  padding: 0;
-  font-size: 1em;
+.view-members tr a {
+	color: #000;
 }
-table ul.links li {
-  padding: 0 1em 0 0;
+.view-members thead tr  {
+	color: grey;
 }
-
 /* ------------------ List Styles ------------------ */
 
 .block ol,
@@ -306,7 +285,9 @@ li {
 .node-event,
 .faq-content,
 .content-block,
-.node-message  {
+.node-message,
+.view-members,
+.profile  {
  	-moz-border-radius: 10px; /* Firefox */
 	-webkit-border-radius: 10px; /* Safari, Chrome */
 	border-radius: 10px; /* CSS3 */
@@ -333,7 +314,8 @@ li {
 }
 h1,
 span.blog-title,
-span.event-title {
+span.event-title,
+span.profile-title {
 	font-size: 2em;
 	display: block;
   	line-height: 1;	
@@ -343,12 +325,53 @@ span.event-title {
 h1#pagetitle,
 h1.title,
 span.blog-title,
-span.event-title {
+span.event-title,
+span.profile-title {
 	padding: 6px 0 16px;
 	border-bottom: 4px solid #000;
 }
 .sub-title {
 	font-size: 1.6em;
+}
+.profile .sub-title {
+	font-size: 1.15em;
+	padding-bottom: 12px;
+	border-bottom: 2px solid grey;
+}
+.profile h3 {
+	font-size: 0;
+	line-height: 0;
+	display: none;
+	visibility: hidden;
+	border: 0 none;
+}
+.profile h3.field-label {
+	font-size: 1em;
+	line-height: 1.5;
+	display: inline;
+	visibility: visible;
+}
+.profile dl {
+	width: 452px;
+	float: right;
+	margin: 0 0 20px 0;
+}
+.profile #crm-container .crm-section .label, 
+.profile .crm-section .label {
+	width: 124px;
+	text-align: left;
+}
+.profile #crm-container .crm-section .content, 
+.profile .crm-section .content {
+	width: 250px;
+	float: left;
+	text-align: left;
+	margin: 0 0 0 24px;
+}
+.profile .field-name-field-interests {
+	clear: both;
+	padding: 12px 0;
+	border-top: 2px solid grey;
 }
 #content h2 {
   margin-bottom: 2px;
@@ -359,14 +382,18 @@ span.event-title {
 .view-blog .content,
 .comment-content,
 form,
-.message-author {
+.message-author,
+.view-members,
+.profile {
   font-size: 1.4em;
 }
 .node-blog,
 .node-event,
 .faq-content,
 .content-block,
-.node-message {
+.node-message,
+.view-members,
+.profile {
 	background-color: #fff;	
 }
 .faq-content {
@@ -766,7 +793,9 @@ div.messages {
 /* -------------- User Profile   -------------- */
 
 .profile .user-picture {
-  float: none;
+	width: 100px;
+	margin: 0 20px 20px 0;
+  	float: left;
 }
 
 /* -------------- Password Meter  ------------- */

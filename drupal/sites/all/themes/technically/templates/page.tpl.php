@@ -112,9 +112,11 @@
 						?>
 						
 						<?php 
-						if($node->type=='blog' || $node->type=='event') : ?>
-							<span class="<?php print $node->type; ?>-title"><?php print $node->type; ?></span>	
-						
+						if($node->type=='blog' || $node->type=='event' || (arg(0)=='user' && arg(2)==FALSE)) : ?>
+					
+						<?php $class=(isset($node->type))?$node->type:'profile'; ?>
+							<span class="<?php print $class; ?>-title"><?php print $class; ?></span>	
+					
 						<?php else : ?>
 							<?php print render($title_prefix); ?>
 							<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
