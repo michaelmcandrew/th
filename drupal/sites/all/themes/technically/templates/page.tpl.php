@@ -131,13 +131,13 @@
 						<?php print render($page['content']); ?> 
 					
 						<?php if ($page['content_left']): ?>
-							<div id="content-left" class="column">
+							<div id="content-left" class="column content-block">
 								<?php print render($page['content_left']); ?>
 							</div>
 						<?php endif; ?>
 					
 						<?php if ($page['content_right']): ?>
-							<div id="content-right" class="column">
+							<div id="content-right" class="column content-block">
 								<?php print render($page['content_right']); ?>
 							</div>
 						<?php endif; ?>
