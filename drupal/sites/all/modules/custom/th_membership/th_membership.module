@@ -35,7 +35,13 @@ function th_membership_pay_redirect() {
 			break;
 		}
 	}
-	drupal_goto( "civicrm/contribute/transact", array('query'=>"reset=1&id={$contribution_page}"));
+	// $path = "civicrm/contribute/transact";
+	// $options = array('query'=>"");
+	CRM_Utils_System::redirect("/civicrm/contribute/transact?reset=1&id={$contribution_page}");
+
+
+	drupal_goto($path, $options);
+	exit;
 }
 
 function th_membership_civicrm_buildForm($formName, &$form) {
