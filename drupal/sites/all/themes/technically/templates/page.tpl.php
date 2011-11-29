@@ -110,9 +110,17 @@
 						    print render($node_content['field_icon']);
 						}
 						?>
-						<?php print render($title_prefix); ?>
-						<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-						<?php print render($title_suffix); ?>
+						
+						<?php 
+						if($node->type=='blog' || $node->type=='event') : ?>
+							<span class="<?php print $node->type; ?>-title"><?php print $node->type; ?></span>	
+						
+						<?php else : ?>
+							<?php print render($title_prefix); ?>
+							<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+							<?php print render($title_suffix); ?>
+
+						<?php endif; ?>
 
 						<?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
 
