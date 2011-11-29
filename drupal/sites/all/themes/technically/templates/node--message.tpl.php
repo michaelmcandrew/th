@@ -83,22 +83,18 @@
   <?php print render($title_prefix); ?>
   <h2 class="invisible"<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
   <?php print render($title_suffix); ?>
-  <?php if ($display_submitted): ?>
-    <div class="submitted">
-      <?php print $submitted; ?>
+  <?php print $user_picture; ?>
+  
+  <div class="message-right">
+    <span class="message-author"><?php print $name; ?></span>
+	<div class="content"<?php print $content_attributes; ?>>
+      <?php
+        hide($content['comments']);
+        hide($content['field_icon']);
+        hide($content['links']);
+        print render($content);
+      ?>
     </div>
-  <?php endif; ?>
-
-  <div class="content"<?php print $content_attributes; ?>>
-    <?php
-
-	
-      // We hide the comments, the title icon and the links now so that we can render them later.
-      hide($content['comments']);
-      hide($content['field_icon']);
-      hide($content['links']);
-      print render($content);
-    ?>
   </div>
 
   <?php print render($content['comments']); ?>
