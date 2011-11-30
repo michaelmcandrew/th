@@ -93,9 +93,7 @@
   <?php endif; ?>
 
   <div class="content"<?php print $content_attributes; ?>>
-    <?php
-
-	
+    <?php	
       // We hide the comments, the title icon and the links now so that we can render them later.
       hide($content['comments']);
       hide($content['field_icon']);

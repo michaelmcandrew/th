@@ -55,14 +55,23 @@ a.feed-icon {
 	color: yellow;
 	font-weight: bold;
 }
-.btn {
+.btn,
+.node-webform input.form-submit, 
+.node-webform a.button {
 	display: block;
+	float: left;
 	padding: 4px 6px 4px 30px;
 	margin: 20px auto;
 	background: #fff url(../images/btn-blue-arrow.gif) no-repeat 6px center;
 	-moz-border-radius: 4px; /* Firefox */
 	-webkit-border-radius: 4px; /* Safari, Chrome */
   	border-radius: 4px; /* CSS3 */
+}
+.node-webform input.form-submit, 
+.node-webform a.button {
+	background-color: #2a2a2a;
+	color: #fff;
+	margin: 0;
 }
 /* ------------------ Table Styles ------------------ */
 
@@ -142,6 +151,7 @@ li {
 	margin-bottom: 6px;
 }
 
+
 /* ------------------ Header ------------------ */
 #logo {
 	width: 200px;
@@ -164,32 +174,6 @@ li {
   	list-style: none;
   	list-style-image: none;
   	padding: 0;
-}
-.region-header .form-text {
-
-}
-.region-header .form-text:hover,
-.region-header .form-text:focus,
-.region-header .form-text:active {
-
-}
-.region-header .form-required {
-
-}
-/* Region header block menus. */
-.region-header .block-menu {
-
-}
-.region-header .block-menu li a {
-
-}
-.region-header .block-menu li a:hover,
-.region-header .block-menu li a:focus,
-.region-header .block-menu li a:active {
-
-}
-.region-header .block-menu li.last a {
-
 }
 /* User Login block in the header region */
 .region-header #block-user-login {
@@ -265,8 +249,7 @@ li {
 	color: #000;
 }
 #main-menu a:hover,
-#main-menu a:focus {
-}
+#main-menu a:focus,
 #main-menu a:active,
 #main-menu li a.active {
 	background: url(../images/nav-on.gif) no-repeat 0 0; 
@@ -280,6 +263,8 @@ li {
   	border-top: 4px solid #000;
 	padding-top: 20px;
 }
+.node-page .field-name-body,
+.webform-client-form,
 .sidebar .block,
 .node-blog,
 .node-event,
@@ -381,12 +366,13 @@ span.profile-title {
 .faq-content, 
 .view-blog .content,
 .comment-content,
-form,
 .message-author,
 .view-members,
 .profile {
   font-size: 1.4em;
 }
+.node-page .field-name-body,
+.webform-client-form,
 .node-blog,
 .node-event,
 .faq-content,
@@ -395,6 +381,7 @@ form,
 .view-members,
 .profile {
 	background-color: #fff;	
+	border: 5px solid yellow;
 }
 .faq-content {
 	text-align: center;
@@ -853,7 +840,13 @@ a.button:active {
 }
 
 /* -------------- Form Elements   ------------- */
-
+.node-webform form,
+.form-actions {
+	overflow: hidden;
+}
+.form-actions {
+	margin-top: 24px;
+}
 fieldset {
   background: #ffffff;
   border: 1px solid #cccccc;
@@ -958,25 +951,27 @@ input {
   margin: 2px 0;
   padding: 4px;
 }
-input,
-textarea {
-  font-size: 0.929em;
-}
 textarea {
   line-height: 1.5;
-}
-textarea.form-textarea,
-select.form-select {
-  padding: 4px;
 }
 input.form-text,
 textarea.form-textarea,
 select.form-select {
-  border: 1px solid #ccc;
+  	border: 0 none;
+	background-color: #d4d4d4;
 }
-input.form-submit:hover,
-input.form-submit:focus {
-  background: #dedede;
+input.form-text,
+textarea.form-textarea {
+	-moz-border-radius: 4px; /* Firefox */
+	-webkit-border-radius: 4px; /* Safari, Chrome */
+  	border-radius: 4px; /* CSS3 */	
+	padding: 4px;
+}
+input.form-text {
+	width: 320px;
+}
+select.form-select {
+	margin-right: 5px;
 }
 .password-suggestions ul li {
   margin-left: 1.2em; /* LTR */
@@ -984,9 +979,6 @@ input.form-submit:focus {
 .form-item {
   margin-bottom: 1em;
   margin-top: 2px;
-}
-.form-item label {
-  font-size: 0.929em;
 }
 .form-type-radio label,
 .form-type-checkbox label {
@@ -998,6 +990,9 @@ input.form-submit:focus {
 }
 .form-actions {
   padding-top: 10px;
+}
+.node-webform .resizable-textarea .grippie {
+	width: 95%;
 }
 /* Contact Form */
 .contact-form #edit-name {
