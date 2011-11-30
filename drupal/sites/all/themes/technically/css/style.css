@@ -11,19 +11,26 @@ body {
 	background-color: #ffda2e;
 	font-family: Arial, Helvetica, Sans-serif;
 }
+table.cke_editor body {
+	background-color: #fff;
+}
+a {
+	color: blue;
+}
 a:link,
 a:visited {
-  text-decoration: none;
+  	text-decoration: none;
 }
 a:hover,
 a:active,
 a:focus {
-  text-decoration: underline;
+  	text-decoration: underline;
 }
 h1 {
   	font-size: 1.8em;
 }
-h2 {
+h2,
+.sub-title {
   	font-size: 1.6em;
 	text-transform: uppercase;
 	margin: 0;
@@ -37,6 +44,9 @@ h2.invisible {
 	visibility: hidden;
 	border-bottom: 0 none;
 	padding: 0;
+}
+h2 a {
+	color: #000;
 }
 p {
   margin: 0 0 8px 0;
@@ -83,7 +93,7 @@ a.feed-icon {
 	margin: 0;
 	position: absolute;
 	bottom: 24px;
-	left: 24ƒpx;
+	left: 24px;
 }
 /* ------------------ Table Styles ------------------ */
 
@@ -124,6 +134,12 @@ tr th {
 }
 .view-members thead tr  {
 	color: grey;
+} 
+.node-blog table.cke_editor {
+	width: 322px;
+}
+.cke_edit-comment-body-und-0-value {
+	width: 320px;
 }
 /* ------------------ List Styles ------------------ */
 
@@ -332,9 +348,6 @@ span.profile-title {
 	padding: 6px 0 16px;
 	border-bottom: 4px solid #000;
 }
-.sub-title {
-	font-size: 1.6em;
-}
 .profile .sub-title {
 	font-size: 1.15em;
 	padding-bottom: 12px;
@@ -379,10 +392,9 @@ span.profile-title {
   margin-bottom: 2px;
   line-height: 1.4;
 }
-.node .content,
+/*.node .content,*/
 .faq-content, 
 .view-blog .content,
-.comment-content,
 .message-author,
 .view-members,
 .profile {
@@ -430,13 +442,22 @@ span.profile-title {
 	float: left;
 }
 .view-messages .message-right {
-	width: 452px;
+	width: 442px;
 	float: right;
 	margin: 0 0 20px 20px;
 }
 .time-ago {
 	color: grey;
 	margin-top: 12px;
+}
+.blog-author, 
+.blog-date {
+	color: grey;
+	text-align: center;
+	text-transform: uppercase;
+}
+.blog-author {
+	margin-bottom: 12px;
 }
 .field-name-field-intro {
 	text-align: center;
@@ -461,12 +482,12 @@ span.profile-title {
 
 
 /* ----------------- Comments ----------------- */
-#comments {
+.view-messages #comments {
 	clear: both;
 	padding: 20px 0 20px 120px;
 }
 .view-messages .comment-content {
-	width: 332px;
+	width: 322px;
 	margin-left: 20px;
 	float: right;
 }
@@ -526,7 +547,7 @@ ul.tabs {
 	width: 150px;
 	color: #000;
 }
-#block-block-12 a.btn-dark {
+#block-block-14 a.btn-dark {
 	width: 70px;
 }
 /* ------------------ Footer ------------------ */
