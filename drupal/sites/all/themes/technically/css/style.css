@@ -39,7 +39,7 @@ h2.invisible {
 	padding: 0;
 }
 p {
-  margin: 0 0 1.2em;
+  margin: 0 0 8px 0;
 }
 del {
   text-decoration: line-through;
@@ -56,22 +56,34 @@ a.feed-icon {
 	font-weight: bold;
 }
 .btn,
+.btn-dark,
 .node-webform input.form-submit, 
 .node-webform a.button {
 	display: block;
-	float: left;
 	padding: 4px 6px 4px 30px;
 	margin: 20px auto;
 	background: #fff url(../images/btn-blue-arrow.gif) no-repeat 6px center;
 	-moz-border-radius: 4px; /* Firefox */
 	-webkit-border-radius: 4px; /* Safari, Chrome */
   	border-radius: 4px; /* CSS3 */
+	color: #000;
 }
+.btn-dark,
 .node-webform input.form-submit, 
 .node-webform a.button {
 	background-color: #2a2a2a;
 	color: #fff;
+}
+.node-webform input.form-submit, 
+.node-webform a.button {
+	float: left;
+}
+.relative .btn,
+.relative .btn-dark {
 	margin: 0;
+	position: absolute;
+	bottom: 24px;
+	left: 24ƒpx;
 }
 /* ------------------ Table Styles ------------------ */
 
@@ -117,8 +129,9 @@ tr th {
 
 .block ol,
 .block ul {
-  margin: 0;
-  padding: 0;
+ 	padding: 0;
+	list-style: disc outside none;
+	margin: 0 0 0 18px;
 }
 .contextual-links-wrapper {
   font-size: small !important;
@@ -269,7 +282,8 @@ li {
 .node-blog,
 .node-event,
 .faq-content,
-.content-block,
+.content-block .block,
+.region-content .block-block,
 .node-message,
 .view-members,
 .profile  {
@@ -289,6 +303,9 @@ li {
 }
 
 /* ----------------- Content ------------------ */
+.content {
+	overflow: hidden;
+}
 .content,
 .field-name-comment-body {
 	margin-top: 10px;
@@ -376,7 +393,8 @@ span.profile-title {
 .node-blog,
 .node-event,
 .faq-content,
-.content-block,
+.content-block .block,
+.region-content .block-block,
 .node-message,
 .view-members,
 .profile {
@@ -425,72 +443,22 @@ span.profile-title {
 	padding: 16px 16px 32px 16px;
 	font-size: 1.2em;
 }
-.node-teaser h2 {
-  margin-top: 0;
-  padding-top: 0.5em;
-}
-.node-teaser h2 a {
-  color: #181818;
-}
 .node-teaser {
   margin-bottom: 30px;
   padding-bottom: 15px;
 }
-.node-sticky {
-  background: #f9f9f9;
-  background: rgba(0, 0, 0, 0.024);
-  border: 1px solid #d3d7d9;
-  padding: 0 15px 15px;
+
+/* ----------------- Blocks ----------------- */
+.height-240 {
+	height: 240px;
 }
-.node-teaser .content {
-  clear: none;
-  line-height: 1.6;
+.relative {
+	position: relative;
 }
-.meta {
-  font-size: 0.857em;
-  color: #68696b;
-  margin-bottom: -5px;
+.available {
+	border: 5px solid blue !important;
 }
-.field-type-taxonomy-term-reference {
-  margin: 8px 0 0 0;
-}
-.field-type-taxonomy-term-reference .field-label {
-  font-weight: normal;
-  margin: 0;
-  padding-right: 5px; /* LTR */
-}
-.field-type-taxonomy-term-reference .field-label,
-.field-type-taxonomy-term-reference ul.links {
-  font-size: 0.8em;
-}
-.node-teaser .field-type-taxonomy-term-reference .field-label,
-.node-teaser .field-type-taxonomy-term-reference ul.links {
-  font-size: 0.821em;
-}
-.field-type-taxonomy-term-reference ul.links {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-.field-type-taxonomy-term-reference ul.links li {
-  float: left; /* LTR */
-  padding: 0 1em 0 0; /* LTR */
-  white-space: nowrap;
-}
-.link-wrapper {
-  text-align: right;
-}
-ul.links {
-  color: #68696b;
-}
-.node-unpublished {
-  margin: -20px -15px 0;
-  padding: 20px 15px 0;
-}
-.node-unpublished .comment-text .comment-arrow {
-  border-left: 1px solid #fff4f4;
-  border-right: 1px solid #fff4f4;
-}
+
 
 /* ----------------- Comments ----------------- */
 #comments {
@@ -534,8 +502,8 @@ ul.links {
 .sidebar .block {
   	border: 5px solid grey;
 }
-.sidebar .block .content,
-.content-block .content,
+/*.sidebar .block .content,.content-block .content*/
+.block .content,
 ul.tabs {
 	font-size: 1.2em;
 }
@@ -547,15 +515,19 @@ ul.tabs {
 	padding-top: 42px;
 	background: url(../images/icon-star.gif) no-repeat center 0;	
 }
-#block-block-6 .content li {
-	list-style: disc inside url(../images/bullet-star.gif);
+#block-block-6 .content ul {
+	list-style: disc outside url(../images/bullet-star.gif);
+	margin-left: 24px;
 }
 #block-block-6 a {
 	color: #fff;
 }
 #block-block-6 a.btn {
-	color: #000;
 	width: 150px;
+	color: #000;
+}
+#block-block-12 a.btn-dark {
+	width: 70px;
 }
 /* ------------------ Footer ------------------ */
 

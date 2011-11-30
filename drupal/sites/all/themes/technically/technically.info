@@ -10,11 +10,13 @@ regions[header] = Header
 
 regions[content] = Content
 
+regions[sidebar_first] = Left column
+regions[sidebar_second] = Right column
+
 regions[content_left] = Left content
 regions[content_right] = Right content
 
-regions[sidebar_first] = Left column
-regions[sidebar_second] = Right column
+regions[content_below] = Below content
 
 regions[featured_first] = Featured first
 regions[featured_second] = Featured second

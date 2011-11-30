@@ -143,6 +143,12 @@
 								<?php print render($page['content_right']); ?>
 							</div>
 						<?php endif; ?>
+						
+						<?php if ($page['content_below']): ?>
+							<div id="content-below" class="column content-block">
+								<?php print render($page['content_below']); ?>
+							</div>
+						<?php endif; ?>
 					</div>
 				</div> <!-- end of content -->
 

@@ -43,6 +43,9 @@ body,
     float: left; /* LTR */
     position: relative;
 }
+#content-below {
+	clear: both;
+}
 .one-sidebar #content {
     width: 620px;
 }
@@ -65,7 +68,7 @@ body,
 }
 #content-left,
 #content-right {
-	width: 242px;
+	width: 300px;
 }
 #content-left {
 	margin-right: 20px;
