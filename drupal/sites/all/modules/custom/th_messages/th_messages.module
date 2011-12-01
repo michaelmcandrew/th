@@ -1,0 +1,84 @@
+<?php
+
+//messages path url is messages/category/tag/location
+//arg1=category
+//arg2=tag
+//arg3=location
+
+function th_messages_block_info() {
+	$blocks['tag'] = array(
+		'info' => t('Filter messages by tag'),
+	);
+	$blocks['category'] = array(
+		'info' => t('Filter messages by category'),
+	);
+	return $blocks;
+}
+
+function th_messages_block_view($delta = '') {
+	switch ($delta) {
+		case 'tag':
+			$block['subject'] = 'Tags';
+			$block['content'] = th_messages_tag_content();
+			break;
+
+		case 'category':
+			$block['subject'] = 'Message type';
+			$block['content'] = th_messages_category_content();
+			break;
+
+	}
+	return $block;
+}
+
+function th_messages_category_content(){
+	$items=th_messages_get_term_list(3, 1, 'alpha');
+	foreach($items as $item){
+		if(isset($item['attributes'])){
+		}
+		$output.='<li>'.l($item['text'], $item['path']).'</li>';
+	}
+	return $output;
+}
+
+function th_messages_tag_content(){
+	$items=th_messages_get_term_list(4, 2, 'alpha');
+	foreach($items as $item){
+		if(isset($item['attributes'])){
+		}
+		$output.='<li>'.l($item['text'], $item['path']).'</li>';
+	}
+	return $output;
+}
+// 	$categories = db_query("SELECT name FROM taxonomy_term_data WHERE vid=3");
+// 	foreach($categories as $category){
+// //		$items['path'] = array('messages', print_r($category);
+// 	}
+// //	exit;
+// //	echo $path = $_GET['q'];exit;
+// }
+
+function th_messages_get_term_list($vocab_id, $arg_position, $sort, $limit){
+	$current_term=arg($arg_position);
+	if($sort=='alpha'){
+		$terms = db_query("SELECT 'all' AS tid, 'all' AS name UNION SELECT tid, LOWER(name) AS name FROM taxonomy_term_data WHERE vid=:vid ORDER BY name", array(':vid' => $vocab_id));		
+	}elseif	($sort=='popularity'){
+//		$terms = db_query("SELECT tid, LOWER(name) AS name FROM taxonomy_term_data WHERE vid=:vid ORDER BY name", array(':vid' => $vocab_id,':order' => $order));
+	}
+	foreach($terms as $term){
+		$items[$term->tid]['text'] = $term->name;
+		$path=array();
+		foreach (range(0, 2) as $pos) {
+			if($pos==$arg_position){
+				$path[$pos]=$term->name;
+			}else{
+				$path[$pos]=arg($pos);
+			}
+		}
+		$items[$term->tid]['path'] = implode('/', $path);
+		if($current_term==$term->name){
+			$items[$term->tid]['attributes']=array('class'=>'active');
+		}
+	}
+	return $items;
+}
