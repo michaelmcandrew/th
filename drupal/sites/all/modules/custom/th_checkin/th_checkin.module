@@ -92,7 +92,7 @@ function th_checkin_block_info() {
   // provide initial settings for block weight, status, etc.
 
   // Many options are defined in hook_block_info():
-  $blocks['example_configurable_text'] = array(
+  $blocks['checkin'] = array(
     // info: The name of the block.
     'info' => t('Tech Hub CiviCRM check in block'),
     // Block caching options (per role, per user, etc.)
