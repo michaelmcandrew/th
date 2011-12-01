@@ -189,7 +189,7 @@ li {
 #logo {
 	width: 184px;
 	height: 85px;
-	padding-top: 20px;
+	padding: 22px 0 0 20px;
     float: left; /* LTR */
 	margin-right: 70px;
 }
@@ -258,7 +258,7 @@ li {
 }
 #main-menu a {
 	display: block;
-	padding-left: 25px;
+	padding-left: 30px;
 	background: url(../images/nav-off.png) no-repeat 0 0; 
 	color: #332f2d;
 }
@@ -395,6 +395,7 @@ span.profile-title {
 .node-event,
 .faq-content,
 .content-block .block,
+.sidebar .block,
 .region-content .block-block,
 .node-message,
 .view-members,
@@ -518,10 +519,10 @@ ul.tabs {
 }
 #block-block-6 h2 {
 	padding-top: 42px;
-	background: url(../images/icon-star.gif) no-repeat center 0;	
+	background: url(../images/star.png) no-repeat center 0;	
 }
 #block-block-6 .content ul {
-	list-style: disc outside url(../images/bullet-star.gif);
+	list-style: disc outside url(../images/bullet-star.png);
 	margin-left: 24px;
 }
 #block-block-6 a {
