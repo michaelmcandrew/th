@@ -88,7 +88,7 @@ function th_messages_get_term_list($vocab_id, $arg_position, $sort, $limit){
  * Implements hook_form_alter().
  */
 function th_messages_form_alter(&$form, $form_state) {
-	if($form['#node']->type=='message'){
+	if($form['#id']->type=='message-node-form'){
 		$form['actions']['submit']['#submit'][] = 'th_messages_submit_redirect';		
 	}
 }
