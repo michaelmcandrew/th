@@ -157,3 +157,17 @@ function technically_field__taxonomy_term_reference($variables) {
 
   return $output;
 }
+function technically_theme(&$existing, $type, $theme, $path) {
+   $hooks['user_login_block'] = array(
+     'template' => 'templates/user-login-block',
+     'render element' => 'form',
+   );
+   return $hooks;
+ }
+function technically_preprocess_user_login_block(&$vars) {
+	unset($vars['form']['name']['#title']);
+	unset($vars['form']['pass']['#title']);
+	$vars['form']['name']['#attributes'] = array('placeholder' => 'username');
+	$vars['form']['pass']['#attributes'] = array('placeholder' => 'password');
+	$vars['rendered'] = drupal_render_children($vars['form']);
+}

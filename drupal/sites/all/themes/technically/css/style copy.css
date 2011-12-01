@@ -14,11 +14,6 @@ body {
 table.cke_editor body {
 	background-color: #fff;
 }
-#main-wrapper p, 
-#main-wrapper li,
-#main-wrapper label {
-	font-size: 1.3em;
-}
 a {
 	color: #a8001c;
 }
@@ -27,9 +22,6 @@ h2 a,
 .view-members tr a,
 .faq-question a  {
 	color: #332f2d;
-}
-h1, h2, h3, h4, h5, h6 {
-	letter-spacing: 0.15em;
 }
 a:link,
 a:visited {
@@ -40,9 +32,12 @@ a:active,
 a:focus {
   	text-decoration: underline;
 }
+h1 {
+  	font-size: 1.8em;
+}
 h2,
 .sub-title {
-  	font-size: 1.8em;
+  	font-size: 1.6em;
 	text-transform: uppercase;
 	margin: 0;
   	background: url(../images/dots-grey.gif) repeat-x 0 bottom;
@@ -117,6 +112,7 @@ tbody {
 	border-top: 0 none;
 }
 table table {
+  font-size: 1em;
 }
 table tbody tr th {
   vertical-align: top;
@@ -157,13 +153,16 @@ tr th {
 	margin: 0 0 0 18px;
 }
 .contextual-links-wrapper {
-  font-size: 1em !important;
+  font-size: small !important;
+}
+ul.contextual-links {
+  font-size: 0.923em;
 }
 .contextual-links-wrapper a {
   text-shadow: 0 0 0 !important;
 }
 .item-list .pager {
-  font-size: ;
+  font-size: 0.929em;
 }
 ul.menu li {
   margin: 0;
@@ -189,7 +188,6 @@ li {
 #logo {
 	width: 200px;
 	height: 96px;
-	padding-top: 20px;
     float: left; /* LTR */
 	margin-right: 70px;
 }
@@ -226,7 +224,7 @@ li {
 	border-right-color: #D2D2D2;
 	color: #332F2D;
 	cursor: pointer;
-	font-size:;
+	font-size: 0.929em;
 	font-weight: normal;
 	text-align: center;
 	margin-bottom: 1em;
@@ -241,13 +239,11 @@ li {
 /* --------------- Main Menu ------------ */
 #navigation {
 	width: 300px;
-	padding: 12px 0 0 38px;
+	padding-right: 46px;
 	float: left;
-	font-size: 1.6em;
-	background: url(../images/dots-grey-vert.gif) repeat-y left 2px;
 }
 #main-menu {
-  	overflow: hidden;
+  	clear: both;
 }
 #main-menu li {
 	width: 150px;
@@ -255,6 +251,7 @@ li {
 	padding: 0;
     list-style: none;
     margin: 0 0 6px 0;
+	font-size: 1.6em;
 }
 #main-menu a {
 	display: block;
@@ -326,8 +323,9 @@ h1,
 span.blog-title,
 span.event-title,
 span.profile-title {
-	font-size: ;
+	font-size: 2em;
 	display: block;
+  	line-height: 1;	
 	text-transform: uppercase;
 	text-align: center;
 }
@@ -336,12 +334,11 @@ h1.title,
 span.blog-title,
 span.event-title,
 span.profile-title {
-	font-size: 3em;
 	padding: 6px 0 16px;
 	background: url(../images/dots-grey.gif) repeat-x 0 bottom;
 }
 .profile .sub-title {
-	font-size: ;
+	font-size: 1.15em;
 	padding-bottom: 12px;
 	border-bottom: 2px solid grey;
 }
@@ -353,6 +350,8 @@ span.profile-title {
 	border: 0 none;
 }
 .profile h3.field-label {
+	font-size: 1em;
+	line-height: 1.5;
 	display: inline;
 	visibility: visible;
 }
@@ -380,6 +379,7 @@ span.profile-title {
 }
 #content h2 {
   margin-bottom: 2px;
+  line-height: 1.4;
 }
 /*.node .content,*/
 .faq-content, 
@@ -387,7 +387,7 @@ span.profile-title {
 .message-author,
 .view-members,
 .profile {
-  font-size: ;
+  font-size: 1.4em;
 }
 .node-page .field-name-body,
 .node .webform-client-form,
@@ -409,7 +409,7 @@ span.profile-title {
 .faq-question {
 	padding: 8px 0;
 	text-transform: uppercase;
-	font-size: ;
+	font-size: 1.2em;
 	background: url(../images/faq-plus.gif) no-repeat right center;
 	border-bottom: 2px solid #000;
 }
@@ -448,7 +448,7 @@ span.profile-title {
 .field-name-field-intro {
 	text-align: center;
 	padding: 16px 16px 32px 16px;
-	font-size: 2.4em;
+	font-size: 1.2em;
 }
 .node-teaser {
   margin-bottom: 30px;
@@ -509,7 +509,7 @@ span.profile-title {
 /*.sidebar .block .content,.content-block .content*/
 .block .content,
 ul.tabs {
-	font-size: ;
+	font-size: 1.2em;
 }
 #block-block-6 {
 	color: #fff;
@@ -634,6 +634,12 @@ div.messages {
   margin: 8px 15px;
 }
 
+/* -------------- Breadcrumbs   -------------- */
+
+.breadcrumb {
+  font-size: 0.929em;
+}
+
 /* -------------- User Profile   -------------- */
 
 .profile .user-picture {
@@ -655,7 +661,7 @@ div.form-item div.password-suggestions {
 .password-strength-text,
 .password-strength-title,
 div.password-confirm {
-  font-size: ;
+  font-size: 0.82em;
 }
 .password-strength-text {
   margin-top: 0.2em;
@@ -676,6 +682,7 @@ a.button {
   border-right-color: #d2d2d2;
   color: #332f2d;
   cursor: pointer;
+  font-size: 0.929em;
   font-weight: normal;
   text-align: center;
   margin-bottom: 1em;
@@ -735,6 +742,7 @@ fieldset {
   border-top-right-radius: 0;
 }
 .filter-help a {
+  font-size: 0.857em;
   padding: 2px 20px 0;
 }
 .filter-wrapper .form-item label {
@@ -926,6 +934,7 @@ html.js input.throbbing {
 /* Comment form */
 .comment-form label {
   float: left; /* LTR */
+  font-size: 0.929em;
   width: 120px;
 }
 .comment-form input,
@@ -968,6 +977,8 @@ html.js input.throbbing {
   width: 320px;
 }
 .comment-form .form-item .description {
+  font-size: 0.786em;
+  line-height: 1.2;
   margin-left: 120px; /* LTR */
 }
 #content h2.comment-form {
@@ -995,6 +1006,9 @@ html.js input.throbbing {
 .filter-wrapper .form-select {
   min-width: 120px;
 }
+.comment-form fieldset.filter-wrapper .tips {
+  font-size: 0.786em;
+}
 #comment-body-add-more-wrapper .form-type-textarea label {
   margin-bottom: 0.4em;
 }
@@ -1014,6 +1028,12 @@ div.password-suggestions {
 div.vertical-tabs .vertical-tabs-panes fieldset.vertical-tabs-pane {
   padding: 1em;
 }
+#forum .name {
+  font-size: 1.083em;
+}
+#forum .description {
+  font-size: 1em;
+}
 
 /* --------------- Search Form ---------------- */
 
@@ -1026,6 +1046,7 @@ div.vertical-tabs .vertical-tabs-panes fieldset.vertical-tabs-pane {
 #search-form input#edit-keys,
 #block-search-form .form-item-search-block-form input {
   float: left; /* LTR */
+  font-size: 1em;
   height: 1.143em;
   margin-right: 5px;
   width: 9em;
@@ -1104,6 +1125,9 @@ div.add-or-remove-shortcuts {
   padding: 5px;
   text-align: center;
   text-shadow: none;
+}
+.page-admin-structure-block-demo #featured .block-region {
+  font-size: 0.55em;
 }
 .page-admin-structure-block-demo #header .block-region {
   width: 500px;

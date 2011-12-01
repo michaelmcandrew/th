@@ -21,14 +21,16 @@ body,
 	padding-top: 30px; 0 24px;
 }
 #header-left {
-	width: 620px;
+	width: 232px;
 	float: left;
-	padding: 10px 0 24px;
+}
+#header-middle {
+	width: 380px;
+	float: left;		
 	background: url(../images/dots-grey-vert.gif) repeat-y right 2px;
 }
 .region-header {
-	width: 320px;
-	padding-top: 10px;
+	width: 324px;
     float: right; /* LTR */
 }
 #main-wrapper {

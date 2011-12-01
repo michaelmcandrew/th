@@ -76,7 +76,8 @@
 							<img src="<?php print $logo; ?>" alt="<?php print t('TechHub'); ?>" />
 						</a>
 					<?php endif; ?>
-				
+				</div>
+				<div id="header-middle">
 					<?php if ($main_menu || $secondary_menu): ?>
 						<div id="navigation">
 							<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
