@@ -45,7 +45,7 @@ h2,
   	font-size: 1.8em;
 	text-transform: uppercase;
 	margin: 0;
-  	background: url(../images/dots-grey.png) repeat-x 0 bottom;
+  	background: url(../images/dots-on-white.png) repeat-x 0 bottom;
   	padding-bottom: 10px;
 	text-align: center;
 }
@@ -259,14 +259,14 @@ li {
 #main-menu a {
 	display: block;
 	padding-left: 25px;
-	background: url(../images/nav-off.gif) no-repeat 0 0; 
+	background: url(../images/nav-off.png) no-repeat 0 0; 
 	color: #332f2d;
 }
 #main-menu a:hover,
 #main-menu a:focus,
 #main-menu a:active,
 #main-menu li a.active {
-	background: url(../images/nav-on.gif) no-repeat 0 0; 
+	background: url(../images/nav-on.png) no-repeat 0 0; 
 }
 
 
