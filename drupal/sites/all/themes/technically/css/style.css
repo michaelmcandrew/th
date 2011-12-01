@@ -45,7 +45,7 @@ h2,
   	font-size: 1.8em;
 	text-transform: uppercase;
 	margin: 0;
-  	background: url(../images/dots-grey.gif) repeat-x 0 bottom;
+  	background: url(../images/dots-grey.png) repeat-x 0 bottom;
   	padding-bottom: 10px;
 	text-align: center;
 }
@@ -187,8 +187,8 @@ li {
 
 /* ------------------ Header ------------------ */
 #logo {
-	width: 200px;
-	height: 96px;
+	width: 184px;
+	height: 85px;
 	padding-top: 20px;
     float: left; /* LTR */
 	margin-right: 70px;
@@ -244,7 +244,7 @@ li {
 	padding: 12px 0 0 38px;
 	float: left;
 	font-size: 1.6em;
-	background: url(../images/dots-grey-vert.gif) repeat-y left 2px;
+	background: url(../images/dots-grey-vert.png) repeat-y left 2px;
 }
 #main-menu {
   	overflow: hidden;
@@ -273,7 +273,7 @@ li {
 /* ------------------- Main ------------------- */
 
 #main {
-  	background: url(../images/dots-grey.gif) repeat-x 0 top;
+  	background: url(../images/dots-grey.png) repeat-x 0 top;
 	padding-top: 20px;
 }
 .node-page .field-name-body,
@@ -338,7 +338,7 @@ span.event-title,
 span.profile-title {
 	font-size: 3em;
 	padding: 6px 0 16px;
-	background: url(../images/dots-grey.gif) repeat-x 0 bottom;
+	background: url(../images/dots-grey.png) repeat-x 0 bottom;
 }
 .profile .sub-title {
 	font-size: ;
