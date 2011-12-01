@@ -8,14 +8,20 @@ body {
   	padding: 0;
   	border: 0;
   	outline: 0;
-	background-color: #ffda2e;
+	background-color: #ffcd36;
 	font-family: Arial, Helvetica, Sans-serif;
 }
 table.cke_editor body {
 	background-color: #fff;
 }
 a {
-	color: blue;
+	color: #a8001c;
+}
+body,
+h2 a,
+.view-members tr a,
+.faq-question a  {
+	color: #332f2d;
 }
 a:link,
 a:visited {
@@ -34,7 +40,7 @@ h2,
   	font-size: 1.6em;
 	text-transform: uppercase;
 	margin: 0;
-  	border-bottom: 4px solid #000;
+  	background: url(../images/dots-grey.gif) repeat-x 0 bottom;
   	padding-bottom: 10px;
 	text-align: center;
 }
@@ -44,9 +50,6 @@ h2.invisible {
 	visibility: hidden;
 	border-bottom: 0 none;
 	padding: 0;
-}
-h2 a {
-	color: #000;
 }
 h3 {
 	margin: 0 0 12px 0;
@@ -79,7 +82,7 @@ a.feed-icon {
 	-moz-border-radius: 4px; /* Firefox */
 	-webkit-border-radius: 4px; /* Safari, Chrome */
   	border-radius: 4px; /* CSS3 */
-	color: #000;
+	color: #332f2d;
 }
 .btn-dark,
 .node-webform input.form-submit, 
@@ -131,9 +134,6 @@ tr th {
 }
 .view-members .user-picture a {
 	display: block;
-}
-.view-members tr a {
-	color: #000;
 }
 .view-members thead tr  {
 	color: grey;
@@ -278,21 +278,20 @@ li {
 	display: block;
 	padding-left: 25px;
 	background: url(../images/nav-off.gif) no-repeat 0 0; 
-	color: #000;
+	color: #332f2d;
 }
 #main-menu a:hover,
 #main-menu a:focus,
 #main-menu a:active,
 #main-menu li a.active {
 	background: url(../images/nav-on.gif) no-repeat 0 0; 
-	color: #00b0d8;
 }
 
 
 /* ------------------- Main ------------------- */
 
 #main {
-  	border-top: 4px solid #000;
+  	background: url(../images/dots-grey.gif) repeat-x 0 top;
 	padding-top: 20px;
 }
 .node-page .field-name-body,
@@ -357,7 +356,7 @@ span.blog-title,
 span.event-title,
 span.profile-title {
 	padding: 6px 0 16px;
-	border-bottom: 4px solid #000;
+	background: url(../images/dots-grey.gif) repeat-x 0 bottom;
 }
 .profile .sub-title {
 	font-size: 1.15em;
@@ -421,8 +420,8 @@ span.profile-title {
 .node-message,
 .view-members,
 .profile {
-	background-color: #fff;	
-	border: 5px solid yellow;
+	background-color: #f5f2f0;	
+	border: 5px solid #d9bc6c;
 }
 .faq-content {
 	text-align: center;
@@ -437,9 +436,6 @@ span.profile-title {
 }
 .faq-qa-visible {
 	background: url(../images/faq-minus.gif) no-repeat right center;
-}
-.faq-question a {
-	color: #2a2a2a;
 }
 .faq-answer {
 	padding: 12px 0;
@@ -538,8 +534,8 @@ ul.tabs {
 }
 #block-block-6 {
 	color: #fff;
-	background-color: #554b42;
-	border: 5px solid grey;
+	background-color: #66605d;
+	border: 5px solid #ae944c;
 }
 #block-block-6 h2 {
 	padding-top: 42px;
@@ -554,126 +550,12 @@ ul.tabs {
 }
 #block-block-6 a.btn {
 	width: 150px;
-	color: #000;
+	color: #332f2d;
 }
 #block-block-14 a.btn-dark {
 	width: 70px;
 }
 /* ------------------ Footer ------------------ */
-
-#footer-wrapper {
-  color: #c0c0c0;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 0.857em;
-}
-#footer-wrapper a {
-  color: #fcfcfc;
-  color: rgba(255, 255, 255, 0.8);
-}
-#footer-wrapper a:hover,
-#footer-wrapper a:focus {
-  color: #fefefe;
-  color: rgba(255, 255, 255, 0.95);
-  text-decoration: underline;
-}
-#footer-wrapper .block {
-  margin: 20px 0;
-  border: 1px solid #444;
-  border-color: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-}
-#footer-columns .block-menu,
-#footer .block {
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-#footer .block {
-  margin: 0.5em 0;
-}
-#footer .block .content {
-  padding: 0.5em 0;
-  margin-top: 0;
-}
-#footer .block h2 {
-  margin: 0;
-}
-#footer-columns h2 {
-  border-bottom: 1px solid #555;
-  border-color: rgba(255, 255, 255, 0.15);
-  margin-bottom: 0;
-  padding-bottom: 3px;
-  text-transform: uppercase;
-}
-#footer-columns .content {
-  margin-top: 0;
-}
-#footer-columns p {
-  margin-top: 1em;
-}
-#footer-columns .content ul {
-  list-style: none;
-  padding-left: 0; /* LTR */
-  margin-left: 0;
-}
-#footer-columns .content li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-#footer-columns .content li a {
-  display: block;
-  border-bottom: 1px solid #555;
-  border-color: rgba(255, 255, 255, 0.15);
-  line-height: 1.2;
-  padding: 0.8em 2px 0.8em 20px; /* LTR */
-  text-indent: -15px;
-}
-#footer-columns .content li a:hover,
-#footer-columns .content li a:focus {
-  background-color: #1f1f21;
-  background-color: rgba(255, 255, 255, 0.05);
-  text-decoration: none;
-}
-#footer {
-  letter-spacing: 0.2px;
-  margin-top: 30px;
-  border-top: 1px solid #555;
-  border-color: rgba(255, 255, 255, 0.15);
-}
-#footer .region {
-  margin-top: 20px;
-}
-#footer .block {
-  clear: both;
-}
-#footer ul,
-#footer li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-#footer li a {
-  float: left; /* LTR */
-  padding: 0 12px;
-  display: block;
-  border-right: 1px solid #555; /* LTR */
-  border-color: rgba(255, 255, 255, 0.15);
-}
-#footer li.first a {
-  padding-left: 0; /* LTR */
-}
-#footer li.last a {
-  padding-right: 0; /* LTR */
-  border-right: none; /* LTR */
-}
-#footer-wrapper tr.odd {
-  background-color: transparent;
-}
-#footer-wrapper tr.even {
-  background-color: #2c2c2c;
-  background-color: rgba(0, 0, 0, 0.15);
-}
 
 /* --------------- System Tabs  --------------- */
 
@@ -698,7 +580,7 @@ ul.tabs {
   border-bottom: 1px solid #ffffff;
 }
 .tabs ul.primary li a {
-  color: #000;
+  color: #332f2d;
   background-color: #ededed;
   height: 1.8em;
   line-height: 1.9;
@@ -819,7 +701,7 @@ a.button {
   border-bottom: 1px solid #b4b4b4;
   border-left-color: #d2d2d2;
   border-right-color: #d2d2d2;
-  color: #3a3a3a;
+  color: #332f2d;
   cursor: pointer;
   font-size: 0.929em;
   font-weight: normal;
@@ -838,7 +720,7 @@ a.button:hover,
 a.button:focus,
 a.button:active {
   text-decoration: none;
-  color: #5a5a5a;
+  color: #332f2d;
 }
 
 /* -------------- Form Elements   ------------- */
@@ -904,7 +786,7 @@ fieldset legend {
   background: #dbdbdb;
   border: 1px solid #ccc;
   border-bottom: none;
-  color: #3b3b3b;
+  color: #332f2d;
   display: block;
   height: 2em;
   left: -1px; /* LTR */
@@ -932,12 +814,12 @@ fieldset.collapsed legend {
   border-radius: 4px;
 }
 fieldset legend a {
-  color: #3b3b3b;
+  color: #332f2d;
 }
 fieldset legend a:hover,
 fieldset legend a:focus,
 fieldset legend a:active {
-  color: #000;
+  color: #332f2d;
 }
 fieldset .fieldset-wrapper {
   padding: 0 10px;
@@ -946,7 +828,7 @@ fieldset .fieldset-description {
   margin-top: 5px;
   margin-bottom: 1em;
   line-height: 1.4;
-  color: #3c3c3c;
+  color: #332f2d;
   font-style: italic;
 }
 input {
@@ -1257,7 +1139,7 @@ div.add-or-remove-shortcuts {
 .page-admin-structure-block-demo .block-region {
   background: #ffff66;
   border: 1px dotted #9f9e00;
-  color: #000;
+  color: #332f2d;
   font: 90% "Lucida Grande", "Lucida Sans Unicode", sans-serif;
   margin: 5px;
   padding: 5px;

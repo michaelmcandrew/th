@@ -21,10 +21,10 @@ body,
 	padding-top: 30px; 0 24px;
 }
 #header-left {
-	width: 616px;
+	width: 620px;
 	float: left;
 	padding: 10px 0 24px;
-	border-right: 4px solid #000;
+	background: url(../images/dots-grey-vert.gif) repeat-y right 2px;
 }
 .region-header {
 	width: 320px;
