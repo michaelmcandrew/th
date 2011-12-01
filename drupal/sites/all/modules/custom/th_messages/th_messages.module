@@ -82,3 +82,20 @@ function th_messages_get_term_list($vocab_id, $arg_position, $sort, $limit){
 	}
 	return $items;
 }
+
+
+/*
+ * Implements hook_form_alter().
+ */
+function th_messages_form_alter(&$form, $form_state) {
+	if($form['#node']->type=='message'){
+		$form['actions']['submit']['#submit'][] = 'th_messages_submit_redirect';		
+	}
+}
+
+/**
+ * Custom submit handler. Overwrites the form redirection variable.
+ */
+function th_messages_submit_redirect($form, &$form_state) {
+  $form_state['redirect'] = 'messages';
+}
