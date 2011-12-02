@@ -18,20 +18,23 @@ body,
     margin: 0 auto;
 }
 #header {
-	padding-top: 30px; 0 24px;
+	padding-top: 20px; 
 }
-#header-left {
+#header div.section {
+	position: relative;
+}
+#header-left,
+#header-middle,
+.region-header  {
 	width: 232px;
 	float: left;
 }
 #header-middle {
-	width: 380px;
-	float: left;		
+	width: 380px;		
 	background: url(../images/dots-grey-vert.png) repeat-y right 2px;
 }
 .region-header {
-	width: 324px;
-    float: right; /* LTR */
+	width: 328px;
 }
 #main-wrapper {
     min-height: 300px;

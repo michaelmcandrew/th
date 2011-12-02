@@ -18,11 +18,6 @@ regions[content_right] = Right content
 
 regions[content_below] = Below content
 
-regions[featured_first] = Featured first
-regions[featured_second] = Featured second
-regions[featured_third] = Featured third
-regions[featured_fourth] = Featured fourth
-
 regions[footer] = Footer
 
 regions[help] = Help

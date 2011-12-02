@@ -162,37 +162,6 @@
 				<?php endif; ?>
 			</div> <!-- end of main -->
 		</div> <!-- end of main wrapper -->
-		
-		<?php if ($page['featured_first'] || $page['featured_second'] || $page['featured_third']  || $page['featured_fourth']): ?>
-		
-			<div id="featured">	
-				<div class="section">
-					<?php if ($page['featured_first']): ?>
-						<div id="featured-first" class="column">
-							<?php print render($page['featured_first']); ?>
-						</div>
-					<?php endif; ?>
-		
-					<?php if ($page['featured_second']): ?>
-						<div id="featured-second" class="column">
-							<?php print render($page['featured_second']); ?>
-						</div>
-					<?php endif; ?>
-		
-					<?php if ($page['featured_third']): ?>
-						<div id="featured-third" class="column">
-							<?php print render($page['featured_third']); ?>
-						</div>
-					<?php endif; ?>
-		
-					<?php if ($page['featured_fourth']): ?>
-						<div id="featured-fourth" class="column">
-							<?php print render($page['featured_fourth']); ?>
-						</div>
-					<?php endif; ?>
-				</div>
-			</div>
-		<?php endif; ?>
 
 		<div id="footer">
 			<div class="section">

@@ -16,8 +16,18 @@ table.cke_editor body {
 }
 #main-wrapper p, 
 #main-wrapper li,
-#main-wrapper label {
+#main-wrapper label,
+.view-messages,
+.view-members {
 	font-size: 1.3em;
+}
+#main-wrapper .view-messages label,
+#main-wrapper .view-messages p,
+#main-wrapper .view-messages li,
+#main-wrapper .view-members label,
+#main-wrapper .view-members p,
+#main-wrapper .view-members li {
+	font-size: 1em;
 }
 a {
 	color: #a8001c;
@@ -30,6 +40,9 @@ h2 a,
 }
 h1, h2, h3, h4, h5, h6 {
 	letter-spacing: 0.15em;
+}
+h3.field-label {
+	letter-spacing: 0;
 }
 a:link,
 a:visited {
@@ -79,11 +92,12 @@ a.feed-icon {
 .btn,
 .btn-dark,
 .node-webform input.form-submit, 
-.node-webform a.button {
+.node-webform a.button,
+#block-system-user-menu .menu a {
 	display: block;
 	padding: 4px 6px 4px 30px;
 	margin: 20px auto;
-	background: #f5f2f0 url(../images/btn-blue-arrow.gif) no-repeat 6px center;
+	background: #f5f2f0 url(../images/arrow-white.png) no-repeat 6px center;
 	-moz-border-radius: 4px; /* Firefox */
 	-webkit-border-radius: 4px; /* Safari, Chrome */
   	border-radius: 4px; /* CSS3 */
@@ -92,7 +106,7 @@ a.feed-icon {
 .btn-dark,
 .node-webform input.form-submit, 
 .node-webform a.button {
-	background-color: #807a77;
+	background: #807a77 url(../images/arrow-grey.png) no-repeat 6px center;
 	color: #fff;
 }
 .node-webform input.form-submit, 
@@ -193,50 +207,80 @@ li {
     float: left; /* LTR */
 	margin-right: 70px;
 }
-/* Region header blocks. */
-.region-header .block .content {
-  margin: 0;
-  padding: 0;
-}
-.region-header .block ul {
-  margin: 0;
-  padding: 0;
-}
-.region-header .block li {
-	width: 100px;
-	float: left;
-  	list-style: none;
-  	list-style-image: none;
-  	padding: 0;
-}
 /* User Login block in the header region */
-.region-header #block-user-login .form-item {
+#block-user-login {
+	padding-left: 30px;
+}
+#login-form-title {
+	font-size: 1.2em;
+}
+#user-login-block-container .form-actions {
+	margin: 0;
+	padding: 0;
+}
+#block-user-login .form-item {
   float: left; /* LTR */
   margin: 0;
   padding: 0;
 }
 #user-login-block-container input {
+	width: 116px;
 	margin-right: 6px;
+	padding: 8px 4px;
 }
 #user-login-block-container input.form-submit {
-	background: white url(../images/buttons.png) 0 0 repeat-x;
-	border: 1px solid #E4E4E4;
-	border-bottom: 1px solid #B4B4B4;
-	border-left-color: #D2D2D2;
-	border-right-color: #D2D2D2;
-	color: #332F2D;
-	cursor: pointer;
-	font-size:;
-	font-weight: normal;
-	text-align: center;
-	margin-bottom: 1em;
-	margin-right: 0.6em;
-	padding: 4px 17px;
-	-khtml-border-radius: 15px;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
+	width: 30px;
+	height: 30px;
+	float: left;
+	background: url(../images/login-btn.png) no-repeat 0 0;
+	border: 0 none;
+	text-indent: -8765px;
+	font-size: 0;
+	line-height: 0;
+	-khtml-border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
 }
+#user-login-block-container .item-list {
+	clear: both;
+}
+#user-login-block-container .item-list ul {
+	list-style: none outside none;	
+	margin: 0;
+	padding: 0;
+}
+/* user menu */
+#block-system-user-menu {
+	width: 280px;
+	position: absolute;
+	right: 0;
+	top: -20px;
+	background-color: #dab034;
+	border: 5px solid #f1c33a;
+	border-width: 0 5px 5px 5px;
+	-moz-border-radius: 0 0 10px 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px; /* CSS3 */
+	border-bottom-left-radius: 10px; /* CSS3 */
+}
+#block-system-user-menu ul.menu {
+	margin: 0 0 10px 15px;
+}
+#block-system-user-menu ul.menu li {
+	list-style: none outside none;
+	float: left;
+	padding: 0;
+	margin: 0 10px 10px 0;	
+}
+#block-system-user-menu ul.menu a {
+	width: 84px;
+	margin: 0;
+	float: left;
+	font-size: 1.4em;
+}
+
 
 /* --------------- Main Menu ------------ */
 #navigation {
@@ -286,7 +330,8 @@ li {
 .region-content .block-block,
 .node-message,
 .view-members,
-.profile  {
+.profile,
+#block-formblock-message  {
  	-moz-border-radius: 10px; /* Firefox */
 	-webkit-border-radius: 10px; /* Safari, Chrome */
 	border-radius: 10px; /* CSS3 */
@@ -343,7 +388,6 @@ span.profile-title {
 .profile .sub-title {
 	font-size: ;
 	padding-bottom: 12px;
-	border-bottom: 2px solid grey;
 }
 .profile h3 {
 	font-size: 0;
@@ -376,7 +420,7 @@ span.profile-title {
 .profile .field-name-field-interests {
 	clear: both;
 	padding: 12px 0;
-	border-top: 2px solid grey;
+	background: url(../images/dots-on-white.png) repeat-x 0 top;
 }
 #content h2 {
   margin-bottom: 2px;
@@ -399,9 +443,16 @@ span.profile-title {
 .region-content .block-block,
 .node-message,
 .view-members,
-.profile {
+.profile,
+#block-formblock-message {
 	background-color: #f5f2f0;	
 	border: 5px solid #d9bc6c;
+}
+.sidebar .block .node .webform-client-form {
+	background-color: transparent;
+	border: 0 none;
+	padding: 0;
+	margin: 0;
 }
 .faq-content {
 	text-align: center;
@@ -486,7 +537,7 @@ span.profile-title {
 }
 .comment {
   	padding: 20px 0;
-	border-top: 2px solid #000;
+	background: url(../images/dots-on-white.png) repeat-x 0 top;
 }
 .comment ul.links {
   padding: 0 0 0.25em 0;
@@ -622,7 +673,10 @@ ul.action-links li a {
 }
 
 /* ---------------- Messages  ----------------- */
-
+.page-messages #block-formblock-message form.node-message-form div.vertical-tabs {
+	display: none;
+	visibility: hidden;
+}
 #messages {
   padding: 20px 0 5px;
   margin: 0 auto;
@@ -632,7 +686,12 @@ ul.action-links li a {
   background: rgba(30, 50, 10, 0.08);
 }
 div.messages {
-  margin: 8px 15px;
+  	width: 940px;
+	margin: 20px auto;
+  	-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
+  	border-radius: 10px;
+	font-size: 1.3em;
 }
 
 /* -------------- User Profile   -------------- */
@@ -814,7 +873,7 @@ input.form-text,
 textarea.form-textarea,
 select.form-select {
   	border: 0 none;
-	background-color: #f5f2f0;
+	background-color: #d4d4d4;
 }
 input.form-text,
 textarea.form-textarea {
