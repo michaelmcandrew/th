@@ -79,6 +79,7 @@ body,
 .front #content {
 	padding-top: 24px;
 	background: url(../images/dots-grey-vert.png) repeat-y right 0;
+	text-align: center;
 }
 #content-left,
 #content-right {

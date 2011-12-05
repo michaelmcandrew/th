@@ -21,7 +21,8 @@ table.cke_editor body {
 .view-members,
 .views-field-title,
 .views-field-created,
-.views-field-field-date-time {
+.views-field-field-date-time,
+.view-twitter-block .view-content  {
 	font-size: 1.3em;
 }
 #main-wrapper .view-messages label,
@@ -630,12 +631,19 @@ ul.tabs {
 #block-block-14 a.btn-dark {
 	width: 70px;
 }
-#block-views-events-block-1 a.btn-dark {
+#block-views-events-block-1 .views-row {
+	margin-bottom: 12px;
+	padding-bottom: 12px;
+	background: url(../images/dots-on-white.png) repeat-x 0 bottom;
+}
+#block-views-events-block-1 a.btn-dark,
+#block-views-twitter-block-block a.btn-dark {
 	width: 52px;
 }
 #block-views-blog-block-1 a.btn-dark {
 	width: 40px;
 }
+
 /* ------------------ Footer ------------------ */
 
 /* --------------- System Tabs  --------------- */
