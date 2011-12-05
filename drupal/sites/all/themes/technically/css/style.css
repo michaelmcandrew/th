@@ -89,6 +89,12 @@ a.feed-icon {
 	color: yellow;
 	font-weight: bold;
 }
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
 .btn,
 .btn-dark,
 .node-webform input.form-submit, 
@@ -358,6 +364,7 @@ li {
 
 /* ----------------- Content ------------------ */
 #homepage-content {
+	height: 207px;
 	background: url(../images/dots-grey.png) repeat-x 8px bottom;
 	padding-bottom: 22px;
 }
@@ -583,7 +590,7 @@ ul.tabs {
 }
 #block-block-6 h2 {
 	padding-top: 42px;
-	background: url(../images/star.png) no-repeat center 0;	
+	background: url(../images/icon-star-small.png) no-repeat center 0;	
 }
 #block-block-6 .content ul {
 	list-style: disc outside url(../images/bullet-star.png);
