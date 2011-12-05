@@ -18,7 +18,10 @@ table.cke_editor body {
 #main-wrapper li,
 #main-wrapper label,
 .view-messages,
-.view-members {
+.view-members,
+.views-field-title,
+.views-field-created,
+.views-field-field-date-time {
 	font-size: 1.3em;
 }
 #main-wrapper .view-messages label,
@@ -28,6 +31,10 @@ table.cke_editor body {
 #main-wrapper .view-members p,
 #main-wrapper .view-members li {
 	font-size: 1em;
+}
+.views-field-created,
+.views-field-field-date-time {
+	font-style: italic;
 }
 a {
 	color: #a8001c;
@@ -355,14 +362,12 @@ li {
   	margin: 0;
     border: 0 none;
 }
-.front #content .block {
-	font-size: 1.4em;
-}
 /* ------------------- Footer ------------------- */
 #footer {
-	padding: 12px 0;
+	padding: 20px 0;
 	font-size: 1.4em;
 	font-weight: bold;
+	background: url(../images/dots-grey.png) repeat-x 0 top;
 }
 #footer li {
 	display: inline;
@@ -394,7 +399,8 @@ li {
 .field-name-comment-body {
 	margin-top: 10px;
 }
-#homepage-content .content {
+#homepage-content .content,
+#footer .content {
 	margin-top: 0;
 }
 #content .field-name-field-icon {
@@ -611,15 +617,21 @@ ul.tabs {
 	list-style: disc outside url(../images/bullet-star.png);
 	margin-left: 24px;
 }
-#block-block-6 a {
+.membership-block a {
 	color: #fff;
 }
-#block-block-6 a.btn {
+.membership-block a.btn {
 	width: 150px;
 	color: #332f2d;
 }
 #block-block-14 a.btn-dark {
 	width: 70px;
+}
+#block-views-events-block-1 a.btn-dark {
+	width: 52px;
+}
+#block-views-blog-block-1 a.btn-dark {
+	width: 40px;
 }
 /* ------------------ Footer ------------------ */
 

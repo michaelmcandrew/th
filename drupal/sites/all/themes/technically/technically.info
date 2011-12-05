@@ -13,7 +13,7 @@ regions[content] = Content
 regions[sidebar_first] = Left column
 regions[sidebar_second] = Right column
 
-regions[hp_left] = Left homepgae
+regions[hp_left] = Left homepage
 regions[hp_right] = Right homepage 
 
 regions[content_left] = Left content
