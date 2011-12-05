@@ -355,7 +355,9 @@ li {
   	margin: 0;
     border: 0 none;
 }
-
+.front #content .block {
+	font-size: 1.4em;
+}
 /* ------------------- Footer ------------------- */
 #footer {
 	padding: 12px 0;
