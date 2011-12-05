@@ -133,7 +133,8 @@
 
 		<div id="footer">
 			<div class="section">
-				<?php print render($page['footer']); ?>
+				<div class="right"><?php print render($page['footer']); ?></div>
+				<p>&copy; TechHub <?php echo date("Y"); ?></p>
 			</div>
 		</div> <!-- end of footer -->
 
