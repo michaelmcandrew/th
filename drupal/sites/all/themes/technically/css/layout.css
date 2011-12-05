@@ -31,7 +31,7 @@ body,
 }
 #header-middle {
 	width: 380px;		
-	background: url(../images/dots-grey-vert.png) repeat-y right 2px;
+	background: url(../images/dots-grey-vert.png) repeat-y right 3px;
 }
 .region-header {
 	width: 328px;
@@ -43,7 +43,9 @@ body,
 #sidebar-first,
 #sidebar-second,
 #content-left,
-#content-right {
+#content-right,
+#hp-left,
+#hp-right {
     display: inline;
     float: left; /* LTR */
     position: relative;
@@ -71,12 +73,24 @@ body,
 .one-sidebar #sidebar-second {
 	margin-left: 30px;
 }
+.front #sidebar-second {
+	margin-top: 14px;
+}
+.front #content {
+	padding-top: 24px;
+	background: url(../images/dots-grey-vert.png) repeat-y right 0;
+}
 #content-left,
 #content-right {
 	width: 300px;
 }
 #content-left {
 	margin-right: 20px;
+}
+#hp-left,
+#hp-right {
+	width: 280px;
+	margin-right: 30px;
 }
 #breadcrumb {
     margin: 0 15px;

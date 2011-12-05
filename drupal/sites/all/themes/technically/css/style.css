@@ -288,7 +288,7 @@ li {
 	padding: 12px 0 0 38px;
 	float: left;
 	font-size: 1.6em;
-	background: url(../images/dots-grey-vert.png) repeat-y left 2px;
+	background: url(../images/dots-grey-vert.png) repeat-y 1px 3px;
 }
 #main-menu {
   	overflow: hidden;
@@ -338,6 +338,7 @@ li {
 	padding: 12px 24px;
   	margin: 0 0 20px;
 }
+.front .node-page .field-name-body,
 #webform-client-form-41 {
 	-moz-border-radius: 0; 
 	-webkit-border-radius: 0; 
@@ -356,12 +357,23 @@ li {
 }
 
 /* ----------------- Content ------------------ */
+#homepage-content {
+	background: url(../images/dots-grey.png) repeat-x 8px bottom;
+	padding-bottom: 22px;
+}
+#homepage-content .node {
+	padding-right: 320px;
+	background: url(../images/hp-map.png) no-repeat right center;
+}
 .content {
 	overflow: hidden;
 }
 .content,
 .field-name-comment-body {
 	margin-top: 10px;
+}
+#homepage-content .content {
+	margin-top: 0;
 }
 #content .field-name-field-icon {
 	height: 60px;
@@ -448,6 +460,7 @@ span.profile-title {
 	background-color: #f5f2f0;	
 	border: 5px solid #d9bc6c;
 }
+.front .node-page .field-name-body,
 .sidebar .block .node .webform-client-form {
 	background-color: transparent;
 	border: 0 none;
