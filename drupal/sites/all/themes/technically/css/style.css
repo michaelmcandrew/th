@@ -17,20 +17,26 @@ table.cke_editor body {
 #main-wrapper p, 
 #main-wrapper li,
 #main-wrapper label,
+#main-wrapper input,
+.profile,
+.field-name-field-tags,
+.node-readmore-link,
 .view-messages,
 .view-members,
 .views-field-title,
 .views-field-created,
 .views-field-field-date-time,
-.view-twitter-block .view-content  {
+.view-twitter-block .view-content {
 	font-size: 1.3em;
 }
 #main-wrapper .view-messages label,
 #main-wrapper .view-messages p,
 #main-wrapper .view-messages li,
+#main-wrapper .view-messages input,
 #main-wrapper .view-members label,
 #main-wrapper .view-members p,
-#main-wrapper .view-members li {
+#main-wrapper .view-members li,
+#main-wrapper .view-members input {
 	font-size: 1em;
 }
 .views-field-created,
@@ -49,6 +55,9 @@ h2 a,
 }
 h1, h2, h3, h4, h5, h6 {
 	letter-spacing: 0.15em;
+}
+h1 { 
+	margin: 0;
 }
 h3.field-label {
 	letter-spacing: 0;
@@ -70,6 +79,9 @@ h2,
   	background: url(../images/dots-on-white.png) repeat-x 0 bottom;
   	padding-bottom: 10px;
 	text-align: center;
+}
+.content-block .no-border h2 {
+	background: none;
 }
 h2.invisible {
 	font-size: none;
@@ -108,7 +120,9 @@ a.feed-icon {
 .btn-dark,
 .node-webform input.form-submit, 
 .node-webform a.button,
-#block-system-user-menu .menu a {
+#block-system-user-menu .menu a,
+input.form-submit,
+a.button {
 	display: block;
 	padding: 4px 6px 4px 30px;
 	margin: 20px auto;
@@ -117,10 +131,14 @@ a.feed-icon {
 	-webkit-border-radius: 4px; /* Safari, Chrome */
   	border-radius: 4px; /* CSS3 */
 	color: #332f2d;
+	border: 0 none;
+	-webkit-appearance: none;
 }
 .btn-dark,
 .node-webform input.form-submit, 
-.node-webform a.button {
+.node-webform a.button,
+input.form-submit,
+a.button {
 	background: #807a77 url(../images/arrow-grey.png) no-repeat 6px center;
 	color: #fff;
 }
@@ -153,24 +171,25 @@ table tbody tr th {
 tr td,
 tr th {
   padding: 4px 9px;
-  border: 1px solid #fff;
   text-align: left; /* LTR */
 }
-.view-members tr {
-	background-color: #fff;
-	border-top: 2px solid grey;
+.view-members tbody tr {
+	background: transparent url(../images/dots-on-white.png) repeat-x 0 top;
 	border-bottom: 0 none;
-	padding: 0;
+}
+.view-members thead th {
+	border: 0 none;
 }
 .view-members thead tr {
 	border-top: 0 none;
+	color: grey;
+}
+.view-members tbody tr td {
+	padding: 12px 12px 8px 12px;
 }
 .view-members .user-picture a {
 	display: block;
 }
-.view-members thead tr  {
-	color: grey;
-} 
 .node-blog table.cke_editor {
 	width: 322px;
 }
@@ -355,13 +374,17 @@ li {
   	margin: 0 0 20px;
 }
 .front .node-page .field-name-body,
-#webform-client-form-41 {
+#webform-client-form-41,
+.content-block .no-border  {
 	-moz-border-radius: 0; 
 	-webkit-border-radius: 0; 
 	border-radius: 0; 
 	padding: 0;
   	margin: 0;
     border: 0 none;
+}
+.content-block .no-border {
+	margin: 0 0 20px !important;
 }
 /* ------------------- Footer ------------------- */
 #footer {
@@ -427,7 +450,7 @@ span.profile-title {
 	background: url(../images/dots-grey.png) repeat-x 0 bottom;
 }
 .profile .sub-title {
-	font-size: ;
+	font-size: 1.4em;
 	padding-bottom: 12px;
 }
 .profile h3 {
@@ -442,9 +465,9 @@ span.profile-title {
 	visibility: visible;
 }
 .profile dl {
-	width: 452px;
+	width: 442px;
 	float: right;
-	margin: 0 0 20px 0;
+	margin: 24px 0 20px 0;
 }
 .profile #crm-container .crm-section .label, 
 .profile .crm-section .label {
@@ -466,14 +489,6 @@ span.profile-title {
 #content h2 {
   margin-bottom: 2px;
 }
-/*.node .content,*/
-.faq-content, 
-.view-blog .content,
-.message-author,
-.view-members,
-.profile {
-  font-size: ;
-}
 .node-page .field-name-body,
 .node .webform-client-form,
 .node-blog,
@@ -490,7 +505,8 @@ span.profile-title {
 	border: 5px solid #d9bc6c;
 }
 .front .node-page .field-name-body,
-.sidebar .block .node .webform-client-form {
+.sidebar .block .node .webform-client-form,
+.content-block .no-border {
 	background-color: transparent;
 	border: 0 none;
 	padding: 0;
@@ -503,16 +519,21 @@ span.profile-title {
 .faq-question {
 	padding: 8px 0;
 	text-transform: uppercase;
-	font-size: ;
-	background: url(../images/faq-plus.gif) no-repeat right center;
-	border-bottom: 2px solid #000;
+	background: url(../images/dots-on-white.png) repeat-x 0 bottom;
+	font-size: 1.5em;
 }
-.faq-qa-visible {
+.faq-question a {
+	display: block;
+	width: 100%;
+	height: 28px;
+	line-height: 30px;
+	background: url(../images/faq-plus.gif) no-repeat right center;
+}
+.faq-qa-visible a {
 	background: url(../images/faq-minus.gif) no-repeat right center;
 }
 .faq-answer {
 	padding: 12px 0;
-	border-bottom: 2px solid #000;
 }
 .node-message {
 	padding-top: 24px;
@@ -526,9 +547,15 @@ span.profile-title {
 	float: right;
 	margin: 0 0 20px 20px;
 }
+.message-labels {
+	margin-top: 24px;
+}
 .time-ago {
 	color: grey;
-	margin-top: 12px;
+	margin: 12px 0;
+}
+.message-author {
+	font-weight: bold;
 }
 .blog-author, 
 .blog-date {
@@ -539,7 +566,8 @@ span.profile-title {
 .blog-author {
 	margin-bottom: 12px;
 }
-.field-name-field-intro {
+.field-name-field-intro,
+.view-events .view-header {
 	text-align: center;
 	padding: 16px 16px 32px 16px;
 	font-size: 2.4em;
@@ -560,14 +588,68 @@ span.profile-title {
 	position: relative;
 }
 .available {
-	border: 5px solid blue !important;
+	border: 5px solid #a8001c !important;
 }
-
+#block-th-messages-tag ul,
+#block-th-messages-category ul {
+	list-style: none outside none;	
+	margin: 0;
+	padding: 0;
+}
+#block-th-messages-tag li,
+#block-th-messages-category li {
+	display: inline;
+	float: left;
+	margin-right: 6px;
+}
+#block-th-messages-tag li a,
+#block-th-messages-category li a {
+	padding: 3px 6px;
+	background-color: #a8001c;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 0.8em;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+    -khtml-border-radius: 5px; 	  
+	border-radius: 5px;
+}
+#block-th-messages-tag li a.active,
+#block-th-messages-category li a.active {
+	color: #332F2D;
+	background-color: #fff;
+	border: 2px solid #a8001c;
+}
+.contact-block .contact-address {
+	width: 140px;
+	margin: 0 20px;
+}
+.contact-block .contact-deets p {
+	height: 30px;
+	margin-bottom: 4px;
+	padding-left: 36px;
+	line-height: 30px;
+}
+.contact-block .contact-tel {
+	background: url(../images/contact-tel.png) no-repeat 0 center;
+}
+.contact-block .contact-email {
+	background: url(../images/contact-email.png) no-repeat 0 center;
+}
+.contact-block .contact-twitter {
+	background: url(../images/contact-twitter.png) no-repeat 0 center;
+}
 
 /* ----------------- Comments ----------------- */
 .view-messages #comments {
 	clear: both;
-	padding: 20px 0 20px 120px;
+	padding: 20px 0;
+	margin-left: 120px;
+}
+.view-messages #comments .comment-form {
+	padding-top: 20px;
+	background: url(../images/dots-on-white.png) repeat-x 0 top;	
 }
 .view-messages .comment-content {
 	width: 322px;
@@ -643,6 +725,9 @@ ul.tabs {
 #block-views-blog-block-1 a.btn-dark {
 	width: 40px;
 }
+.view-events .node-teaser a.btn-dark {
+	width: 46px;
+}
 
 /* ------------------ Footer ------------------ */
 
@@ -712,7 +797,6 @@ ul.tabs {
   border-bottom: none;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
   border-radius: 5px;
 }
 ul.action-links {
@@ -744,7 +828,6 @@ ul.action-links li a {
   background: rgba(30, 50, 10, 0.08);
 }
 div.messages {
-  	width: 940px;
 	margin: 20px auto;
   	-moz-border-radius: 10px;
   	-webkit-border-radius: 10px;
@@ -756,7 +839,7 @@ div.messages {
 
 .profile .user-picture {
 	width: 100px;
-	margin: 0 20px 20px 0;
+	margin: 24px 20px 20px 0;
   	float: left;
 }
 
@@ -785,7 +868,7 @@ div.password-confirm {
 
 /* ---------------- Buttons    ---------------- */
 
-input.form-submit,
+/*input.form-submit,
 a.button {
   background: #fff url(../images/buttons.png) 0 0 repeat-x;
   border: 1px solid #e4e4e4;
@@ -797,13 +880,13 @@ a.button {
   font-weight: normal;
   text-align: center;
   margin-bottom: 1em;
-  margin-right: 0.6em; /* LTR */
+  margin-right: 0.6em; /* LTR 
   padding: 4px 17px;
   -khtml-border-radius: 15px;
   -moz-border-radius: 20px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
-}
+}*/
 a.button:link,
 a.button:visited,
 a.button:hover,
@@ -929,9 +1012,10 @@ textarea {
 }
 input.form-text,
 textarea.form-textarea,
-select.form-select {
+select.form-select,
+input:-webkit-autofill {
   	border: 0 none;
-	background-color: #d4d4d4;
+	background-color: #e6e6e6 !important;
 }
 input.form-text,
 textarea.form-textarea {
@@ -1046,14 +1130,14 @@ html.js input.throbbing {
   float: left; /* LTR */
   width: 120px;
 }
-.comment-form input,
+/*.comment-form input,
 .comment-form .form-select {
   margin: 0;
   -khtml-border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-}
+}*/
 .comment-form .form-type-textarea label {
   float: none;
 }

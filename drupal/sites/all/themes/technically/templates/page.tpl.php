@@ -89,11 +89,11 @@
 				<?php print render($page['header']); ?>
 			</div>
 		</div><!-- end of header -->
-
 		
-
-		<?php print $messages; ?>
-
+		<div class="nine-fourty">
+			<?php print $messages; ?>
+		</div>
+		
 		<div id="main-wrapper">
 			<div id="main" class="clearfix">
 				<?php if ($page['sidebar_first']): ?>
