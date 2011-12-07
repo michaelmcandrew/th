@@ -62,6 +62,9 @@ h1 {
 h3.field-label {
 	letter-spacing: 0;
 }
+h4 {
+	margin: 0;
+}
 a:link,
 a:visited {
   	text-decoration: none;
@@ -366,7 +369,8 @@ li {
 .node-message,
 .view-members,
 .profile,
-#block-formblock-message  {
+#block-formblock-message,
+.partner-block .views-row  {
  	-moz-border-radius: 10px; /* Firefox */
 	-webkit-border-radius: 10px; /* Safari, Chrome */
 	border-radius: 10px; /* CSS3 */
@@ -578,6 +582,33 @@ span.profile-title {
 .node-teaser {
   margin-bottom: 30px;
   padding-bottom: 15px;
+}
+.partner-block {
+	padding-top: 24px;
+	background: url(../images/dots-grey.png) repeat-x 0 top;
+}
+.partner-block .views-row {
+	width: 142px;
+	margin-right: 10px;
+	float: left;
+	border: 5px solid #D9BC6C;
+	text-align: center;
+	background-color: #DAB034;
+}
+.partner-block .views-row-3,
+.partner-block .views-row-6,
+.partner-block .views-row-9 {
+	margin-right: 0;
+}
+.partner-block h2 {
+	background: none;
+}
+.partner-block h4 {
+	text-transform: uppercase;
+	font-weight: normal;
+	margin-bottom: 12px;
+	padding-bottom: 6px;
+	background: url(../images/dots-on-yellow.png) repeat-x 0 bottom;
 }
 
 /* ----------------- Blocks ----------------- */
