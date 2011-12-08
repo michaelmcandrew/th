@@ -76,7 +76,15 @@ body,
 	margin-left: 30px;
 }
 .front #sidebar-second {
-	margin-top: 14px;
+	margin: 14px 0 0 0;
+}
+.front #sidebar-second .block {
+	margin: 0 0 30px 30px;	
+}
+.front #sidebar-second .partners-block-hp {
+	margin-left: 0;
+	padding-left: 30px;	
+	padding-top: 74px;
 }
 .front #content {
 	padding-top: 24px;
