@@ -97,6 +97,9 @@
 		<div id="main-wrapper">
 			<div id="main" class="clearfix">
 				<div id="homepage-content">
+					<a href="/london" class="london-link location-link"></a>
+					<a href="/riga" class="riga-link location-link"></a>
+					<a href="/prague" class="prague-link location-link"></a>
 					<?php print render($page['content']); ?> 
 				</div>
 				
@@ -135,6 +138,7 @@
 			<div class="section">
 				<div class="right"><?php print render($page['footer']); ?></div>
 				<p>&copy; TechHub <?php echo date("Y"); ?></p>
+				<p class="small">Website by <a href="http://thirdsectordesign.org" target="_blank">Third Sector Design</a></p>
 			</div>
 		</div> <!-- end of footer -->
 

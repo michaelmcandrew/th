@@ -120,6 +120,9 @@ a.feed-icon {
 .right {
 	float: right;
 }
+.small {
+	font-size: 0.8em;
+}
 .btn,
 .btn-dark,
 .node-webform input.form-submit, 
@@ -378,6 +381,9 @@ li {
 	padding: 12px 24px;
   	margin: 0 0 20px;
 }
+.profile {
+	padding-bottom: 36px;
+}
 .front .node-page .field-name-body,
 #webform-client-form-41,
 .content-block .no-border,
@@ -417,10 +423,29 @@ li {
 	height: 207px;
 	background: url(../images/dots-grey.png) repeat-x 8px bottom;
 	padding-bottom: 22px;
+	position: relative;
 }
 #homepage-content .node {
 	padding-right: 320px;
 	background: url(../images/hp-map.png) no-repeat right center;
+}
+.location-link {
+	width: 25px;
+	height: 25px;
+	display: block;
+	position: absolute;
+}
+#homepage-content .london-link {
+	right: 167px;
+	top: 68px;
+}
+#homepage-content .riga-link {
+	right: 112px;
+	top: 62px;
+}
+#homepage-content .prague-link {
+	right: 83px;
+	top: 75px;
 }
 .content {
 	overflow: hidden;
@@ -607,6 +632,7 @@ span.profile-title {
 	background: none;
 }
 .partner-block h4 {
+	height: 45px;
 	text-transform: uppercase;
 	font-weight: normal;
 	margin-bottom: 12px;
@@ -690,6 +716,9 @@ span.profile-title {
 	background-color: #fff;
 	border: 2px solid #a8001c;
 }
+.node-type-yellow .contact-block {
+	margin-top: 24px;
+}
 .contact-block .contact-address {
 	width: 140px;
 	margin: 0 20px;
@@ -709,7 +738,46 @@ span.profile-title {
 .contact-block .contact-twitter {
 	background: url(../images/contact-twitter.png) no-repeat 0 center;
 }
-
+#block-views-set-up-a-techhub-block,
+.locations-map-block {
+	height: 530px;
+	position: relative;
+	overflow: hidden;
+}
+.locations-map-block ul {
+	margin: 24px 0 34px 0;
+	padding: 0;
+	background: url(../images/dots-on-white.png) repeat-x 0 top;
+}
+.locations-map-block ul li {
+	list-style: none outside none;
+	margin: 0;
+	padding: 4px 0;
+	background: url(../images/dots-on-white.png) repeat-x 0 bottom;
+}
+.locations-map-block ul li a {
+	display: block;
+	padding: 6px 0 6px 30px;
+	color: #332F2D;
+	background: #F5F2F0 url(../images/arrow-white.png) no-repeat 6px center;
+}
+.locations-map-block .location-link {
+	text-indent: -8765px;
+	font-size: 0;
+	line-height: 0;
+}
+.locations-map-block .london-link {
+	right: 178px;
+	bottom: 130px;
+}
+.locations-map-block .riga-link {
+	right: 122px;
+	bottom: 120px;
+}
+.locations-map-block .prague-link {
+	right: 94px;
+	bottom: 137px;
+}
 /* ----------------- Comments ----------------- */
 .view-messages #comments {
 	clear: both;

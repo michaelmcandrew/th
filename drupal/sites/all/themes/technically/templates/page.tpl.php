@@ -167,6 +167,7 @@
 			<div class="section">
 				<div class="right"><?php print render($page['footer']); ?></div>
 				<p>&copy; TechHub <?php echo date("Y"); ?></p>
+				<p>Website by <a href="http://thirdsectordesign.org" target="_blank">Third Sector Design</a></p>
 			</div>
 		</div> <!-- end of footer -->
 
