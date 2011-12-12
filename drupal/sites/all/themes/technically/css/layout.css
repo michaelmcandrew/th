@@ -19,7 +19,7 @@ body,
     margin: 0 auto;
 }
 #header {
-	padding: 20px 0 10px 0; 
+	padding-top: 20px;
 }
 #header div.section {
 	position: relative;

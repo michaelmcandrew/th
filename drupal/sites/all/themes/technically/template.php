@@ -24,12 +24,12 @@ function technically_preprocess_node(&$variables) {
 /**
  * Override or insert variables into the block template.
  */
-function technically_preprocess_block(&$variables) {
-  // In the header region visually hide block titles.
-  if ($variables['block']->region == 'header') {
-    $variables['title_attributes_array']['class'][] = 'element-invisible';
-  }
-}
+// function technically_preprocess_block(&$variables) {
+//   // In the header region visually hide block titles.
+//   if ($variables['block']->region == 'header') {
+//     $variables['title_attributes_array']['class'][] = 'element-invisible';
+//   }
+// }
 
 /**
  * Implements theme_menu_tree().

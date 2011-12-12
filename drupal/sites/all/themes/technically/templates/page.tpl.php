@@ -90,9 +90,11 @@
 			</div>
 		</div><!-- end of header -->
 		
-		<div class="nine-fourty">
-			<?php print $messages; ?>
-		</div>
+		<?php if ($messages): ?>
+			<div class="nine-fourty">
+				<?php print $messages; ?>
+			</div>
+		<?php endif; ?>
 		
 		<div id="main-wrapper">
 			<div id="main" class="clearfix">

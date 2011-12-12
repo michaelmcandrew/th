@@ -111,7 +111,7 @@ a.feed-icon {
   padding: 15px 0 0 0;
 }
 .yellow {
-	color: yellow;
+	color: #ffcd36;
 	font-weight: bold;
 }
 .left {
@@ -307,6 +307,11 @@ li {
 	border-bottom-right-radius: 10px; /* CSS3 */
 	border-bottom-left-radius: 10px; /* CSS3 */
 }
+#block-system-user-menu h2 {
+	padding-bottom: 0;
+	text-transform: none;
+	background: 0 none;
+}
 #block-system-user-menu ul.menu {
 	margin: 0 0 10px 15px;
 }
@@ -357,10 +362,9 @@ li {
 
 
 /* ------------------- Main ------------------- */
-
 #main {
   	background: url(../images/dots-grey.png) repeat-x 0 top;
-	padding-top: 20px;
+	padding-top: 30px;
 }
 .node-page .field-name-body,
 .node .webform-client-form,
@@ -691,14 +695,17 @@ span.profile-title {
 	margin: 0;
 	padding: 0;
 }
-#block-th-messages-tag li,
-#block-th-messages-category li {
+#block-th-messages-tag .content li,
+#block-th-messages-category .content li,
+.latest-block .content li {
 	display: inline;
 	float: left;
 	margin-right: 6px;
 }
-#block-th-messages-tag li a,
-#block-th-messages-category li a {
+#block-th-messages-tag .content li a,
+#block-th-messages-category .content li a,
+.latest-block .content li a {
+	display: block;
 	padding: 3px 6px;
 	background-color: #a8001c;
 	color: #fff;
@@ -710,11 +717,26 @@ span.profile-title {
     -khtml-border-radius: 5px; 	  
 	border-radius: 5px;
 }
-#block-th-messages-tag li a.active,
-#block-th-messages-category li a.active {
+#block-th-messages-tag .content li a.active,
+#block-th-messages-category .content li a.active {
 	color: #332F2D;
 	background-color: #fff;
 	border: 2px solid #a8001c;
+}
+.latest-block .content li a {
+	background-color: #fff;
+	color: #332F2D;
+	padding: 6px;
+}
+.latest-block .content li a:hover,
+.latest-block .content li.active a {
+	background-color: #A8001C;
+	color: #fff;
+	text-decoration: none;
+}
+.latest-block a.btn {
+	margin: 20px 0;
+	float: left;
 }
 .node-type-yellow .contact-block {
 	margin-top: 24px;
@@ -744,18 +766,18 @@ span.profile-title {
 	position: relative;
 	overflow: hidden;
 }
-.locations-map-block ul {
+.locations-map-block .content ul {
 	margin: 24px 0 34px 0;
 	padding: 0;
 	background: url(../images/dots-on-white.png) repeat-x 0 top;
 }
-.locations-map-block ul li {
+.locations-map-block .content ul li {
 	list-style: none outside none;
 	margin: 0;
 	padding: 4px 0;
 	background: url(../images/dots-on-white.png) repeat-x 0 bottom;
 }
-.locations-map-block ul li a {
+.locations-map-block .content ul li a {
 	display: block;
 	padding: 6px 0 6px 30px;
 	color: #332F2D;
@@ -777,6 +799,14 @@ span.profile-title {
 .locations-map-block .prague-link {
 	right: 94px;
 	bottom: 137px;
+}
+.latest-block ul {
+	margin: 0;
+	padding: 0;
+}
+#quicktabs-container-latest {
+	clear: left;
+	padding-top: 20px;
 }
 /* ----------------- Comments ----------------- */
 .view-messages #comments {
@@ -832,11 +862,22 @@ ul.tabs {
 	background-color: #66605d;
 	border: 5px solid #ae944c;
 }
-#block-block-6 h2 {
-	padding-top: 42px;
+.sidebar .yellow-block {
+	border: 5px solid #D9BC6C;
+	background-color: #DAB034;
+}
+.yellow-block h2 {
+	background: url(../images/dots-on-yellow.png) repeat-x 0 bottom;;
+}
+.membership-block h2,
+.latest-block h2 {
+	padding-top: 48px;
 	background: url(../images/icon-star-small.png) no-repeat center 0;	
 }
-#block-block-6 .content ul {
+.latest-block h2 {
+	background-image: url(../images/icon-lightning-small.png);
+}
+.membership-block .content ul {
 	list-style: disc outside url(../images/bullet-star.png);
 	margin-left: 24px;
 }
