@@ -121,7 +121,7 @@ a.feed-icon {
 	float: right;
 }
 .small {
-	font-size: 0.8em;
+	font-size: 0.8em !important;
 }
 .btn,
 .btn-dark,
@@ -650,6 +650,7 @@ span.profile-title {
 }
 .relative {
 	position: relative;
+	padding-bottom: 60px !important;
 }
 .available {
 	border: 5px solid #a8001c !important;
@@ -680,11 +681,11 @@ span.profile-title {
 	left: 94px;
 }
 #block-views-blog-block-1 {
-	height: 296px;
+	height: 276px;
 	overflow: hidden;
 }
 #block-views-twitter-block-block {
-	height: 190px;
+	height: 210px;
 	position: absolute;
 	bottom: 0;
 	overflow: hidden;
