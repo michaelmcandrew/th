@@ -623,10 +623,13 @@ span.profile-title {
 	margin-bottom: 12px;
 }
 .field-name-field-intro,
-.view-events .view-header {
+.view-events .view-header p {
 	text-align: center;
 	padding: 16px 16px 32px 16px;
 	font-size: 2.4em;
+}
+.block .view-events .view-header p {
+	padding: 0;
 }
 .front .field-name-field-intro {
 	font-weight: bold;
@@ -643,7 +646,7 @@ span.profile-title {
 	width: 142px;
 	margin-right: 10px;
 	float: left;
-	border: 5px solid #D9BC6C;
+	border: 5px solid #F1C33A;
 	text-align: center;
 	background-color: #DAB034;
 }

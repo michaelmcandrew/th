@@ -1,9 +1,4 @@
 <?php
-$wide_nodes=array(6, 36);
-if(in_array($node->nid, $wide_nodes)):
-	include 'page--wide-header.tpl.php';
-else:
-
 /**
  * @file
  * Default theme implementation to display a single Drupal page.
@@ -102,6 +97,16 @@ else:
 		
 		<div id="main-wrapper">
 			<div id="main" class="clearfix">
+				<?php
+				if (isset($node_content) && $node_content['field_icon']) {
+				    print render($node_content['field_icon']);
+				}
+				?>
+				 
+				<?php print render($title_prefix); ?>
+				<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+				<?php print render($title_suffix); ?>
+					
 				<?php if ($page['sidebar_first']): ?>
 					<div id="sidebar-first" class="column sidebar">
 						<div class="section">
@@ -112,59 +117,6 @@ else:
 		
 				<div id="content" class="column">
 					<div class="section">		
-						<?php
-						
-						//printing icons
-						
-						//overrides for specific paths should be put in this array
-						$specific_path_overrides=array(
-							'events' => 'event',
-							'memberships' => 'memberships',
-							'messages' => 'memberships',
-							'blog' => 'blog',
-						);
-						
-						if (isset($node_content) && $node_content['field_icon']) {
-
-						    print render($node_content['field_icon']);
-
-						} elseif ((arg(0)=='user' && arg(2)==FALSE)) {
-
-						    $icon['path']=drupal_get_path('theme', 'technically').'/images/icon-profile-grey.png';
-							print theme_image($icon);
-
-						} elseif ($node->type=='blog' || $node->type=='event') {
-
-						    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-{$node->type}-grey.png";
-							print theme_image($icon);
-
-						} elseif (in_array(arg(0), array_keys($specific_path_overrides))) {
-							$image=$specific_path_overrides[arg(0)];
-						    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-{$image}-grey.png";
-							print theme_image($icon);
-						
-						} else {
-
-							$icon['path']=drupal_get_path('theme', 'technically').'/images/icon-about-grey.png';
-							print theme_image($icon);
-						    
-						}
-						?>
-
-						
-						<?php 
-						if($node->type=='blog' || $node->type=='event' || (arg(0)=='user' && arg(2)==FALSE)) : ?>
-					
-						<?php $class=(isset($node->type))?$node->type:'profile'; ?>
-							<span class="<?php print $class; ?>-title"><?php print $class; ?></span>	
-					
-						<?php else : ?>
-							<?php print render($title_prefix); ?>
-							<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-							<?php print render($title_suffix); ?>
-
-						<?php endif; ?>
-
 						<?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
 
 						<?php print render($page['help']); ?>
@@ -215,4 +167,3 @@ else:
 
 	</div> <!-- end of page -->
 </div> <!-- end of page wrapper-->
-<?php endif;?>
