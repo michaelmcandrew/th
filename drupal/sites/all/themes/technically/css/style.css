@@ -628,7 +628,9 @@ span.profile-title {
 	padding: 16px 16px 32px 16px;
 	font-size: 2.4em;
 }
-.block .view-events .view-header p {
+.block .view-events .view-header p,
+.block .view-blog .view-header p,
+.view-twitter-block .view-header p {
 	padding: 0;
 	margin: 0;
 }
