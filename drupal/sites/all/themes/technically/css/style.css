@@ -623,14 +623,14 @@ span.profile-title {
 	margin-bottom: 12px;
 }
 .field-name-field-intro,
-.view-events .view-header p {
+#main-wrapper .view-events .view-header p {
 	text-align: center;
 	padding: 16px 16px 32px 16px;
 	font-size: 2.4em;
 }
-.block .view-events .view-header p,
-.block .view-blog .view-header p,
-.view-twitter-block .view-header p {
+.front .block .view-events .view-header p,
+.front .block .view-blog .view-header p,
+.front .view-twitter-block .view-header p {
 	padding: 0;
 	margin: 0;
 }
@@ -932,6 +932,10 @@ ul.tabs {
 }
 #block-views-blog-block-1 a.btn-dark {
 	width: 40px;
+	margin: 12px auto;
+}
+#block-views-twitter-block-block a.btn-dark {
+	margin: 12px auto;
 }
 /*.view-events .node-teaser a.btn-dark {
 	width: 46px;
