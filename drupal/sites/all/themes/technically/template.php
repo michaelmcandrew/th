@@ -85,6 +85,36 @@ function technically_correct_message_links($variables, $link){
 	return $output;
 }
 
+/**
+ * Edit to pager.
+ */
+function technically_pager($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
+  global $pager_total;
+
+  $li_previous = theme('pager_previous', (isset($tags[1]) ? $tags[1] : t('‹ previous')), $limit, $element, 1, $parameters);
+  $li_next = theme('pager_next', (isset($tags[3]) ? $tags[3] : t('next ›')), $limit, $element, 1, $parameters);
+
+  if ($pager_total[$element] > 1) {
+
+    if ($li_previous) {
+      $items[] = array(
+        'class' => 'pager-previous', 
+        'data' => $li_previous,
+      );
+    }
+
+    // End generation.
+    if ($li_next) {
+      $items[] = array(
+        'class' => 'pager-next', 
+        'data' => $li_next,
+      );
+    }
+    return theme('item_list', $items, NULL, 'ul', array('class' => 'pager'));
+  }
+} 
+
+
 // function technically_process_field(&$variables, $hook){
 // 	if($variables['element']['#field_name'] == 'field_message_tags') {
 // 		print_r(($variables['items']));exit;

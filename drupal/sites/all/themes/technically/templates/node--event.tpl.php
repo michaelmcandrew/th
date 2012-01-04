@@ -103,10 +103,11 @@
     ?>
   </div>
 
-  <?php if($teaser){
-      print l(t('Details'), 'node/' . $nid, array('attributes' => array('class' => t('node-readmore-link btn-dark')))); 
-  } 
-	print render($content['comments']);
+  <?php
+ // if($teaser){
+ //     print l(t('Details'), 'node/' . $nid, array('attributes' => array('class' => t('node-readmore-link btn-dark')))); 
+ // } 
+ //	print render($content['comments']);
 ?>
 
 </div>

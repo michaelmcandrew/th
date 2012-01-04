@@ -26,7 +26,8 @@ table.cke_editor body {
 .views-field-title,
 .views-field-created,
 .views-field-field-date-time,
-.view-twitter-block .view-content {
+.view-twitter-block .view-content,
+.field-name-field-eventbrite-url a {
 	font-size: 1.3em;
 }
 #main-wrapper .view-messages label,
@@ -120,16 +121,14 @@ a.feed-icon {
 .right {
 	float: right;
 }
-.small {
-	font-size: 0.8em !important;
-}
 .btn,
 .btn-dark,
 .node-webform input.form-submit, 
 .node-webform a.button,
 #block-system-user-menu .menu a,
 input.form-submit,
-a.button {
+a.button,
+.field-name-field-eventbrite-url a {
 	display: block;
 	padding: 4px 6px 4px 30px;
 	margin: 20px auto;
@@ -145,7 +144,8 @@ a.button {
 .node-webform input.form-submit, 
 .node-webform a.button,
 input.form-submit,
-a.button {
+a.button,
+.field-name-field-eventbrite-url a {
 	background: #807a77 url(../images/arrow-grey.png) no-repeat 6px center;
 	color: #fff;
 }
@@ -268,6 +268,7 @@ li {
 	width: 116px;
 	margin-right: 6px;
 	padding: 8px 4px;
+	border: 0 none;
 }
 #user-login-block-container input.form-submit {
 	width: 30px;
@@ -291,6 +292,14 @@ li {
 	list-style: none outside none;	
 	margin: 0;
 	padding: 0;
+}
+#footer p.copyright {
+	color: #ac8a29;
+	margin-top: 6px;
+}
+.credit {
+	font-size: 0.8em !important;
+	margin-top: 36px;
 }
 /* user menu */
 #block-system-user-menu {
@@ -409,9 +418,20 @@ li {
 	font-weight: bold;
 	background: url(../images/dots-grey.png) repeat-x 0 top;
 }
+#footer div.section {
+	height: 165px;
+	background: url(../images/footer-graphic.png) no-repeat right 0;
+}
 #footer li {
 	display: inline;
 	float: left;
+}
+#partners-link {
+	height: 51px;
+	width: 230px;
+	margin: 12px 0;
+	display: block;
+	background: url(../images/hp-partners.png) no-repeat 0 0;
 }
 
 /* ------------------- Help ------------------- */
@@ -587,7 +607,7 @@ span.profile-title {
 	margin-top: 24px;
 }
 .time-ago {
-	color: grey;
+	color: #b5b5b5;
 	margin: 12px 0;
 }
 .message-author {
@@ -595,7 +615,7 @@ span.profile-title {
 }
 .blog-author, 
 .blog-date {
-	color: grey;
+	color: #b5b5b5;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -655,6 +675,9 @@ span.profile-title {
 .available {
 	border: 5px solid #a8001c !important;
 }
+.grey-text {
+	color: #B5B5B5;
+}
 #block-views-events-block-1 {
 	height: 540px;
 	position: relative;
@@ -707,9 +730,9 @@ span.profile-title {
 #block-th-messages-category .content li a,
 .latest-block .content li a {
 	display: block;
-	padding: 3px 6px;
-	background-color: #a8001c;
-	color: #fff;
+	padding: 1px 4px;
+	color: #332F2D;
+	background-color: #fff;
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 0.8em;
@@ -717,12 +740,12 @@ span.profile-title {
 	-webkit-border-radius: 5px;
     -khtml-border-radius: 5px; 	  
 	border-radius: 5px;
+	border: 2px solid #a8001c;
 }
 #block-th-messages-tag .content li a.active,
 #block-th-messages-category .content li a.active {
-	color: #332F2D;
-	background-color: #fff;
-	border: 2px solid #a8001c;
+	background-color: #a8001c;
+	color: #fff;
 }
 .latest-block .content li a {
 	background-color: #fff;
@@ -864,7 +887,7 @@ ul.tabs {
 	border: 5px solid #ae944c;
 }
 .sidebar .yellow-block {
-	border: 5px solid #D9BC6C;
+	border: 5px solid #F1C33A;
 	background-color: #DAB034;
 }
 .yellow-block h2 {
@@ -904,11 +927,12 @@ ul.tabs {
 #block-views-blog-block-1 a.btn-dark {
 	width: 40px;
 }
-.view-events .node-teaser a.btn-dark {
+/*.view-events .node-teaser a.btn-dark {
+	width: 46px;
+}*/
+.field-name-field-eventbrite-url a {
 	width: 46px;
 }
-
-/* ------------------ Footer ------------------ */
 
 /* --------------- System Tabs  --------------- */
 

@@ -134,18 +134,19 @@
 						<?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
 
 						<?php print render($page['content']); ?> 
-					
+
 						<?php if ($page['content_left']): ?>
 							<div id="content-left" class="column content-block">
 								<?php print render($page['content_left']); ?>
 							</div>
 						<?php endif; ?>
-					
+			
 						<?php if ($page['content_right']): ?>
 							<div id="content-right" class="column content-block">
 								<?php print render($page['content_right']); ?>
 							</div>
 						<?php endif; ?>
+	
 						
 						<?php if ($page['content_below']): ?>
 							<div id="content-below" class="column content-block">
@@ -167,9 +168,10 @@
 
 		<div id="footer">
 			<div class="section">
-				<div class="right"><?php print render($page['footer']); ?></div>
-				<p>&copy; TechHub <?php echo date("Y"); ?></p>
-				<p>Website by <a href="http://thirdsectordesign.org" target="_blank">Third Sector Design</a></p>
+				<a id="partners-link" href="/partners"></a>
+				<?php print render($page['footer']); ?>
+				<p class="copyright">&copy; TechHub <?php echo date("Y"); ?></p>
+				<p class="credit">Website by <a href="http://thirdsectordesign.org" target="_blank">Third Sector Design</a></p>
 			</div>
 		</div> <!-- end of footer -->
 

@@ -138,9 +138,10 @@
 
 		<div id="footer">
 			<div class="section">
-				<div class="right"><?php print render($page['footer']); ?></div>
-				<p>&copy; TechHub <?php echo date("Y"); ?></p>
-				<p class="small">Website by <a href="http://thirdsectordesign.org" target="_blank">Third Sector Design</a></p>
+				<a id="partners-link" href="/partners"></a>
+				<?php print render($page['footer']); ?>
+				<p class="copyright">&copy; TechHub <?php echo date("Y"); ?></p>
+				<p class="credit">Website by <a href="http://thirdsectordesign.org" target="_blank">Third Sector Design</a></p>
 			</div>
 		</div> <!-- end of footer -->
 
