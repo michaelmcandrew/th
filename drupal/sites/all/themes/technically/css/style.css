@@ -482,7 +482,7 @@ li {
 #footer .content {
 	margin-top: 0;
 }
-#content .field-name-field-icon {
+.field-name-field-icon {
 	height: 60px;
 	text-align: center;
 }
