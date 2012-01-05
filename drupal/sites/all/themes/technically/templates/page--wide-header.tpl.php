@@ -97,25 +97,24 @@
 		
 		<div id="main-wrapper">
 			<div id="main" class="clearfix">
-				<div id="title-area">
-					<?php
-					if (isset($node_content) && $node_content['field_icon']) {
-					    print render($node_content['field_icon']);
-					}
-					?>
-				 
-					<?php print render($title_prefix); ?>
-					<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-					<?php print render($title_suffix); ?>
-					
-					<?php if ($page['sidebar_first']): ?>
-						<div id="sidebar-first" class="column sidebar">
-							<div class="section">
-								<?php print render($page['sidebar_first']); ?>
-							</div>
-						</div> <!-- end of left col -->
-					<?php endif; ?>	
-				</div>
+				<?php
+				if (isset($node_content) && $node_content['field_icon']) {
+				    print render($node_content['field_icon']);
+				}
+				?>
+			 
+				<?php print render($title_prefix); ?>
+				<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+				<?php print render($title_suffix); ?>
+				
+				<?php if ($page['sidebar_first']): ?>
+					<div id="sidebar-first" class="column sidebar">
+						<div class="section">
+							<?php print render($page['sidebar_first']); ?>
+						</div>
+					</div> <!-- end of left col -->
+				<?php endif; ?>	
+
 		
 				<div id="content" class="column">
 					<div class="section">		
