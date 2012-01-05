@@ -86,7 +86,7 @@ function technically_correct_message_links($variables, $link){
 }
 
 /**
- * Edit to pager.
+ * (attempted) Edit to pager.
  */
 function technically_pager($tags = array(), $limit = 10, $element = 0, $parameters = array(), $quantity = 9) {
   global $pager_total;

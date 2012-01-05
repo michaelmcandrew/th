@@ -131,22 +131,22 @@ else:
 
 							} elseif ((arg(0)=='user' && arg(2)==FALSE)) {
 
-							    $icon['path']=drupal_get_path('theme', 'technically').'/images/icon-profile-grey.png';
+							    $icon['path']=drupal_get_path('theme', 'technically').'/images/icon-grey-profile.png';
 								print theme_image($icon);
 
 							} elseif ($node->type=='blog' || $node->type=='event') {
 
-							    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-{$node->type}-grey.png";
+							    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-grey-{$node->type}.png";
 								print theme_image($icon);
 
 							} elseif (in_array(arg(0), array_keys($specific_path_overrides))) {
 								$image=$specific_path_overrides[arg(0)];
-							    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-{$image}-grey.png";
+							    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-grey-{$image}.png";
 								print theme_image($icon);
 						
 							} else {
 
-								$icon['path']=drupal_get_path('theme', 'technically').'/images/icon-about-grey.png';
+								$icon['path']=drupal_get_path('theme', 'technically').'/images/icon-grey-about.png';
 								print theme_image($icon);
 						    
 							}
