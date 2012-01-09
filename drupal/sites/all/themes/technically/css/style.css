@@ -23,6 +23,8 @@ table.cke_editor body {
 .node-readmore-link,
 .view-messages,
 .view-members,
+.node-blog .comment-content .username,
+.node-blog .comment-content .time-ago,
 .views-field-title,
 .views-field-created,
 .views-field-field-date-time,
@@ -51,6 +53,7 @@ body,
 h2 a,
 .view-members tr a,
 .faq-question a,
+.blog-archive ul li a,
 #footer li a  {
 	color: #332f2d;
 }
@@ -608,7 +611,7 @@ span.profile-title {
 }
 .time-ago {
 	color: #b5b5b5;
-	margin: 12px 0;
+	margin: 8px 0;
 }
 .message-author {
 	font-weight: bold;
@@ -736,7 +739,7 @@ span.profile-title {
 #block-th-messages-category .content li a,
 .latest-block .content li a {
 	display: block;
-	padding: 1px 4px;
+	padding: 3px 6px;
 	color: #332F2D;
 	background-color: #fff;
 	text-transform: uppercase;
@@ -746,7 +749,6 @@ span.profile-title {
 	-webkit-border-radius: 5px;
     -khtml-border-radius: 5px; 	  
 	border-radius: 5px;
-	border: 2px solid #a8001c;
 }
 #block-th-messages-tag .content li a.active,
 #block-th-messages-category .content li a.active {
@@ -756,7 +758,7 @@ span.profile-title {
 .latest-block .content li a {
 	background-color: #fff;
 	color: #332F2D;
-	padding: 6px;
+	/*padding: 6px;*/
 }
 .latest-block .content li a:hover,
 .latest-block .content li.active a {
@@ -819,16 +821,16 @@ span.profile-title {
 	line-height: 0;
 }
 .locations-map-block .london-link {
-	right: 178px;
-	bottom: 130px;
+	right: 158px;
+	bottom: 132px;
 }
 .locations-map-block .riga-link {
-	right: 122px;
-	bottom: 120px;
+	right: 112px;
+	bottom: 137px;
 }
 .locations-map-block .prague-link {
-	right: 94px;
-	bottom: 137px;
+	right: 88px;
+	bottom: 127px;
 }
 .latest-block ul {
 	margin: 0;
@@ -837,6 +839,11 @@ span.profile-title {
 #quicktabs-container-latest {
 	clear: left;
 	padding-top: 20px;
+}
+.blog-archive ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
 }
 /* ----------------- Comments ----------------- */
 .view-messages #comments {

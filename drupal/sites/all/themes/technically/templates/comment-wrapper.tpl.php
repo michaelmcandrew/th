@@ -36,6 +36,7 @@
  */
 ?>
 <div id="comments" class="clearfix <?php print $classes; ?>"<?php print $attributes; ?>>
+	<!-- <h2>Comments</h2> -->
 <?php print render($content['comments']); ?>
 
 	<?php //print_r (array_keys($content['comment_form'])); ?>
