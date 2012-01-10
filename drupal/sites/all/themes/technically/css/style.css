@@ -88,10 +88,12 @@ h2,
 	text-align: center;
 }
 .content-block .no-border h2,
-.sidebar .no-border h2 {
+.sidebar .no-border h2,
+#comments h2 {
 	background: none;
 }
-h2.invisible {
+h2.invisible,
+.view-messages #comments h2 {
 	font-size: none;
 	display: none;
 	visibility: hidden;

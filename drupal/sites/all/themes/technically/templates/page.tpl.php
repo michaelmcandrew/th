@@ -143,7 +143,7 @@ else:
 					} elseif (in_array(arg(0), array_keys($specific_path_overrides))) {
 						$image=$specific_path_overrides[arg(0)];
 					    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-grey-{$image}.png";
-						print ('<div style="text-align:center;">'.theme_image($icon).'</div>');
+						print ('<div style="text-align:center; class="hi"">'.theme_image($icon).'</div>');
 				
 					} else {
 
