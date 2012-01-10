@@ -112,6 +112,10 @@ del {
 img {
   outline: 0;
 }
+input,
+textarea {
+	border: 0 none;
+}
 a.feed-icon {
   display: inline-block;
   padding: 15px 0 0 0;
@@ -153,6 +157,9 @@ a.button,
 .field-name-field-eventbrite-url a {
 	background: #807a77 url(../images/arrow-grey.png) no-repeat 6px center;
 	color: #fff;
+}
+input.form-submit {
+	padding: 5px 6px 5px 30px !important;
 }
 .node-webform input.form-submit, 
 .node-webform a.button {
@@ -298,8 +305,13 @@ li {
 	margin: 0;
 	padding: 0;
 }
-#footer p.copyright {
+.copyright,
+.credit,
+.credit a {
 	color: #ac8a29;
+	margin-top: 6px;
+}
+.copyright {
 	margin-top: 6px;
 }
 .credit {
@@ -846,6 +858,12 @@ span.profile-title {
 	list-style: none outside none;
 	margin: 0;
 	padding: 0;
+}
+#block-views-set-up-a-techhub-block .node-webform .webform-component input {
+	width: 232px;
+}
+#block-views-set-up-a-techhub-block .node-webform input.form-submit {
+	margin: 0;
 }
 /* ----------------- Comments ----------------- */
 .view-messages #comments {
