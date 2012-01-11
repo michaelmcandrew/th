@@ -646,6 +646,7 @@ span.profile-title {
 	font-size: 2.4em;
 }
 .front #main-wrapper .view-events .view-header p,
+#main-wrapper .past-events .view-header p,
 .front .block .view-blog .view-header p,
 .front .view-twitter-block .view-header p {
 	padding: 0;
@@ -968,7 +969,7 @@ ul.tabs {
 	width: 46px;
 }*/
 .field-name-field-eventbrite-url a {
-	width: 46px;
+	width: 52px;
 }
 
 /* --------------- System Tabs  --------------- */

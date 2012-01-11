@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Add body classes if certain regions have content.
  */
@@ -13,6 +12,7 @@ function technically_preprocess_page(&$variables) {
                 $variables['node_content'] =& $variables['page']['content']['system_main']['nodes'][arg(1)];
         }
 }
+
 /**
  * Override or insert variables into the node template.
  */
@@ -21,6 +21,7 @@ function technically_preprocess_node(&$variables) {
     $variables['classes_array'][] = 'node-full';
   }
 }
+
 /**
  * Override or insert variables into the block template.
  */
