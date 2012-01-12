@@ -58,12 +58,14 @@ body,
 #content-below {
 	clear: both;
 }
-.one-sidebar #content {
-    width: 620px;
-}
 .two-sidebars #content {
     width: 390px;
 	margin-right: 30px;
+}
+.one-sidebar #content,
+.front #content {
+    width: 620px !important;
+	margin-right: 0 !important;
 }
 .two-sidebars #sidebar-first,
 .one-sidebar #sidebar-first {
