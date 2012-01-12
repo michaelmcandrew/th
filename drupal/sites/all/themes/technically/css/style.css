@@ -18,6 +18,7 @@ table.cke_editor body {
 #main-wrapper li,
 #main-wrapper label,
 #main-wrapper input,
+#main-wrapper table,
 .profile,
 .field-name-field-tags,
 .node-readmore-link,
@@ -404,7 +405,9 @@ li {
 .view-members,
 .profile,
 #block-formblock-message,
-.partner-block .views-row  {
+.partner-block .views-row,
+.crm-contribution-main-form-block,
+.crm-contribution-confirm-form-block {
  	-moz-border-radius: 10px; /* Firefox */
 	-webkit-border-radius: 10px; /* Safari, Chrome */
 	border-radius: 10px; /* CSS3 */
@@ -572,7 +575,9 @@ span.profile-title {
 .node-message,
 .view-members,
 .profile,
-#block-formblock-message {
+#block-formblock-message,
+.crm-contribution-main-form-block,
+.crm-contribution-confirm-form-block {
 	background-color: #f5f2f0;	
 	border: 5px solid #d9bc6c;
 }
@@ -1068,12 +1073,31 @@ ul.action-links li a {
   background: #f0f0f0;
   background: rgba(30, 50, 10, 0.08);
 }
-div.messages {
+div.status,
+#crm-container div.messages,
+#crm-container #help, #crm-container .help {
 	margin: 20px auto;
   	-moz-border-radius: 10px;
   	-webkit-border-radius: 10px;
   	border-radius: 10px;
 	font-size: 1.3em;
+	border: 5px solid green;
+	color: #332F2D;
+	font-size: 1.3em;
+	line-height: 1.5em;
+}
+div.status, table tr.ok,
+#crm-container #help, #crm-container .help {
+	background-color: #fff;
+}
+div.status, .ok {
+	color: green;
+}
+div.error, table tr.error {
+	background-color: #fff;
+}
+div.error, .error {
+	color: red;
 }
 
 /* -------------- User Profile   -------------- */
@@ -1256,6 +1280,7 @@ textarea.form-textarea,
 select.form-select,
 input:-webkit-autofill {
   	border: 0 none;
+	border-color: transparent;
 	background-color: #e6e6e6 !important;
 }
 input.form-text,
@@ -1514,6 +1539,147 @@ ol.search-results {
   padding-left: 0;
 }
 
+/* -------------- CiviCRM forms on front end -------------- */
+#crm-container .crm-contribution-main-form-block,
+#crm-container .crm-contribution-confirm-form-block {
+	overflow: hidden;
+	color: #332F2D !important;
+}
+#crm-container .crm-contribution-main-form-block .odd-row {
+	background-color: #F5F2F0;
+}
+#crm-container #membership {
+	overflow: hidden;
+	margin-bottom: 20px;
+}
+#crm-container #membership td br {
+	display: none;
+}
+#crm-container #membership #pricevalue {
+	font-size: 1.3em;
+	line-height: 26px;
+	font-weight: bold;
+}
+#crm-container .crm-contribution-main-form-block .crm-section .label, 
+.crm-contribution-main-form-block .crm-section .label {
+	width: 150px;
+	text-align: left;
+	line-height: 26px;
+}
+#crm-container .crm-contribution-main-form-block .crm-section .content, 
+.crm-contribution-main-form-block .crm-section .content {
+	margin: 0;
+	padding: 0;
+}
+#crm-container .crm-contribution-main-form-block fieldset {
+	border: 0 none;
+}
+#crm-container .crm-contribution-main-form-block legend,
+#crm-container .crm-contribution-confirm-form-block .header-dark {
+	padding: 0;
+	color: #332F2D;
+	text-shadow: 0 0 0 transparent;
+	font-size: 1.4em;
+	line-height: 28px;
+}
+#crm-container .crm-contribution-confirm-form-block .header-dark {
+	margin: 0;
+	background-color: transparent;
+	font-weight: bold;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-khtml-border-radius: 0;
+}
+#crm-container .crm-contribution-main-form-block .crm-section .description {
+	font-size: 1.1em;
+}
+#crm-container .crm-contribution-main-form-block .crm-submit-buttons {
+	height: auto;
+}
+#crm-container .crm-contribution-main-form-block input[type="text"], 
+#crm-container .crm-contribution-main-form-block input[type="password"],
+#crm-container .crm-contribution-confirm-form-block input[type="text"],
+#crm-container .crm-contribution-confirm-form-block input[type="password"] {
+	width: 240px;
+	border: 0 none;
+	padding: 2px 4px;
+}
+#crm-container .crm-contribution-main-form-block .crm-button, 
+#crm-container .crm-contribution-main-form-block a.button, 
+#crm-container .crm-contribution-main-form-block a.button:link, 
+#crm-container .crm-contribution-main-form-block input.form-submit, 
+#crm-container .crm-contribution-main-form-block input[type="button"], 
+#crm-container .crm-contribution-main-form-block input.form-submit-inline,
+#crm-container .crm-contribution-confirm-form-block .crm-button, 
+#crm-container .crm-contribution-confirm-form-block a.button, 
+#crm-container .crm-contribution-confirm-form-block a.button:link, 
+#crm-container .crm-contribution-confirm-form-block input.form-submit, 
+#crm-container .crm-contribution-confirm-form-block input[type="button"], 
+#crm-container .crm-contribution-confirm-form-block input.form-submit-inline {
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	-khtml-border-radius: 0;
+	border-radius: 0;
+	text-shadow: 0;
+	background: none;
+	color: white;
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	cursor: pointer;
+	border: 0 none;
+	text-shadow: 0 0 0 transparent;
+}
+#crm-container .crm-contribution-main-form-block .crm-button,
+#crm-container .crm-contribution-confirm-form-block .crm-button {
+	margin-right: 12px;
+}
+
+#crm-container .crm-contribution-main-form-block input.form-submit,
+#crm-container .crm-contribution-confirm-form-block input.form-submit {
+	background: #807A77 url(../images/arrow-grey.png) no-repeat 6px center;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	font-size: 1.3em;
+	margin: 20px 0;
+	display: block;
+}
+#crm-container .crm-contribution-confirm-form-block table#membership-listings td {
+	padding: 0;
+}
+#crm-container .crm-contribution-confirm-form-block .contributor_email-section {
+	font-size: 1.3em;
+}
+#crm-container div.messages {
+	padding: 10px;
+	font-size: 1.3em;
+}
+#crm-container div.messages li {
+	font-size: 1em;
+}
+#crm-container div.messages .icon {
+	margin-right: 12px;
+}
+#crm-container div.messages ul {
+	margin: 6px 0 0 0;
+	padding: 0;
+	list-style: none outside none;
+}
+#crm-container .crm-error {
+	background-color: #fff;
+	border: 5px solid red;
+}
+#crm-container .crm-contribution-thankyou-form-block #thankyou_text div {
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 1.3em !important;
+	color: #332F2D !important;
+	background-color: transparent !important;
+}
+
 /* -------------- Shortcut Links -------------- */
 
 .shortcut-wrapper {
@@ -1614,3 +1780,7 @@ div.admin-panel .description {
   width: auto;
 }
 
+.ui-icon-print {
+	display: none;
+	visibility: hidden;
+}
