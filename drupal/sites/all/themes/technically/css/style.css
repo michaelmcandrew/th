@@ -1648,7 +1648,8 @@ ol.search-results {
 	margin: 20px 0;
 	display: block;
 }
-#crm-container .crm-contribution-confirm-form-block table#membership-listings td {
+#crm-container .crm-contribution-confirm-form-block td,
+#crm-container .crm-contribution-main-form-block td {
 	padding: 0;
 }
 #crm-container .crm-contribution-confirm-form-block .contributor_email-section {
