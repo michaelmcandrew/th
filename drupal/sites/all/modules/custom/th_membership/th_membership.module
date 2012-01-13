@@ -18,30 +18,26 @@ function th_membership_pay_redirect() {
 	civicrm_initialize();
 	$contact=civicrm_api("UFMatch","getsingle", array ('version' =>'3', 'uf_id' => $user->uid));
 	$results=civicrm_api("Activity","get", array ('version' =>'3', 'option.limit' => '10000', 'contact_id' => $contact['contact_id']));
-//	print_r($results);
+//	print_r($results['values']);
 	foreach($results['values'] as $result){
-		if($result['activity_type_id']==33);
+		if($result['activity_type_id']=='33'){
 			$membership_type_applied_for=$result['subject'];
-			break;
-	}
-	
-	$activity_subject_to_contribution_page=array(
-		'Resident membership application (London)' => '1',
-		'Annual membership application (London)' => '2',
-	);
-	
-	foreach($activity_subject_to_contribution_page as $string => $contribution_page){
-		if(strstr($string, $membership_type_applied_for)){
 			break;
 		}
 	}
-	// $path = "civicrm/contribute/transact";
-	// $options = array('query'=>"");
-	CRM_Utils_System::redirect("/civicrm/contribute/transact?reset=1&id={$contribution_page}");
 
+	$activity_subject_to_contribution_page=array(
+		'Resident membership application (London)' => '2',
+		'Annual membership application (London)' => '1',
+	);
+	
+	if(in_array($membership_type_applied_for, array_keys($activity_subject_to_contribution_page))){
+		CRM_Utils_System::redirect("/civicrm/contribute/transact?reset=1&id={$activity_subject_to_contribution_page[$membership_type_applied_for]}");
+	} else {
+		CRM_Utils_System::redirect("/user");		
+	}
 
-	drupal_goto($path, $options);
-	exit;
+	
 }
 
 function th_membership_civicrm_buildForm($formName, &$form) {
