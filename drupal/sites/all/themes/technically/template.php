@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Add body classes if certain regions have content.
  */
@@ -13,6 +12,7 @@ function technically_preprocess_page(&$variables) {
                 $variables['node_content'] =& $variables['page']['content']['system_main']['nodes'][arg(1)];
         }
 }
+
 /**
  * Override or insert variables into the node template.
  */
@@ -21,15 +21,16 @@ function technically_preprocess_node(&$variables) {
     $variables['classes_array'][] = 'node-full';
   }
 }
+
 /**
  * Override or insert variables into the block template.
  */
-function technically_preprocess_block(&$variables) {
-  // In the header region visually hide block titles.
-  if ($variables['block']->region == 'header') {
-    $variables['title_attributes_array']['class'][] = 'element-invisible';
-  }
-}
+// function technically_preprocess_block(&$variables) {
+//   // In the header region visually hide block titles.
+//   if ($variables['block']->region == 'header') {
+//     $variables['title_attributes_array']['class'][] = 'element-invisible';
+//   }
+// }
 
 /**
  * Implements theme_menu_tree().
@@ -68,7 +69,7 @@ function technically_correct_message_links($variables, $link){
 	$output = '';
 	// Render the label, if it's not hidden.
 	if (!$variables['label_hidden']) {
-		$output .= '<h3 class="field-label">' . $variables['label'] . ': </h3>';
+		$output .= '<p class="field-label">' . $variables['label'] . ': </p>';
 	}
 
 	// Render the items.
@@ -85,27 +86,23 @@ function technically_correct_message_links($variables, $link){
 	return $output;
 }
 
-function bartik_field__taxonomy_term_reference($variables) {
-  $output = '';
-  // Render the label, if it's not hidden.
-  if (!$variables['label_hidden']) {
-    $output .= '<h3 class="field-label">' . $variables['label'] . ': </h3>';
+/** 
+ * Used to change the term id's on the resources block to term names instead
+ */
+function technically_preprocess_views_view_summary(&$vars) {
+  if($vars['view']->name == 'blogtags' && $vars['view']->current_display == 'block') {
+    $items = array();
+    foreach($vars['rows'] as $result){
+      if(is_numeric($result->link)) {
+        $term_object = taxonomy_term_load($result->link);
+        $result->link = $term_object->name;
+        $items[] = $result;
+      }
+      else {
+        //used for the <no-value> item
+        $items[] = $result;
+      }
+    }
+    $vars['rows'] = $items;
   }
-
-  // Render the items.
-  $output .= ($variables['element']['#label_display'] == 'inline') ? '<ul class="links inline">' : '<ul class="links">';
-  foreach ($variables['items'] as $delta => $item) {
-    $output .= '<li class="taxonomy-term-reference-' . $delta . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</li>';
-  }
-  $output .= '</ul>';
-
-  // Render the top-level DIV.
-  $output = '<div class="' . $variables['classes'] . (!in_array('clearfix', $variables['classes_array']) ? ' clearfix' : '') . '">' . $output . '</div>';
-
-  return $output;
 }
-// function technically_process_field(&$variables, $hook){
-// 	if($variables['element']['#field_name'] == 'field_message_tags') {
-// 		print_r(($variables['items']));exit;
-// 	}	
-// }

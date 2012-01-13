@@ -33,21 +33,25 @@ function th_messages_block_view($delta = '') {
 
 function th_messages_category_content(){
 	$items=th_messages_get_term_list(3, 1, 'alpha');
+	$output='<ul>';
 	foreach($items as $item){
 		if(isset($item['attributes'])){
 		}
 		$output.='<li>'.l($item['text'], $item['path']).'</li>';
 	}
+	$output.='</ul>';
 	return $output;
 }
 
 function th_messages_tag_content(){
 	$items=th_messages_get_term_list(4, 2, 'alpha');
+	$output='<ul>';
 	foreach($items as $item){
 		if(isset($item['attributes'])){
 		}
 		$output.='<li>'.l($item['text'], $item['path']).'</li>';
 	}
+	$output.='</ul>';
 	return $output;
 }
 // 	$categories = db_query("SELECT name FROM taxonomy_term_data WHERE vid=3");

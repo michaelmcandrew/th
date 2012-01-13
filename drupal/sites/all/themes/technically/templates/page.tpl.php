@@ -1,4 +1,8 @@
 <?php
+$wide_nodes=array(6, 36);
+if(in_array($node->nid, $wide_nodes)):
+	include 'page--wide-header.tpl.php';
+else:
 
 /**
  * @file
@@ -89,11 +93,13 @@
 				<?php print render($page['header']); ?>
 			</div>
 		</div><!-- end of header -->
-
 		
-
-		<?php print $messages; ?>
-
+		<?php if ($messages): ?>
+			<div class="nine-fourty">
+				<?php print $messages; ?>
+			</div>
+		<?php endif; ?>
+		
 		<div id="main-wrapper">
 			<div id="main" class="clearfix">
 				<?php if ($page['sidebar_first']): ?>
@@ -105,19 +111,54 @@
 				<?php endif; ?>
 		
 				<div id="content" class="column">
-					<div class="section">		
-						<?php
-						if (isset($node_content) && $node_content['field_icon']) {
-						    print render($node_content['field_icon']);
-						}
-						?>
+					<div class="section">	
+				
+					<?php
+				
+					//printing icons
+				
+					//overrides for specific paths should be put in this array
+					$specific_path_overrides=array(
+						'events' => 'event',
+						'memberships' => 'memberships',
+						'messages' => 'memberships',
+						'blog' => 'blog',
+					);
+				
+					if (isset($node_content) && $node_content['field_icon']) {
+
+					    print render($node_content['field_icon']);
+
+					} elseif ((arg(0)=='user' && arg(2)==FALSE)) {
+
+					    $icon['path']=drupal_get_path('theme', 'technically').'/images/icon-grey-profile.png';
+						print ('<div style="text-align:center;">'.theme_image($icon).'</div>');
+
+					} elseif ($node->type=='blog' || $node->type=='event') {
+
+					    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-grey-{$node->type}.png";
+						print ('<div style="text-align:center;">'.theme_image($icon).'</div>');
+			
+
+					} elseif (in_array(arg(0), array_keys($specific_path_overrides))) {
+						$image=$specific_path_overrides[arg(0)];
+					    $icon['path']=drupal_get_path('theme', 'technically')."/images/icon-grey-{$image}.png";
+						print ('<div style="text-align:center; class="hi"">'.theme_image($icon).'</div>');
+				
+					} else {
+
+						$icon['path']=drupal_get_path('theme', 'technically').'/images/icon-grey-about.png';
+						print ('<div style="text-align:center;">'.theme_image($icon).'</div>');
+				    
+					}
+					?>
+			
+					<?php 
+					if($node->type=='blog' || $node->type=='event' || (arg(0)=='user' && arg(2)==FALSE)) : ?>
+			
+					<?php $class=(isset($node->type))?$node->type:'profile'; ?>
+					<span class="<?php print $class; ?>-title"><?php print $class; ?></span>	
 						
-						<?php 
-						if($node->type=='blog' || $node->type=='event' || (arg(0)=='user' && arg(2)==FALSE)) : ?>
-					
-						<?php $class=(isset($node->type))?$node->type:'profile'; ?>
-							<span class="<?php print $class; ?>-title"><?php print $class; ?></span>	
-					
 						<?php else : ?>
 							<?php print render($title_prefix); ?>
 							<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
@@ -132,18 +173,19 @@
 						<?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
 
 						<?php print render($page['content']); ?> 
-					
+
 						<?php if ($page['content_left']): ?>
 							<div id="content-left" class="column content-block">
 								<?php print render($page['content_left']); ?>
 							</div>
 						<?php endif; ?>
-					
+			
 						<?php if ($page['content_right']): ?>
 							<div id="content-right" class="column content-block">
 								<?php print render($page['content_right']); ?>
 							</div>
 						<?php endif; ?>
+	
 						
 						<?php if ($page['content_below']): ?>
 							<div id="content-below" class="column content-block">
@@ -162,43 +204,16 @@
 				<?php endif; ?>
 			</div> <!-- end of main -->
 		</div> <!-- end of main wrapper -->
-		
-		<?php if ($page['featured_first'] || $page['featured_second'] || $page['featured_third']  || $page['featured_fourth']): ?>
-		
-			<div id="featured">	
-				<div class="section">
-					<?php if ($page['featured_first']): ?>
-						<div id="featured-first" class="column">
-							<?php print render($page['featured_first']); ?>
-						</div>
-					<?php endif; ?>
-		
-					<?php if ($page['featured_second']): ?>
-						<div id="featured-second" class="column">
-							<?php print render($page['featured_second']); ?>
-						</div>
-					<?php endif; ?>
-		
-					<?php if ($page['featured_third']): ?>
-						<div id="featured-third" class="column">
-							<?php print render($page['featured_third']); ?>
-						</div>
-					<?php endif; ?>
-		
-					<?php if ($page['featured_fourth']): ?>
-						<div id="featured-fourth" class="column">
-							<?php print render($page['featured_fourth']); ?>
-						</div>
-					<?php endif; ?>
-				</div>
-			</div>
-		<?php endif; ?>
 
 		<div id="footer">
 			<div class="section">
+				<a id="partners-link" href="/partners"></a>
 				<?php print render($page['footer']); ?>
+				<p class="copyright">&copy; TechHub <?php echo date("Y"); ?></p>
+				<p class="credit">Website by <a href="http://thirdsectordesign.org" target="_blank">Third Sector Design</a></p>
 			</div>
 		</div> <!-- end of footer -->
 
 	</div> <!-- end of page -->
 </div> <!-- end of page wrapper-->
+<?php endif;?>

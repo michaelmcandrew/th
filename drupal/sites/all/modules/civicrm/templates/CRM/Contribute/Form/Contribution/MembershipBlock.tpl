@@ -159,7 +159,7 @@ cj(function(){
                 {assign var="pid" value=$row.id}
                 <td style="width: 1em;">{$form.selectMembership.$pid.html}</td>
             {else}
-                <td>&nbsp;</td>                
+                <td style="width: 0em;"></td>                
             {/if}
            <td style="width: auto;">
                 <span class="bold">{$row.name} &nbsp;

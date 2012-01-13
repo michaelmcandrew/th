@@ -86,17 +86,24 @@
   <?php print $user_picture; ?>
   
   <div class="message-right">
+<?php //print_r(array_keys($content)); exit; ?>
     <span class="message-author"><?php print $name; ?></span>
 	<div class="content"<?php print $content_attributes; ?>>
       <?php
         hide($content['comments']);
         hide($content['field_icon']);
         hide($content['links']);
+		hide($content['field_message_categories']);
+		hide($content['field_message_tags']);
         print render($content);
-      ?>
+	  ?>
+	  <div class="message-labels">
+	  	<?php
+			print render($content['field_message_categories']);
+			print render($content['field_message_tags']);
+	      ?>
+      </div>
     </div>
   </div>
-
   <?php print render($content['comments']); ?>
-
 </div>

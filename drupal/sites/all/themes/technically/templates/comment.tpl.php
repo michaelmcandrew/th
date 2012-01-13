@@ -62,12 +62,12 @@
 
   <div class="comment-content">
       <?php print $author; ?>
+	  <div class="time-ago"><?php print format_interval(REQUEST_TIME - $comment->created).' ago'; ?></div>
 	  <div<?php print $content_attributes; ?>>
 	    <?php
 	      hide($content['links']);
 	      print render($content);
-	    ?>
-	    <div class="time-ago"><?php print format_interval(REQUEST_TIME - $comment->created).' ago'; ?></div>
+	    ?>	    
 	  </div>
 	</div>
 </div>

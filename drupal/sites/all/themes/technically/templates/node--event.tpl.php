@@ -84,7 +84,7 @@
   <?php if($page) : ?>
   	<h1 class="sub-title"<?php print $title_attributes; ?>><?php print $title; ?></h1>	
   <?php else : ?>
-	<h2<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
+	<h2<?php print $title_attributes; ?>><?php print $title; ?></h2>
   <?php endif; ?>
   <?php print render($title_suffix); ?>
   <?php if ($display_submitted): ?>
@@ -95,8 +95,6 @@
 
   <div class="content"<?php print $content_attributes; ?>>
     <?php
-
-	
       // We hide the comments, the title icon and the links now so that we can render them later.
       hide($content['comments']);
       hide($content['field_icon']);
@@ -105,8 +103,11 @@
     ?>
   </div>
 
-  <?php print render($content['links']); ?>
-
-  <?php print render($content['comments']); ?>
+  <?php
+ // if($teaser){
+ //     print l(t('Details'), 'node/' . $nid, array('attributes' => array('class' => t('node-readmore-link btn-dark')))); 
+ // } 
+ //	print render($content['comments']);
+?>
 
 </div>

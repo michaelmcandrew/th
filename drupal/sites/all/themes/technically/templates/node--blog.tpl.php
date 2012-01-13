@@ -104,8 +104,12 @@
     ?>
   </div>
 
-  <?php print render($content['links']); ?>
+  <?php if($teaser){
+      print l(t('Read more'), 'node/' . $nid, array('attributes' => array('class' => t('node-readmore-link')))); 
+  }
 
-  <?php print render($content['comments']); ?>
+  	  print render($content['comments']); 
+  
+  ?>
 
 </div>

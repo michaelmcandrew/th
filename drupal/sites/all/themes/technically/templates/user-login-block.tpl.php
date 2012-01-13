@@ -42,12 +42,12 @@
  */
 ?>
 	<div id="user-login-block-container">
-		<span id="login-form-title">Sign in<span>
+		<span id="login-form-title">Sign in</span>
 	  	<div id="user-login-block-form-fields">
 	    	<?php print $name; // Display username field ?>
 	    	<?php print $pass; // Display Password field ?>
 	    	<?php print $submit; // Display submit button ?>
-	    	<?php print $rendered; // Display the rest of t ?> 
+	    	<?php print $rendered; // Display the rest of the form ?> 
 	  	</div>
 	</div>
 	
