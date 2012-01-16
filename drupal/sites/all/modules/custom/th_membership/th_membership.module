@@ -27,8 +27,8 @@ function th_membership_pay_redirect() {
 	}
 
 	$activity_subject_to_contribution_page=array(
-		'Resident membership application (London)' => '2',
-		'Annual membership application (London)' => '1',
+		'Resident membership application (London) (approved)' => '2',
+		'Annual membership application (London) (approved)' => '1',
 	);
 	
 	if(in_array($membership_type_applied_for, array_keys($activity_subject_to_contribution_page))){
