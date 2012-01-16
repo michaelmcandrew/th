@@ -1,0 +1,15 @@
+<?php
+function th_login_form_user_login_block_alter(&$form, &$form_state, $form_id){
+	unset($form['name']['#title']);
+	unset($form['pass']['#title']);
+	$form['name']['#attributes'] = array('placeholder' => 'username');
+	$form['pass']['#attributes'] = array('placeholder' => 'password');
+	$form['links']['#weight'] = 10;
+}
+
+function th_login_block_view_alter(&$data, $block) {
+	global $user;
+	if($block->module=='system' && $block->delta=='user-menu'){
+		$block->title = $user->name;
+	}
+}

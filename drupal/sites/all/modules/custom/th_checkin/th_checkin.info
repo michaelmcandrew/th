@@ -2,4 +2,4 @@
 name = People can checkin
 description = For importing direct debit payments and mandates, and ward to local party mapping.
 package = CiviCRM - TechHub extras
-core = 6.x
+core = 7.x

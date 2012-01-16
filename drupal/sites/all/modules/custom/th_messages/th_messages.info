@@ -2,4 +2,4 @@
 name = TechHub messages
 description = Defines some blocks that show on the messages page that allow people to sort messages by tag and category
 package = CiviCRM - TechHub extras
-core = 6.x
+core = 7.x

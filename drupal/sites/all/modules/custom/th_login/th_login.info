@@ -1,0 +1,5 @@
+; $Id$
+name = TechHub login
+description = Changes the login form, etc.
+package = CiviCRM - TechHub extras
+core = 7.x
