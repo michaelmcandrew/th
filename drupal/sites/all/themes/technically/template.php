@@ -90,19 +90,17 @@ function technically_correct_message_links($variables, $link){
  * Used to change the term id's on the resources block to term names instead
  */
 function technically_preprocess_views_view_summary(&$vars) {
-  if($vars['view']->name == 'blogtags' && $vars['view']->current_display == 'block') {
-    $items = array();
-    foreach($vars['rows'] as $result){
-      if(is_numeric($result->link)) {
-        $term_object = taxonomy_term_load($result->link);
-        $result->link = $term_object->name;
-        $items[] = $result;
-      }
-      else {
-        //used for the <no-value> item
-        $items[] = $result;
-      }
-    }
-    $vars['rows'] = $items;
-  }
+	//  print_r($vars['view']->name);                                                                                                                                                                                                         
+	if($vars['view']->name == 'blog_tags' && $vars['view']->current_display == 'block') {
+		$items = array();
+		foreach($vars['rows'] as $result){
+			if(is_numeric($result->link)) {
+				$term_object = taxonomy_term_load($result->link);
+				$result->link = $term_object->name;
+				$items[] = $result;
+			}
+		}
+		$vars['rows'] = $items;
+	}
 }
+
