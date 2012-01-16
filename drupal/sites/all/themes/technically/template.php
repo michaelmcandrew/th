@@ -97,6 +97,7 @@ function technically_preprocess_views_view_summary(&$vars) {
 			if(is_numeric($result->link)) {
 				$term_object = taxonomy_term_load($result->link);
 				$result->link = $term_object->name;
+				$result->url = strtolower($result->url);
 				$items[] = $result;
 			}
 		}
