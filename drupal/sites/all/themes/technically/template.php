@@ -24,6 +24,10 @@ function technically_preprocess_node(&$variables) {
 	}
 }
 
+function technically_preprocess_comment_wrapper(&$variables) {
+  $variables['content']['comments']['#prefix'] = '<div id="comments-wrapper-nid-' . $variables['node']->nid . '">';
+  $variables['content']['comments']['#suffix'] = '</div>';
+}
 
 /**
  * Implements theme_menu_tree().

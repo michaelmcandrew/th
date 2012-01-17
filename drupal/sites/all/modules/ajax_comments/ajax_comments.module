@@ -227,6 +227,7 @@ function ajax_comments_submit_js($form, &$form_state) {
     // append comment to root comment wrapper
     $comment_output = drupal_render($comment_build);
     $commands[] = ajax_command_append('#comment-wrapper', $notify_text . $comment_output);
+    $commands[] = ajax_command_append('#comments-wrapper-nid-' . $form_state['values']['nid'], $notify_text . $comment_output);
 
     // If we have a default form, update it with a new one
     if (variable_get('comment_form_location_' . $node->type, COMMENT_FORM_BELOW) == COMMENT_FORM_BELOW) {
