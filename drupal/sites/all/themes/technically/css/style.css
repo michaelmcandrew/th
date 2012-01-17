@@ -743,7 +743,9 @@ span.profile-title {
 	overflow: hidden;
 }
 #block-th-messages-tag ul,
-#block-th-messages-category ul {
+#block-th-messages-category ul,
+.view-archive ul,
+.view-blog-tags ul {
 	list-style: none outside none;	
 	margin: 0;
 	padding: 0;
@@ -870,6 +872,25 @@ span.profile-title {
 }
 #block-views-set-up-a-techhub-block .node-webform input.form-submit {
 	margin: 0;
+}
+.view-archive ul.views-summary a {
+	color: #332F2D;
+}
+.album-block th {
+	border: 0 none;
+}
+.album-block tr.even, 
+.album-block tr.odd {
+	padding: 0;
+	background-color: transparent;
+	border: 0 none;
+}
+.album-block tr td {
+	padding: 0 0 0 7px;
+}
+.album-block tr td a {
+	display: inline-block;
+	margin-right: 7px;
 }
 /* ----------------- Comments ----------------- */
 .view-messages #comments {
@@ -1073,7 +1094,7 @@ ul.action-links li a {
   background: #f0f0f0;
   background: rgba(30, 50, 10, 0.08);
 }
-div.status,
+div.messages,
 #crm-container div.messages,
 #crm-container #help, #crm-container .help {
 	margin: 20px auto;
@@ -1086,7 +1107,7 @@ div.status,
 	font-size: 1.3em;
 	line-height: 1.5em;
 }
-div.status, table tr.ok,
+div.messages, table tr.ok,
 #crm-container #help, #crm-container .help {
 	background-color: #fff;
 }
@@ -1098,6 +1119,7 @@ div.error, table tr.error {
 }
 div.error, .error {
 	color: red;
+	border: 5px solid red;
 }
 
 /* -------------- User Profile   -------------- */

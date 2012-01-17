@@ -99,9 +99,9 @@
 		<div id="main-wrapper">
 			<div id="main" class="clearfix">
 				<div id="homepage-content">
-					<a href="/london" class="london-link location-link"></a>
-					<a href="/riga" class="riga-link location-link"></a>
-					<a href="/prague" class="prague-link location-link"></a>
+					<a href="/london" class="london-link location-link" title="London"></a>
+					<a href="/riga" class="riga-link location-link" title="Riga"></a>
+					<a href="/prague" class="prague-link location-link" title="Prague"></a>
 					<?php print render($page['content']); ?> 
 				</div>
 				
