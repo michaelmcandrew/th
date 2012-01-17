@@ -4,7 +4,8 @@ function th_login_form_user_login_block_alter(&$form, &$form_state, $form_id){
 	unset($form['pass']['#title']);
 	$form['name']['#attributes'] = array('placeholder' => 'username');
 	$form['pass']['#attributes'] = array('placeholder' => 'password');
-	$form['links']['#weight'] = 10;
+	$form['actions']['#weight'] = 1;
+	$form['links']['#weight'] = 2;
 }
 
 function th_login_block_view_alter(&$data, $block) {
