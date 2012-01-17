@@ -22,5 +22,7 @@ function fonts_com_enable() {
 function fonts_com_disable() {
 
   fontyourface_provider_disable('fonts_com');
+  variable_del('fonts_com_project');
+  variable_del('fonts_com_filter_choices');
 
 } // fonts_com_disable

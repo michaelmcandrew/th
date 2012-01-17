@@ -91,6 +91,12 @@ function ajax_comments_form_comment_form_alter(&$form, &$form_state, $form_id) {
     'method' => 'replace',
     'effect' => 'fade',
   );
+  $form['actions']['preview']['#ajax'] = array(
+    'callback' => 'ajax_comments_preview_js',
+    'wrapper' => $form['#id'],
+    'method' => 'replace',
+    'effect' => 'fade',
+  );
 
   // HACK, stop ctools from modifying us in node_comment_form.inc
   $form_state['ctools comment alter'] = FALSE;
@@ -119,6 +125,57 @@ function ajax_comments_form_comment_confirm_delete_alter(&$form, &$form_state, $
 }
 
 /**
+ * Previews the comment.
+ */
+function ajax_comments_preview_js($form, &$form_state) {
+  // Return the actual form if it contains errors.
+  if (form_get_errors()) {
+    return $form;
+  }
+
+  $notify_text = variable_get('ajax_comments_notify', '') ? theme('ajax_comments_notify_text', array('type' => 'preview')) : '';
+
+  $comment = comment_form_submit_build_comment($form, $form_state);
+  $comment_pre_render = comment_preview($comment);
+  $comment_output =  drupal_render($comment_pre_render['comment_preview']);
+
+  // This is a reply.
+  if (isset($form_state['values']['pid'])) {
+    $new_form_state = array();
+    $new_form_state['build_info']['args'][] = (object) array('nid' => $node->nid);
+    $new_form_state['input'] = $form_state['input'];
+    $form['#action'] = '/ajax_comments/reply/' . $comment->nid . '/' . $comment->pid;
+    $new_form_build = drupal_build_form($form['#form_id'], $new_form_state);
+    // Don't build comment and body.
+    unset($new_form_build['comment_preview']);
+    unset($new_form_build['comment_output_below']);
+    $new_form_output = drupal_render($new_form_build);
+
+    $commands[] = ajax_command_replace('[action="/ajax_comments/reply/' . $comment->nid . '/' . $comment->pid . '"]', $new_form_output);
+    // TODO: fix this. Needed because action changes after multiple previews.
+    $commands[] = ajax_command_replace('[action="/system/ajax"]', $new_form_output);
+    $commands[] = ajax_command_prepend('#comment-wrapper-' . $comment->pid . ' .comment-form', $notify_text . $comment_output);
+  }
+  // Or is this a brand new comment
+  else {
+    $commands[] = ajax_command_append('#comment-wrapper', $notify_text . $comment_output);
+    $new_form_state = array();
+    $new_form_state['build_info']['args'][] = (object) array('nid' => $node->nid);
+    $new_form_state['input'] = $form_state['input'];
+    $new_form_build = drupal_build_form($form['#form_id'], $new_form_state);
+    // Don't build comment and body.
+    unset($new_form_build['comment_preview']);
+    unset($new_form_build['comment_output_below']);
+    $new_form_output = drupal_render($new_form_build);
+
+    $commands[] = ajax_command_replace('[action="/comment/reply/' . $comment->nid . '"]', $new_form_output);
+
+  }
+
+  return array('#type' => 'ajax', '#commands' => $commands);
+}
+
+/**
  * Builds the comment.
  */
 function ajax_comments_submit_js($form, &$form_state) {
@@ -137,6 +194,14 @@ function ajax_comments_submit_js($form, &$form_state) {
   $notify_text = variable_get('ajax_comments_notify', '') ? theme('ajax_comments_notify_text') : '';
 
   $comment_build = comment_view($comment, $node);
+
+  if (variable_get('comment_preview_' . $node->type)) {
+    $commands[] = ajax_command_remove('.comment-preview');
+    $commands[] = ajax_command_remove('.messages.ajax-comments.warning');
+  }
+
+  // Don't display as a preview as this is being submitted.
+  unset($comment_build['comment_body']['#object']->in_preview);
 
   // Are we editing a comment
   if (isset($form['cid']['#value'])) {
@@ -165,16 +230,16 @@ function ajax_comments_submit_js($form, &$form_state) {
 
     // If we have a default form, update it with a new one
     if (variable_get('comment_form_location_' . $node->type, COMMENT_FORM_BELOW) == COMMENT_FORM_BELOW) {
-    $node = $form['#node'];
+      $node = $form['#node'];
 
-    $new_form_state = array();
-    $new_form_state['build_info']['args'][] = (object) array('nid' => $node->nid);
-    $new_form_state['input'] = array(); // don't pull from cache
-    $new_form_build = drupal_build_form($form['#form_id'], $new_form_state);
-    $new_form_output = drupal_render($new_form_build);
+      $new_form_state = array();
+      $new_form_state['build_info']['args'][] = (object) array('nid' => $node->nid);
+      $new_form_state['input'] = array(); // don't pull from cache
+      $new_form_build = drupal_build_form($form['#form_id'], $new_form_state);
+      $new_form_output = drupal_render($new_form_build);
 
-    $commands[] = ajax_command_replace('#' . $form['#id'], $new_form_output);
-  }
+      $commands[] = ajax_command_replace('#' . $form['#id'], $new_form_output);
+    }
     // Otherwise, delete it
     else {
       $commands[] = ajax_command_remove('#' . $form['#id']);
@@ -231,6 +296,7 @@ function ajax_comments_comment_view($comment, $view_mode, $langcode) {
     $comment->content['links']['comment']['#links']['comment-delete']['attributes']['class'] = array('use-ajax');
     $comment->content['links']['comment']['#links']['comment-delete']['href'] = 'ajax_comments/delete/' . $comment->cid;
   }
+
 }
 
 /**
@@ -260,32 +326,30 @@ function ajax_comments_comment_view_alter(&$build, $view_mode) {
   $comment = $build['#comment'];
   $node = $build['#node'];
 
-  if (empty($comment->in_preview)) {
-    $prefix = '';
+  $prefix = '';
 
-    // close any previous wrapper elements
-    if ($comment->wrappers_to_close > 0) {
-      $prefix .= str_repeat('</div>', $comment->wrappers_to_close);
-    }
+  // close any previous wrapper elements
+  if ($comment->wrappers_to_close > 0) {
+    $prefix .= str_repeat('</div>', $comment->wrappers_to_close);
+  }
 
-    // add 'new' anchor if needed
-    if (!empty($comment->first_new)) {
-      $prefix .= "<a id=\"new\"></a>\n";
-    }
+  // add 'new' anchor if needed
+  if (!empty($comment->first_new)) {
+    $prefix .= "<a id=\"new\"></a>\n";
+  }
 
-    // add wrapper tag
-    $indent = $comment->pid != 0 && variable_get('comment_default_mode_' . $node->type, COMMENT_MODE_THREADED) == COMMENT_MODE_THREADED;
-    $prefix .= '<div id="comment-wrapper-' . $comment->cid . '"' . ($indent == TRUE ? ' class="indented"' : '') . '>';
+  // add wrapper tag
+  $indent = $comment->pid != 0 && variable_get('comment_default_mode_' . $node->type, COMMENT_MODE_THREADED) == COMMENT_MODE_THREADED;
+  $prefix .= '<div id="comment-wrapper-' . $comment->cid . '"' . ($indent == TRUE ? ' class="indented"' : '') . '>';
 
-    // add anchor tag
-    $prefix .= "<a id=\"comment-$comment->cid\"></a>\n";
+  // add anchor tag
+  $prefix .= "<a id=\"comment-$comment->cid\"></a>\n";
 
-    $build['#prefix'] = $prefix;
+  $build['#prefix'] = $prefix;
 
-    // close last wrapper element
-    if(!empty($comment->final_wrappers_to_close)) {
-      $build['#suffix'] = str_repeat('</div>', $comment->final_wrappers_to_close);
-    }
+  // close last wrapper element
+  if(!empty($comment->final_wrappers_to_close)) {
+    $build['#suffix'] = str_repeat('</div>', $comment->final_wrappers_to_close);
   }
 }
 
@@ -378,6 +442,9 @@ function ajax_comments_edit($comment) {
   return array('#type' => 'ajax', '#commands' => $commands);
 }
 
+function ajax_comments_preview($cid) {
+}
+
 /**
  * Callback for clicking "delete".
  */
@@ -443,11 +510,16 @@ function ajax_comments_theme($existing, $type, $theme, $path) {
   * @param type string
   *   Type of notification.
   */
-function theme_ajax_comments_notify_text($type = NULL) {
+function theme_ajax_comments_notify_text($vars = array()) {
   $text = t('Your comment has been posted');
-  if ($type['type'] == 'delete') {
+  $status = 'status';
+  if ($vars['type'] == 'delete') {
     $text = t('Your comment has been deleted');
   }
+  elseif ($vars['type'] == 'preview') {
+    $text = t('This is the preview for your comment. You must click SAVE or your comment will be lost.');
+    $status = 'warning';
+  }
   // Using messages html (minus .session which defaults to 960px width in bartik) for now.
-  return '<div id="messages"><div class="clearfix"><div class="messages status"><h2 class="element-invisible">Status message</h2>' . $text . '</div></div></div>';
+  return '<div id="messages"><div class="clearfix"><div class="messages ajax-comments ' . $status . '"><h2 class="element-invisible">Status message</h2>' . $text . '</div></div></div>';
 }

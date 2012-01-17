@@ -8,9 +8,9 @@ php = 5.2.0
 files[] = fontdeck.install
 files[] = fontdeck.module
 
-; Information added by drupal.org packaging script on 2011-08-03
-version = "7.x-1.6"
+; Information added by drupal.org packaging script on 2012-01-09
+version = "7.x-2.0"
 core = "7.x"
 project = "fontyourface"
-datestamp = "1312380116"
+datestamp = "1326125443"
 

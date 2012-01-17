@@ -14,6 +14,9 @@ function kernest_enable() {
 
   db_query("UPDATE {system} SET weight = 1 WHERE name = 'kernest'");
 
+  // Import/update fonts
+  fontyourface_import_fonts('kernest');
+
 } // kernest_enable
 
 /**

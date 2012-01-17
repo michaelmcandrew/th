@@ -152,7 +152,7 @@ function media_browser_list() {
   $query = db_select('file_managed', 'f');
   $query->fields('f', array('fid'));
   $query->range($start, $limit);
-  $query->orderBy('f.fid', 'DESC');
+  $query->orderBy('f.timestamp', 'DESC');
 
   // Add conditions based on file type *or* allowed extensions.
   $condition = $query;
@@ -173,11 +173,11 @@ function media_browser_list() {
   }
 
   if ($url_include_patterns) {
-    $query->condition('f.uri', '%' . db_like($v) . '%', 'LIKE');
+    $query->condition('f.uri', '%' . db_like($url_include_patterns) . '%', 'LIKE');
     // Insert stream related restrictions here.
   }
   if ($url_exclude_patterns) {
-    $query->condition('f.uri', '%' . db_like($v) . '%', 'NOT LIKE');
+    $query->condition('f.uri', '%' . db_like($url_exclude_patterns) . '%', 'NOT LIKE');
   }
 
   // @todo Implement granular editorial access: http://drupal.org/node/696970.

@@ -14,6 +14,9 @@ function fontsquirrel_enable() {
 
   db_query("UPDATE {system} SET weight = 1 WHERE name = 'fontsquirrel'");
 
+  // Import/update fonts
+  fontyourface_import_fonts('fontsquirrel');
+
 } // fontsquirrel_enable
 
 /**

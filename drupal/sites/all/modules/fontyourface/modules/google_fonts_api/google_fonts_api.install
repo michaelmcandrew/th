@@ -14,6 +14,9 @@ function google_fonts_api_enable() {
 
   db_query("UPDATE {system} SET weight = 1 WHERE name = 'google_fonts_api'");
 
+  // Import/update fonts
+  fontyourface_import_fonts('google_fonts_api');
+
 } // google_fonts_api_enable
 
 
@@ -33,6 +36,6 @@ function google_fonts_api_update_7100() {
 
   // Fonts need to be re-imported after change in issue #1123340.
 
-  drupal_set_message(t('You may need to !import Google Fonts after this update.', array('!import' => l(t('re-import'), 'admin/config/user-interface/fontyourface'))), 'warning');
+  google_fonts_api_fontyourface_import();
 
 } // google_fonts_api_update_7100

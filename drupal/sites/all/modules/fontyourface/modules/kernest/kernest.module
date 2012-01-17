@@ -17,8 +17,9 @@ function kernest_fontyourface_info() {
  */
 function kernest_fontyourface_import() {
 
+  $success = TRUE;
+    
   // KERNEST's Joyent server throws 500 error on Drupal's user agent
-
   $logging = variable_get('fontyourface_detailed_logging', FALSE);
 
   $api_result = drupal_http_request('http://kernest.com/styles/web-native.json', array('headers' => array('User-Agent' => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3')));
@@ -72,37 +73,52 @@ function kernest_fontyourface_import() {
 
   } // if
   elseif ($logging) {
+    $success = FALSE;
     watchdog('@font-your-face', 'Invalid drupal_http_request response: @response', array('@response' => print_r($api_result, TRUE)), WATCHDOG_INFO);
   } // elseif
-
+  else {
+    $success = FALSE;
+  } // else
+  
+  return $success;
+  
 } // kernest_fontyourface_import
 
 /**
  * Implements hook_fontyourface_preview().
  */
-function kernest_fontyourface_preview($font) {
-
-  return '<span style="' . fontyourface_font_css($font) . ' font-size: 24px;">' . $font->name . '</span>';
-
-} // kernest_fontyourface_preview
-
-/**
- * Implements hook_fontyourface_view().
- */
-function kernest_fontyourface_view($font, $text) {
+function kernest_fontyourface_preview($font, $text = NULL, $size = 18) {
 
   $output = '';
-  $sizes = array(32, 24, 18, 14, 12, 10);
 
-  foreach ($sizes as $size) {
+  if ($text == NULL) {
+    $text = $font->name;
+  } // if
 
-    $output .= '<div style="' . fontyourface_font_css($font) . ' font-size: ' . $size . 'px; line-height: ' . $size . 'px;">' . $text . '</div>';
+  if ($size == 'all') {
 
-  } // foreach
+    // Display variety of sizes.
+
+    $sizes = array(32, 24, 18, 14, 12, 10);
+
+    foreach ($sizes as $size) {
+
+      $output .= '<div style="' . fontyourface_font_css($font) . ' font-size: ' . $size . 'px; line-height: ' . $size . 'px;">' . $text . '</div>';
+
+    } // foreach
+
+  } // if
+  else {
+
+    // Display single size.
+
+    $output = '<span style="' . fontyourface_font_css($font) . ' font-size: ' . $size . 'px; line-height: ' . $size . 'px;">' . $text . '</span>';
+
+  } // else
 
   return $output;
 
-} // kernest_fontyourface_view
+} // kernest_fontyourface_preview
 
 /**
  * Implements template_preprocess_page().

@@ -8,6 +8,7 @@ function fontsquirrel_fontyourface_info() {
   return array(
     'name' => 'Font Squirrel',
     'url' => 'http://www.fontsquirrel.com/',
+    'base_path' => 'http://www.fontsquirrel.com/fonts/',
   );
 
 } // fontsquirrel_fonts_api_fontyourface_info
@@ -15,24 +16,37 @@ function fontsquirrel_fontyourface_info() {
 /**
  * Implements hook_fontyourface_preview().
  */
-function fontsquirrel_fontyourface_preview($font) {
+function fontsquirrel_fontyourface_preview($font, $text = NULL, $size = 18) {
 
+  $output = '';
   $metadata = unserialize($font->metadata);
 
-  return '<img src="http://www.fontsquirrel.com/utils/makeFont.php?font=' . $metadata['id'] . '/' . $metadata['font_filename'] . '&width=300&size=18&text=' . urlencode($font->name) . '" />';
+  if ($text == NULL) {
+    $text = $font->name;
+  } // if
 
-} // fontsquirrel_fontyourface_preview
+  if ($size == 'all') {
 
-/**
- * Implements hook_fontyourface_view().
- */
-function fontsquirrel_fontyourface_view($font, $text) {
+    // Display variety of sizes.
 
-  $metadata = unserialize($font->metadata);
+    $sizes = array(32, 24, 18, 14, 12, 10);
 
-  $output = '<div><img src="http://www.fontsquirrel.com/utils/makeFont.php?font=' . $metadata['id'] . '/' . $metadata['font_filename'] . '&width=800&size=14&text=' . urlencode($text) . '" /></div>';
+    foreach ($sizes as $size) {
 
-  $output .= '<div><img src="http://www.fontsquirrel.com/utils/makeSolotypeSample.php?font=' . $metadata['id'] . '/' . $metadata['font_filename'] . '&case=all" /></div>';
+      $output = '<img src="http://www.fontsquirrel.com/utils/makeFont.php?font=' . $metadata['id'] . '/' . $metadata['font_filename'] . '&width=300&size=' . $size . '&text=' . urlencode($text) . '" />';
+
+    } // foreach
+
+    $output .= '<div><img src="http://www.fontsquirrel.com/utils/makeSolotypeSample.php?font=' . $metadata['id'] . '/' . $metadata['font_filename'] . '&case=all" /></div>';
+
+  } // if
+  else {
+
+    // Display single size.
+
+    $output = '<img src="http://www.fontsquirrel.com/utils/makeFont.php?font=' . $metadata['id'] . '/' . $metadata['font_filename'] . '&width=150&size=' . ($size - 10) . '&text=' . urlencode($text) . '" />';
+
+  } // else
 
   return $output;
 
@@ -94,7 +108,7 @@ function fontsquirrel_fontyourface_enable($font) {
       } // if
       else {
 
-        drupal_set_message(t('There was an error importing font information for ') . ' <i>' . $font->name . '</i> ' . t('from') . ' Font Squirrel. Font not found in API.', 'error');
+        drupal_set_message(t('There was an error importing font information for %fontname from Font Squirrel. Font not found in API.', array('%fontname' => $font->name)), 'error');
         $success = FALSE;
 
       } // else
@@ -102,7 +116,7 @@ function fontsquirrel_fontyourface_enable($font) {
     } // if
     else {
 
-      drupal_set_message(t('There was an error importing font information for ') . ' <i>' . $font->name . '</i> ' . t('from') . ' Font Squirrel. API not responding.', 'error');
+      drupal_set_message(t('There was an error importing font information for %fontname from Font Squirrel. API not responding.', array('%fontname' => $font-name)), 'error');
       $success = FALSE;
 
     } // else
@@ -138,7 +152,7 @@ function fontsquirrel_fontyourface_enable($font) {
         } // if
         else {
 
-          drupal_set_message(t('There was an error saving font') . ' <i>' . $font->name . '</i> ' . t('from') . ' Font Squirrel.', 'error');
+          drupal_set_message(t('There was an error saving font %fontname from Font Squirrel.', array('%fontname' => $font->name)), 'error');
           $success = FALSE;
 
         } // else
@@ -146,7 +160,7 @@ function fontsquirrel_fontyourface_enable($font) {
       } // if
       else {
 
-        drupal_set_message(t('There was an error downloading font' ) . ' <i>' . $font->name . '</i> ' . t('from') . ' Font Squirrel.', 'error');
+        drupal_set_message(t('There was an error downloading font %fontname from Font Squirrel.', array('%fontname' => $font->name)), 'error');
         $success = FALSE;
 
       } // else
@@ -180,7 +194,11 @@ function fontsquirrel_fontyourface_enable($font) {
       } // if
       else {
 
-        drupal_set_message(t('Unable to unzip font') . ' <i>' . $font->name . '</i> ' . t('at') . ' <code>' . check_plain($zip_location) . '</code>. ' . t('See !zipdocs to enable unzipping, or unzip the file manually and enable this font again.', array('!zipdocs' => l('PHP documentation on zip', 'http://www.php.net/manual/en/zip.installation.php'))), 'error');
+        drupal_set_message(t('Unable to unzip font %fontname at <code>@zip_location</code>. See !zipdocs to enable unzipping, or unzip the file manually and enable this font again.', array(
+          '%fontname' => $font->name,
+          '@zip_location' => $zip_location,
+          '!zipdocs' => l(t('PHP documentation on zip'), 'http://www.php.net/manual/en/zip.installation.php'),
+        )), 'error');
         $success = FALSE;
 
       } // else

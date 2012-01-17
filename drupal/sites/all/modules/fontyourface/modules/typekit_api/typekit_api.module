@@ -10,6 +10,7 @@ function typekit_api_fontyourface_info() {
   return array(
     'name' => 'Typekit',
     'url' => 'http://typekit.com/',
+    'base_path' => 'http://typekit.com/fonts/',
   );
 
   return $info;
@@ -20,9 +21,9 @@ function typekit_api_fontyourface_info() {
  * Implements hook_fontyourface_import().
  */
 function typekit_api_fontyourface_import() {
-
+  
+  $success = TRUE;
   $logging = variable_get('fontyourface_detailed_logging', FALSE);
-
   $kits = typekit_api_get_kits();
 
   if ($logging) {
@@ -76,11 +77,16 @@ function typekit_api_fontyourface_import() {
 
     } // if
     elseif ($logging) {
+      $success = FALSE;
       watchdog('@font-your-face', 'Typekit kit did not match current domain, @domain', array('@domain' => $_SERVER['HTTP_HOST']), WATCHDOG_INFO);
     } // elseif
-
+    else {
+      $success = FALSE;
+    }
   } // foreach
 
+  return $success; 
+  
 } // typekit_api_fontyourface_import
 
 /**
@@ -132,7 +138,7 @@ function typekit_api_preprocess_page(&$vars) {
  */
 function typekit_api_form_alter(&$form, &$form_state, $form_id) {
 
-  if ($form_id == 'fontyourface_settings_form') {
+  if ($form_id == 'fontyourface_ui_settings_form') {
 
     $form['typekit_api'] = array(
       '#type' => 'fieldset',
@@ -146,10 +152,16 @@ function typekit_api_form_alter(&$form, &$form_state, $form_id) {
       ),
       'typekit_api_save' => array(
         '#type' => 'submit',
-        '#value' => 'Update TypeKit',
+        '#value' => t('Save TypeKit API token'),
       ),
     );
-
+    
+    // Move the default update/import button to the Typekit fieldset
+    if (isset($form['providers']['typekit_api_import'])) {
+      $form['typekit_api']['typekit_api_import'] = $form['providers']['typekit_api_import'];
+      unset($form['providers']['typekit_api_import']);
+    }
+    
     $form['#submit'][] = 'typekit_api_token_submit';
 
   } // if
@@ -171,29 +183,38 @@ function typekit_api_token_submit($form, &$form_state) {
 } // typekit_api_token_submit
 
 /**
- * Implements hook_fontyourface_view().
- */
-function typekit_api_fontyourface_view($font, $text) {
-
-  $output = '';
-  $sizes = array(32, 24, 18, 14, 12, 10);
-
-  foreach ($sizes as $size) {
-
-    $output .= '<div style="' . fontyourface_font_css($font) . ' font-size: ' . $size . 'px; line-height: ' . $size . 'px;">' . $text . '</div>';
-
-  } // foreach
-
-  return $output;
-
-} // typekit_api_fontyourface_view
-
-/**
  * Implements hook_fontyourface_preview().
  */
-function typekit_api_fontyourface_preview($font) {
+function typekit_api_fontyourface_preview($font, $text = NULL, $size = 18) {
 
-  return '<span style="' . fontyourface_font_css($font) . ' font-size: 24px;">' . $font->name . '</span>';
+  $output = '';
+
+  if ($text == NULL) {
+    $text = $font->name;
+  } // if
+
+  if ($size == 'all') {
+
+    // Display variety of sizes.
+
+    $sizes = array(32, 24, 18, 14, 12, 10);
+
+    foreach ($sizes as $size) {
+
+      $output .= '<div style="' . fontyourface_font_css($font) . ' font-size: ' . $size . 'px; line-height: ' . $size . 'px;">' . $text . '</div>';
+
+    } // foreach
+
+  } // if
+  else {
+
+    // Display single size.
+
+    $output = '<span style="' . fontyourface_font_css($font) . ' font-size: ' . $size . 'px; line-height: ' . $size . 'px;">' . $text . '</span>';
+
+  } // else
+
+  return $output;
 
 } // typekit_api_fontyourface_preview
 

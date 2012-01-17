@@ -5,7 +5,7 @@ namespace('Drupal.media.browser');
 Drupal.behaviors.mediaLibrary = {
   attach: function (context, settings) {
     var library = new Drupal.media.browser.library(Drupal.settings.media.browser.library);
-    $('#media-browser-tabset').bind('tabsselect', function (event, ui) {
+    $('#media-browser-tabset').bind('tabsshow', function (event, ui) {
       if (ui.tab.hash === '#media-tab-library') {
         // Grab the parameters from the Drupal.settings object
         var params = {};
