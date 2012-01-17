@@ -3,14 +3,15 @@
  * Add body classes if certain regions have content.
  */
 function technically_preprocess_html(&$variables) {
-  drupal_add_css(path_to_theme() . '/css/ie.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
-  drupal_add_css(path_to_theme() . '/css/ie6.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'IE 6', '!IE' => FALSE), 'preprocess' => FALSE));
+	drupal_add_css(path_to_theme() . '/css/ie.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
+	drupal_add_css(path_to_theme() . '/css/ie6.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'IE 6', '!IE' => FALSE), 'preprocess' => FALSE));
+	$variables['classes_array'][]='th';
 }
 
 function technically_preprocess_page(&$variables) {
-        if (arg(0) == 'node') {
-                $variables['node_content'] =& $variables['page']['content']['system_main']['nodes'][arg(1)];
-        }
+	if (arg(0) == 'node') {
+		$variables['node_content'] =& $variables['page']['content']['system_main']['nodes'][arg(1)];
+	}
 }
 
 
@@ -18,10 +19,9 @@ function technically_preprocess_page(&$variables) {
  * Override or insert variables into the node template.
  */
 function technically_preprocess_node(&$variables) {
-  if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
-    $variables['classes_array'][] = 'node-full';
-  }
-
+	if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
+		$variables['classes_array'][] = 'node-full';
+	}
 }
 
 
@@ -29,15 +29,12 @@ function technically_preprocess_node(&$variables) {
  * Implements theme_menu_tree().
  */
 function technically_menu_tree($variables) {
-  return '<ul class="menu clearfix">' . $variables['tree'] . '</ul>';
+		return '<ul class="menu clearfix">' . $variables['tree'] . '</ul>';
 }
 
 /**
  * Implements theme_field__field_type().
  */
-
-function technically_preprocess_user_login_block(&$vars) {
-}
 
 function technically_field__field_message_categories($variables) {
 	return technically_correct_message_links($variables, 'messages/%/all');
