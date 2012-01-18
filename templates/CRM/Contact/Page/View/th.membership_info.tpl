@@ -1,5 +1,5 @@
 {crmAPI var="Memberships" entity="Membership" action="get" version="3" contact_id=$contactId}
-<div class="contact_details"><div class="contact_panel">
+<div class="contact_details" id="contact_panel_wrap"><div class="contact_panel">
 <table><tr><td class='label'>Membership info</td>
 {if $Memberships.count}
 {crmAPI var="MembershipStatuses" entity="MembershipStatus" action="get" version="3" }
