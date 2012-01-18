@@ -1000,7 +1000,6 @@ div.add-or-remove-shortcuts {
 #content {
 	margin-right: 235px;
 }
-
 #right_sidebar {
 	position: absolute;
 	top: 25px;
@@ -1008,7 +1007,9 @@ div.add-or-remove-shortcuts {
 	width: 200px;
 	padding: 10px;
 }
-
+#user-profile-form .resizable-textarea textarea {
+	width: 100%;
+}
 
 
 
