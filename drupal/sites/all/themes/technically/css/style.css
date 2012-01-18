@@ -1654,8 +1654,10 @@ ol.search-results {
 #user-profile-form {
 	overflow: hidden;
 	color: #332F2D !important;
+	line-height: 1.6em;
 }
-#crm-container .crm-contribution-main-form-block .odd-row {
+#crm-container .crm-contribution-main-form-block .odd-row,
+#crm-container .crm-contribution-thankyou-form-block .odd-row {
 	background-color: #F5F2F0;
 }
 #crm-container #membership {
