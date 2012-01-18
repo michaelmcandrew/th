@@ -1686,7 +1686,7 @@ ol.search-results {
 }
 #crm-container .crm-contribution-main-form-block legend,
 #crm-container .crm-contribution-confirm-form-block .header-dark,
-#crm-container .crm-contribution-thankyou-form-block .header-dark
+#crm-container .crm-contribution-thankyou-form-block .header-dark,
 #user-profile-form legend {
 	padding: 0;
 	color: #332F2D;
@@ -1714,7 +1714,8 @@ ol.search-results {
 	
 }
 #crm-container .crm-contribution-confirm-form-block div.no-label,
-#crm-container .crm-contribution-main-form-block div.no-label {
+#crm-container .crm-contribution-main-form-block div.no-label,
+#crm-container .crm-contribution-thankyou-form-block div.no-label {
 	font-size: 1.3em;
 }
 #crm-container .crm-contribution-main-form-block .crm-section .description,
