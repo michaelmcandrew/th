@@ -53,6 +53,14 @@
             {$form.customCSSURL.html|crmReplace:class:'huge40'} {help id='id-css_url'}
         </td>
     </tr>
+    <tr class="crm-url-form-block-customExtraCSSURL">
+        <td class="label">
+            {$form.customExtraCSSURL.label}
+        </td>
+        <td>
+            {$form.customExtraCSSURL.html|crmReplace:class:'huge40'} {help id='id-extra-css_url'}
+        </td>
+    </tr>
     <tr class="crm-url-form-block-enableSSL">
         <td class="label">
             {$form.enableSSL.label}

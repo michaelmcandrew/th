@@ -25,12 +25,17 @@
 *}
 {if $config->userFramework eq 'Drupal'}
   {if $config->customCSSURL}
-    <link rel="stylesheet" href="{$config->customCSSURL}" type="text/css" />
+	  <link rel="stylesheet" href="{$config->customCSSURL}" type="text/css" />
   {else}
     <link rel="stylesheet" href="{$config->resourceBase}css/deprecate.css" type="text/css" />
     <link rel="stylesheet" href="{$config->resourceBase}css/civicrm.css" type="text/css" />
     <link rel="stylesheet" href="{$config->resourceBase}css/extras.css" type="text/css" />
   {/if} 
+  {if $config->customExtraCSSURL}
+  	<link rel="stylesheet" href="{$config->customExtraCSSURL}" type="text/css" />
+  {/if} 
+
+
 {elseif $config->userFramework eq 'Joomla'}
   <link rel="stylesheet" href="{$config->resourceBase}css/deprecate.css" type="text/css" />
   <link rel="stylesheet" href="{$config->resourceBase}css/civicrm.css" type="text/css" />
@@ -42,5 +47,8 @@
   {if $config->customCSSURL}
     <link rel="stylesheet" href="{$config->customCSSURL}" type="text/css" />
   {/if}
+  {if $config->customExtraCSSURL}
+  	<link rel="stylesheet" href="{$config->customExtraCSSURL}" type="text/css" />
+  {/if} 
   <link rel="stylesheet" href="{$config->resourceBase}css/extras.css" type="text/css" />
 {/if}
