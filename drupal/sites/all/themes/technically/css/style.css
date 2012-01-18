@@ -69,7 +69,8 @@ table.cke_editor body {
 #main-wrapper .view-members p,
 #main-wrapper .view-members li,
 #main-wrapper .view-members table,
-#main-wrapper .view-members input {
+#main-wrapper .view-members input,
+#user-profile-form li {
 	font-size: 1em;
 }
 .views-field-created,
@@ -129,6 +130,11 @@ h2.invisible,
 	visibility: hidden;
 	border-bottom: 0 none;
 	padding: 0;
+}
+#hp-left h2, 
+#hp-right h2 {
+	padding-bottom: 12px;
+	line-height: 1em;
 }
 h3 {
 	margin: 0 0 12px 0;
@@ -485,7 +491,8 @@ li {
 #block-formblock-message,
 .partner-block .views-row,
 .crm-contribution-main-form-block,
-.crm-contribution-confirm-form-block {
+.crm-contribution-confirm-form-block,
+#user-profile-form {
  	-moz-border-radius: 10px; /* Firefox */
 	-webkit-border-radius: 10px; /* Safari, Chrome */
 	border-radius: 10px; /* CSS3 */
@@ -577,6 +584,15 @@ li {
 .field-name-comment-body {
 	margin-top: 10px;
 }
+#hp-left .content,
+#hp-right .content, 
+.content .content {
+	margin-top: 0;
+}
+#hp-left .view-content,
+#hp-right .view-content {
+	margin-top: 8px;
+}
 #homepage-content .content,
 .node-webform .content
 #footer .content {
@@ -657,7 +673,8 @@ span.profile-title {
 .profile,
 #block-formblock-message,
 .crm-contribution-main-form-block,
-.crm-contribution-confirm-form-block {
+.crm-contribution-confirm-form-block,
+#user-profile-form {
 	background-color: #f5f2f0;	
 	border: 5px solid #d9bc6c;
 }
@@ -809,7 +826,7 @@ span.profile-title {
 }
 #block-views-events-block-1 .btn-dark {
 	position: absolute;
-	bottom: 20px;
+	bottom: 14px;
 	left: 94px;
 }
 #block-views-blog-block-1 {
@@ -944,7 +961,7 @@ span.profile-title {
 }
 #quicktabs-container-latest {
 	clear: left;
-	padding-top: 20px;
+	padding-top: 14px;
 }
 .blog-archive ul {
 	list-style: none outside none;
@@ -1088,7 +1105,7 @@ ul.tabs {
 	height: 34px;
 	overflow: hidden;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	margin: 20px 0 0 10px;
+	margin: 20px 0 -15px 10px;
   /*margin-bottom: 20px;*/
 }
 .tabs h2 {
@@ -1200,8 +1217,10 @@ div.messages,
 	font-size: 1.3em;
 	line-height: 1.5em;
 }
-div.messages, table tr.ok,
-#crm-container #help, #crm-container .help {
+div.messages, 
+table tr.ok,
+#crm-container #help, 
+#crm-container .help {
 	background-color: #fff;
 }
 div.status, .ok {
@@ -1223,28 +1242,6 @@ div.error, .error {
   	float: left;
 }
 
-/* -------------- Password Meter  ------------- */
-
-.confirm-parent,
-.password-parent {
-  width: 34em;
-}
-.password-parent,
-div.form-item div.password-suggestions {
-  position: relative;
-}
-.password-strength-text,
-.password-strength-title,
-div.password-confirm {
-  font-size: ;
-}
-.password-strength-text {
-  margin-top: 0.2em;
-}
-div.password-confirm {
-  margin-top: 2.2em;
-  width: 20.73em;
-}
 
 /* ---------------- Buttons    ---------------- */
 
@@ -1334,14 +1331,14 @@ fieldset.collapsed {
   -webkit-border-radius: 0;
   border-radius: 0;
 }
-fieldset legend {
+/*fieldset legend {
   background: #dbdbdb;
   border: 1px solid #ccc;
   border-bottom: none;
   color: #332f2d;
   display: block;
   height: 2em;
-  left: -1px; /* LTR */
+  left: -1px; /* LTR 
   font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
   line-height: 2;
   padding: 0;
@@ -1357,7 +1354,7 @@ fieldset legend {
   -khtml-border-radius-topright: 4px;
   -moz-border-radius-topright: 4px;
   -webkit-border-top-right-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-right-radius: 4px;*/
 }
 fieldset.collapsed legend {
   -khtml-border-radius: 4px;
@@ -1373,9 +1370,7 @@ fieldset legend a:focus,
 fieldset legend a:active {
   color: #332f2d;
 }
-fieldset .fieldset-wrapper {
-  padding: 0 10px;
-}
+
 fieldset .fieldset-description {
   margin-top: 5px;
   margin-bottom: 1em;
@@ -1384,7 +1379,7 @@ fieldset .fieldset-description {
   font-style: italic;
 }
 input {
-  margin: 2px 0;
+  margin: 2px;
   padding: 4px;
 }
 textarea {
@@ -1652,7 +1647,9 @@ ol.search-results {
 
 /* -------------- CiviCRM forms on front end -------------- */
 #crm-container .crm-contribution-main-form-block,
-#crm-container .crm-contribution-confirm-form-block {
+#crm-container .crm-contribution-confirm-form-block,
+#crm-container .crm-contribution-thankyou-form-block
+#user-profile-form {
 	overflow: hidden;
 	color: #332F2D !important;
 }
@@ -1686,14 +1683,19 @@ ol.search-results {
 	border: 0 none;
 }
 #crm-container .crm-contribution-main-form-block legend,
-#crm-container .crm-contribution-confirm-form-block .header-dark {
+#crm-container .crm-contribution-confirm-form-block .header-dark,
+#crm-container .crm-contribution-thankyou-form-block .header-dark
+#user-profile-form legend {
 	padding: 0;
 	color: #332F2D;
 	text-shadow: 0 0 0 transparent;
 	font-size: 1.4em;
 	line-height: 28px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, Sans-serif;
 }
-#crm-container .crm-contribution-confirm-form-block .header-dark {
+#crm-container .crm-contribution-confirm-form-block .header-dark,
+#crm-container .crm-contribution-thankyou-form-block .header-dark {
 	margin: 0;
 	background-color: transparent;
 	font-weight: bold;
@@ -1702,7 +1704,19 @@ ol.search-results {
 	-webkit-border-radius: 0;
 	-khtml-border-radius: 0;
 }
-#crm-container .crm-contribution-main-form-block .crm-section .description {
+#crm-container .crm-contribution-confirm-form-block div.display-block,
+#crm-container .crm-contribution-main-form-block div.display-block,
+#crm-container .crm-contribution-thankyou-form-block div.display-block {
+	font-size: 1.3em;
+	margin: 10px 0 20px 0;
+	
+}
+#crm-container .crm-contribution-confirm-form-block div.no-label,
+#crm-container .crm-contribution-main-form-block div.no-label {
+	font-size: 1.3em;
+}
+#crm-container .crm-contribution-main-form-block .crm-section .description,
+#user-profile-form .form-item .description {
 	font-size: 1.1em;
 }
 #crm-container .crm-contribution-main-form-block .crm-submit-buttons {
@@ -1711,8 +1725,18 @@ ol.search-results {
 #crm-container .crm-contribution-main-form-block input[type="text"], 
 #crm-container .crm-contribution-main-form-block input[type="password"],
 #crm-container .crm-contribution-confirm-form-block input[type="text"],
-#crm-container .crm-contribution-confirm-form-block input[type="password"] {
+#crm-container .crm-contribution-confirm-form-block input[type="password"],
+#input[type="text"] {
 	width: 240px;
+	border: 0 none;
+	padding: 2px 4px;
+}
+#crm-container .crm-contribution-main-form-block input#cvv2 {
+	width: 80px;
+}
+#user-profile-form input[type="text"],
+#user-profile-form input[type="password"] {
+	width: 200px;
 	border: 0 none;
 	padding: 2px 4px;
 }
@@ -1760,7 +1784,8 @@ ol.search-results {
 	display: block;
 }
 #crm-container .crm-contribution-confirm-form-block td,
-#crm-container .crm-contribution-main-form-block td {
+#crm-container .crm-contribution-main-form-block td,
+#crm-container .crm-contribution-thankyou-form-block td {
 	padding: 0;
 }
 #crm-container .crm-contribution-confirm-form-block .contributor_email-section {
@@ -1791,7 +1816,32 @@ ol.search-results {
 	color: #332F2D !important;
 	background-color: transparent !important;
 }
-
+#user-profile-form .confirm-parent, 
+#user-profile-form .password-parent {
+	width: auto;
+}
+#user-profile-form .password-strength, 
+#user-profile-form div.password-confirm {
+	width: 200px;
+	margin-right: 100px;
+	float: right;
+	margin-top: 14px;
+}
+#user-profile-form fieldset {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+#user-profile-form fieldset.collapsible {
+	margin-bottom: 36px;
+}
+#user-profile-form div.form-item div.password-suggestions {
+	padding: 0;
+	margin: 24px 0;
+	width: 240px;
+	border: 0;
 /* -------------- Shortcut Links -------------- */
 
 .shortcut-wrapper {
