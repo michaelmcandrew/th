@@ -41,7 +41,6 @@ function th_membership_pay_redirect() {
 }
 
 function th_membership_civicrm_buildForm($formName, &$form) {
-	global $user;
 	if($formName!='CRM_Contribute_Form_Contribution_Main'){
 		return;
 	}
@@ -60,4 +59,30 @@ function th_membership_civicrm_buildForm($formName, &$form) {
     }
 //	exit;
 	
+}
+//sprint_r('500');
+
+function th_membership_civicrm_buildAmount( $pageType, &$form, &$amount ){
+	global $user;
+	if($form->getVar('_id')!=2){
+		exit;
+	}
+    $number_of_desks = 1;
+	civicrm_initialize();
+	$contact=civicrm_api("UFMatch","getsingle", array ('version' =>'3', 'uf_id' => $user->uid));
+	require_once'CRM/Core/DAO.php';
+	$desks_query=CRM_Core_DAO::executeQuery("SELECT number_of_desks_155 AS desks FROM civicrm_value_resident_membership_2 WHERE entity_id=".$contact['contact_id']);
+	$desks_query->fetch();
+	$number_of_desks = $desks_query->desks;
+	if($number_of_desks == 1){
+		$label = '1 desk';
+	} else {
+		$label = $number_of_desks.' desks';
+	}
+	foreach ( $amount as $amountId => $amountInfo ) {
+		$amount[$amountId]['label'] = $label;
+		$amount[$amountId]['value'] = $amount[$amountId]['value'] * $number_of_desks;
+	}
+	
+
 }
