@@ -64,7 +64,7 @@ function th_membership_civicrm_buildForm($formName, &$form) {
 
 function th_membership_civicrm_buildAmount( $pageType, &$form, &$amount ){
 	global $user;
-	if($form->getVar('_id')!=2){
+	if($form->getVar('_id')!=2 OR $pageType!='contribution'){
 		exit;
 	}
     $number_of_desks = 1;
@@ -75,9 +75,9 @@ function th_membership_civicrm_buildAmount( $pageType, &$form, &$amount ){
 	$desks_query->fetch();
 	$number_of_desks = $desks_query->desks;
 	if($number_of_desks == 1){
-		$label = '1 desk';
+		$label = '(1 desk)';
 	} else {
-		$label = $number_of_desks.' desks';
+		$label = "({$number_of_desks} desks)";
 	}
 	foreach ( $amount as $amountId => $amountInfo ) {
 		$amount[$amountId]['label'] = $label;
