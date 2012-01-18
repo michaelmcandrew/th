@@ -2,4 +2,4 @@
 name = Membership pay redirect
 description = Redirects people to the correct membership form based on what they applied for
 package = CiviCRM - TechHub extras
-core = 6.x
+core = 7.x
