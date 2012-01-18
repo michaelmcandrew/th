@@ -5,3 +5,13 @@
 ** if you don't want to modify system provided
 ** civicrm.css.
 */
+
+
+#crm-container div#contactTopBar {
+	float: left;
+	clear: none;
+}
+#crm-container div#contactImage {
+	padding: 4px;
+	float: right;
+}

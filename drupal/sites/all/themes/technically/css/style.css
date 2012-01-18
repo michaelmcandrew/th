@@ -578,6 +578,7 @@ li {
 	margin-top: 10px;
 }
 #homepage-content .content,
+.node-webform .content
 #footer .content {
 	margin-top: 0;
 }
@@ -1084,7 +1085,10 @@ ul.tabs {
 /* --------------- System Tabs  --------------- */
 
 .tabs {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	height: 34px;
+	overflow: hidden;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	margin: 20px 0 0 10px;
   /*margin-bottom: 20px;*/
 }
 .tabs h2 {
@@ -1095,9 +1099,9 @@ ul.tabs {
 }
 .tabs ul.primary {
   	padding: 0 3px;
-	margin: 20px 0 -15px 10px;
+	margin: 0;
     overflow: hidden;
-	border: none;
+	border: 0;
   /*background: transparent url(../images/tabs-border.png) repeat-x left bottom;*/
 }
 .tabs ul.primary li {

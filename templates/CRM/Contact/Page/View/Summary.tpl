@@ -24,11 +24,11 @@
  +--------------------------------------------------------------------+
 *}
 {* Contact Summary template for new tabbed interface. Replaces Basic.tpl *}
-{if !empty($imageURL)}
+<!-- {if !empty($imageURL)}
     <div>
         {include file="CRM/Contact/Page/ContactImage.tpl"}
     </div>
-{/if}
+{/if} -->
 {if $action eq 2}
     {include file="CRM/Contact/Form/Contact.tpl"}
 {else}
@@ -147,6 +147,12 @@
                 {if !empty($hookContent) and isset($hookContentPlacement) and $hookContentPlacement eq 2}
                     {include file="CRM/Contact/Page/View/SummaryHook.tpl"}
                 {/if}
+				
+				{if !empty($imageURL)}
+				    <div id="contactImage">
+				        {include file="CRM/Contact/Page/ContactImage.tpl"}
+				    </div>
+				{/if}
                 
                 {if !empty($contact_type_label) OR !empty($current_employer_id) OR !empty($job_title) OR !empty($legal_name) OR $sic_code OR !empty($nick_name) OR !empty($contactTag) OR !empty($source)}
                 <div id="contactTopBar">
