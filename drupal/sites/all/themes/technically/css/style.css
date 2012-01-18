@@ -492,6 +492,7 @@ li {
 .partner-block .views-row,
 .crm-contribution-main-form-block,
 .crm-contribution-confirm-form-block,
+.crm-contribution-thankyou-form-block,
 #user-profile-form {
  	-moz-border-radius: 10px; /* Firefox */
 	-webkit-border-radius: 10px; /* Safari, Chrome */
@@ -674,6 +675,7 @@ span.profile-title {
 #block-formblock-message,
 .crm-contribution-main-form-block,
 .crm-contribution-confirm-form-block,
+.crm-contribution-thankyou-form-block,
 #user-profile-form {
 	background-color: #f5f2f0;	
 	border: 5px solid #d9bc6c;
@@ -1648,7 +1650,7 @@ ol.search-results {
 /* -------------- CiviCRM forms on front end -------------- */
 #crm-container .crm-contribution-main-form-block,
 #crm-container .crm-contribution-confirm-form-block,
-#crm-container .crm-contribution-thankyou-form-block
+#crm-container .crm-contribution-thankyou-form-block,
 #user-profile-form {
 	overflow: hidden;
 	color: #332F2D !important;
@@ -1718,6 +1720,10 @@ ol.search-results {
 #crm-container .crm-contribution-main-form-block .crm-section .description,
 #user-profile-form .form-item .description {
 	font-size: 1.1em;
+	line-height: 1.2em;
+}
+#crm-container .crm-contribution-main-form-block fieldset.billing_mode-group .crm-section .description {
+	font-size: 0.9em;
 }
 #crm-container .crm-contribution-main-form-block .crm-submit-buttons {
 	height: auto;
@@ -1842,6 +1848,15 @@ ol.search-results {
 	margin: 24px 0;
 	width: 240px;
 	border: 0;
+}
+/* -------------- Views pager -------------- */
+.pager-current {
+	display: none;
+	visibility: hidden;
+}
+.item-list .pager li {
+	
+}
 /* -------------- Shortcut Links -------------- */
 
 .shortcut-wrapper {
