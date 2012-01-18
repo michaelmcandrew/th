@@ -1208,7 +1208,8 @@ ul.action-links li a {
 }
 div.messages,
 #crm-container div.messages,
-#crm-container #help, #crm-container .help {
+#crm-container #help, 
+#crm-container .help {
 	margin: 20px auto;
   	-moz-border-radius: 10px;
   	-webkit-border-radius: 10px;
@@ -1216,13 +1217,11 @@ div.messages,
 	font-size: 1.3em;
 	border: 5px solid green;
 	color: #332F2D;
+	background-color: #fff;
 	font-size: 1.3em;
 	line-height: 1.5em;
 }
-div.messages, 
-table tr.ok,
-#crm-container #help, 
-#crm-container .help {
+table tr.ok {
 	background-color: #fff;
 }
 div.status, .ok {
