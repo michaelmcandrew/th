@@ -9,9 +9,15 @@
 
 #crm-container div#contactTopBar {
 	float: left;
-	clear: none;
+	clear: both;
 }
 #crm-container div#contactImage {
+	width: 108px;
 	padding: 4px;
 	float: right;
+}
+#crm-container div#contact_panel_wrap {
+	width: 1480px;
+	float: left;
+	clear: none;
 }

@@ -140,7 +140,13 @@
             {/foreach}
         </ul>
 
-        <div title="Summary" id="contact-summary" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+        <div title="Summary" id="contact-summary" class="ui-tabs-panel ui-widget-content ui-corner-bottom">	
+			{if !empty($imageURL)}
+			    <div id="contactImage">
+			        {include file="CRM/Contact/Page/ContactImage.tpl"}
+			    </div>
+			{/if}
+			
         	{include file="CRM/Contact/Page/View/th.membership_info.tpl"}
             {if (isset($hookContentPlacement) and ($hookContentPlacement neq 3)) or empty($hookContentPlacement)}
                 
@@ -148,11 +154,6 @@
                     {include file="CRM/Contact/Page/View/SummaryHook.tpl"}
                 {/if}
 				
-				{if !empty($imageURL)}
-				    <div id="contactImage">
-				        {include file="CRM/Contact/Page/ContactImage.tpl"}
-				    </div>
-				{/if}
                 
                 {if !empty($contact_type_label) OR !empty($current_employer_id) OR !empty($job_title) OR !empty($legal_name) OR $sic_code OR !empty($nick_name) OR !empty($contactTag) OR !empty($source)}
                 <div id="contactTopBar">
