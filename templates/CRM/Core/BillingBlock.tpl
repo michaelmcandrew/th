@@ -146,12 +146,14 @@
                             <div class="content">{$form.$n.html|crmReplace:class:big}</div>
                             <div class="clear"></div> 
                         </div>
+						<!--  We don't want state/province to appear in the address 
                         {assign var=n value=billing_state_province_id-$bltID}
                         <div class="crm-section {$form.$n.name}-section">	
 							<div class="label">{$form.$n.label}</div>
                             <div class="content">{$form.$n.html|crmReplace:class:big}</div>
                             <div class="clear"></div> 
                         </div>
+						-->
                         {assign var=n value=billing_postal_code-$bltID}
                         <div class="crm-section {$form.$n.name}-section">	
 							<div class="label">{$form.$n.label}</div>
