@@ -1010,8 +1010,12 @@ div.add-or-remove-shortcuts {
 	width: 200px;
 	padding: 10px;
 }
-#user-profile-form .resizable-textarea textarea {
+.resizable-textarea textarea {
 	width: 100%;
+}
+
+.resizable-textarea .grippie {
+	background: red !important;
 }
 
 

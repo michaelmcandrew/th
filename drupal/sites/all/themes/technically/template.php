@@ -6,6 +6,7 @@ function technically_preprocess_html(&$variables) {
 	drupal_add_css(path_to_theme() . '/css/ie.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
 	drupal_add_css(path_to_theme() . '/css/ie6.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'IE 6', '!IE' => FALSE), 'preprocess' => FALSE));
 	$variables['classes_array'][]='th';
+	drupal_add_js('http://fast.fonts.com/jsapi/f66a3808-5359-4590-8f58-46569d4241d9.js');
 }
 
 function technically_preprocess_page(&$variables) {
@@ -13,7 +14,6 @@ function technically_preprocess_page(&$variables) {
 		$variables['node_content'] =& $variables['page']['content']['system_main']['nodes'][arg(1)];
 	}
 }
-
 
 /**
  * Override or insert variables into the node template.

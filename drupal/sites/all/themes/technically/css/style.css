@@ -57,6 +57,7 @@ table.cke_editor body {
 .views-field-title,
 .views-field-created,
 .views-field-field-date-time,
+.field-name-field-date-time,
 .view-twitter-block .view-content,
 .field-name-field-eventbrite-url a {
 	font-size: 1.3em;
@@ -76,6 +77,9 @@ table.cke_editor body {
 .views-field-created,
 .views-field-field-date-time {
 	font-style: italic;
+}
+.field-name-field-date-time {
+	margin: 6px 0;
 }
 a {
 	color: #a8001c;
@@ -587,7 +591,8 @@ li {
 }
 #hp-left .content,
 #hp-right .content, 
-.content .content {
+.content .content,
+.content .view-content {
 	margin-top: 0;
 }
 #hp-left .view-content,
@@ -741,7 +746,7 @@ span.profile-title {
 	text-transform: uppercase;
 }
 .blog-author {
-	margin-bottom: 12px;
+	margin: 6px 0 12px;
 }
 .field-name-field-intro,
 #main-wrapper .view-events .view-header p {
