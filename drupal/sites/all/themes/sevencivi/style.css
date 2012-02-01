@@ -692,6 +692,9 @@ select.form-select {
   background: #fff;
   color: #333;
 }
+#user-profile-form .resizable-textarea textarea {
+	width: 100%;
+}
 input.form-text:focus,
 input.form-file:focus,
 textarea.form-textarea:focus,
@@ -1007,8 +1010,12 @@ div.add-or-remove-shortcuts {
 	width: 200px;
 	padding: 10px;
 }
-#user-profile-form .resizable-textarea textarea {
+.resizable-textarea textarea {
 	width: 100%;
+}
+
+.resizable-textarea .grippie {
+	background: red !important;
 }
 
 
