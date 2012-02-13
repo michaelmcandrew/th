@@ -721,10 +721,10 @@ span.profile-title {
 	width: 100%;
 	height: 28px;
 	line-height: 30px;
-	background: url(../images/faq-plus.gif) no-repeat right center;
+	background: url(../images/faq-plus.png) no-repeat right center;
 }
 .faq-qa-visible a {
-	background: url(../images/faq-minus.gif) no-repeat right center;
+	background: url(../images/faq-minus.png) no-repeat right center;
 }
 .faq-answer {
 	padding: 12px 0;
