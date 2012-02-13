@@ -58,11 +58,11 @@
  */
 ?>
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-  <?php print $picture ?>  
+  <?//php print $picture ?>  
 
   <div class="comment-content">
       <?php print $author; ?>
-	  <div class="time-ago"><?php print format_interval(REQUEST_TIME - $comment->created).' ago'; ?></div>
+	  <span class="time-ago"><?php print ' - ' .format_interval(REQUEST_TIME - $comment->created).' ago'; ?></span>
 	  <div<?php print $content_attributes; ?>>
 	    <?php
 	      hide($content['links']);
